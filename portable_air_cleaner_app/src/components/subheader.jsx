@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../Home.css";
+import HelpIcon from "../images/helperIcon.png";
 
 class Subheader extends Component {
   showHelpPopup(id) {
@@ -11,10 +12,10 @@ class Subheader extends Component {
     return (
       <div className="subheader">
         <h2 id="subheader--title">Portable Air Cleaner Calculator</h2>
-        <div className="subheader-btncontainer">
-          <button className="subheader--btn" id="subheader--btn-find">
-            Find Air Cleaner
-          </button>
+        <button className="subheader--btn" id="subheader--btn-find">
+          Find Air Cleaner
+        </button>
+        <div class="subheader--popup-container">
           <button
             className="subheader--btn-img"
             onClick={() => this.showHelpPopup("help--popup-find")}
@@ -23,12 +24,14 @@ class Subheader extends Component {
               Choose this option to find an air cleaner that matches your room
               dimensions.
             </span>
-            <img src="images/helperIcon.png" alt="help icon" />
+            <img src={HelpIcon} alt="help icon" />
           </button>
-          <span>OR</span>
-          <button className="subheader--btn" id="subheader--btn-test">
-            Test Air Cleaner
-          </button>
+        </div>
+        <span id="subheader--text">OR</span>
+        <button className="subheader--btn" id="subheader--btn-test">
+          Test Air Cleaner
+        </button>
+        <div class="subheader--popup-container">
           <button
             className="subheader--btn-img"
             onClick={() => this.showHelpPopup("help--popup-test")}
@@ -37,7 +40,7 @@ class Subheader extends Component {
               Choose this option to test if your air cleaner is sufficient for
               your building.
             </span>
-            <img src="images/helperIcon.png" alt="help icon" />
+            <img src={HelpIcon} alt="help icon" />
           </button>
         </div>
       </div>

@@ -6,26 +6,32 @@
   text-align: center;
   border-radius: 25px;
   border: 2px solid black;
+  background-color: white;
 }
 
 #subheader--title {
   text-align: left;
   margin-inline-start: 25px;
   margin-top: auto;
-  font-weight: bolder;
+  font-size: 25pt;
+  font-weight: normal;
 }
 
-/* Items dont look like they are in the complete center. Try and fix and remove this div if not necessary
-.subheader--btncontainer {
+#subheader--text {
+  font-size: 18pt;
+}
 
-} */
+.subheader--popup-container {
+  display: inline-flex;
+  vertical-align: middle;
+}
 
 .subheader--btn {
   background-color: white;
   border-radius: 8px;
-  width: 150px;
-  height: 75px;
-  font-weight: bold;
+  width: 180px;
+  height: 60px;
+  font-size: 16pt;
 }
 
 .subheader--btn:hover {
@@ -44,10 +50,14 @@
 }
 
 .subheader--btn-img {
-  display: inline;
+  display: inline-block;
   height: 50px;
   width: 50px;
   margin-right: 100px;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  outline: none;
 }
 
 /* Taken and altered slightly from https://www.w3schools.com/howto/howto_js_popup.asp */
@@ -64,12 +74,16 @@
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 8px 0;
+  padding: 8px 8px;
   position: absolute;
   z-index: 1;
   bottom: 125%;
   left: 50%;
   margin-left: -80px;
+}
+
+.help--popup {
+  font-size: 14pt;
 }
 
 /* Popup arrow */
