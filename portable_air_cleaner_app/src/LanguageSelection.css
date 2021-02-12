@@ -1,0 +1,12 @@
+#language-selection {
+    display: flex;
+    position: absolute;
+    right: 35px;
+    top: 78px;
+}
+
+#language-selection-dropdown {
+    height: 20px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
