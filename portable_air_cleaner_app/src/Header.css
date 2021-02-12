@@ -1,0 +1,12 @@
+header {
+    display: flex;
+    margin: 15px;
+    padding-bottom: 50px;
+    border: 1px solid black;
+}
+
+#app-title {
+    position: absolute;
+    right: 86px;
+    top: 0px;
+}

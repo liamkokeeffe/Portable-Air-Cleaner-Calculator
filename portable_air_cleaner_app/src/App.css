@@ -1,20 +1,13 @@
-header {
-  display: flex;
-  margin-bottom: 15px;
-}
-
-#app-title {
-  position: absolute;
-  right: 50px;
-}
-
 .tabs {
   display: flex;
-  justify-content: center;
+  position: absolute;
+  right: 180px;
+  top: 91px;
 }
 
 .tab {
-  font-size: 30px;
-  padding-left: 50px;
-  padding-right: 50px;
+  font-size: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-decoration: none;
 }
