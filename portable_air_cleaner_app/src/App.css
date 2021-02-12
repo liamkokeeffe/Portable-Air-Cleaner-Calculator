@@ -1,3 +1,17 @@
+header {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+body {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+#app-title {
+  position: absolute;
+  right: 50px;
+}
+
 .tabs {
   display: flex;
   position: absolute;
