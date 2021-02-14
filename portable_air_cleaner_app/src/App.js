@@ -7,11 +7,6 @@ import {AdditionalResources} from './AdditionalResources.js';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 function App() {
-  // language is something app wide - pass in the callback. but we need to figure it out
-  // <Header>
-  // <Select Option Bar>
-  // <Body>
-  // we can have router seperate and float it up with css, pass it in as a prop, or just declare it in the header file.
   return (
     <div>
       <Header />
