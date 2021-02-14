@@ -1,9 +1,9 @@
 import './App.css';
-import {Header} from './Header.js';
-import {LanguageSelection} from './LanguageSelection.js';
-import {Home} from './Home.js';
-import {About} from './About.js';
-import {AdditionalResources} from './AdditionalResources.js';
+import {Header} from './components/Header.js';
+import {LanguageSelection} from './components/LanguageSelection.js';
+import {Home} from './components/Home.js';
+import {About} from './components/About.js';
+import {AdditionalResources} from './components/AdditionalResources.js';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 function App() {

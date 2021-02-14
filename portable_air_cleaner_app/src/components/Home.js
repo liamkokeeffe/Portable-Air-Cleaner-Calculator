@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Calculator } from './components/Calculator.js';
-import {Subheader} from './components/Subheader.js'
+import { Calculator } from './Calculator.js';
+import {Subheader} from './Subheader.js'
 
 export function Home() {
 

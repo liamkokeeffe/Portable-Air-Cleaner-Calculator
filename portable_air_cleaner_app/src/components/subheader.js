@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Home.css";
+import "./Subheader.css";
 import HelpIcon from "../images/helperIcon.png";
 
 export function Subheader(props) {
