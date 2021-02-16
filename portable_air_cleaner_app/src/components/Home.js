@@ -1,19 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Calculator } from './Calculator.js';
 import {Subheader} from './Subheader.js'
 
 export function Home() {
 
-    const [calculatorDisplay, setCalculatorDisplay] = useState(null);
-
-    function updateDisplay(displayType) {
-        setCalculatorDisplay(displayType);
+    const [calculatorType, setCalculatorType] = useState(null);
+    const [displayResults, setDisplayResults] = useState(false);
+    const [displayProductDetails, setProductDetails] = useState(false);
+    const [displayAirCleanerEffectiveness, setAirCleanerEffectiveness] = useState(false);
+    
+    function updateCalculatorType(type) {
+        setCalculatorType(type);
     }
+
+
 
     return (
         <div>
-            <Subheader updateDisplay = {updateDisplay} />
-            { calculatorDisplay != null && (<Calculator title = {calculatorDisplay} />) }
+            <Subheader updateCalculatorType={updateCalculatorType} />
+            { calculatorType != null && (<Calculator calculatorType={calculatorType} />) }
         </div>
     )
 }

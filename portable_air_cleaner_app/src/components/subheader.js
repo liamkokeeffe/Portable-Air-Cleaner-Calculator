@@ -11,7 +11,7 @@ export function Subheader(props) {
   return (
     <div className="subheader">
       <h2 id="subheader--title">Portable Air Cleaner Calculator</h2>
-      <button className="subheader--btn" id="subheader--btn-find" onClick={() => props.updateDisplay("find")}>
+      <button className="subheader--btn" id="subheader--btn-find" onClick={() => props.updateCalculatorType("find")}>
         Find Air Cleaner
       </button>
       <div class="subheader--popup-container">
@@ -27,7 +27,7 @@ export function Subheader(props) {
         </button>
       </div>
       <span id="subheader--text">OR</span>
-      <button className="subheader--btn" id="subheader--btn-test" onClick={() => props.updateDisplay("test")}>
+      <button className="subheader--btn" id="subheader--btn-test" onClick={() => props.updateCalculatorType("test")}>
         Test Air Cleaner
       </button>
       <div class="subheader--popup-container">

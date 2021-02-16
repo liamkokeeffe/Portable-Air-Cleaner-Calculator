@@ -1,6 +1,48 @@
-#calculatorBox {
-  height: 500px;
+#calculator-box {
   border: 2px solid #bd8a00;
   background: #bd8a00;
   border-radius: 25px;
+  margin-bottom: 50px;
+  position: relative;
+  align-items: center;
+}
+
+.title {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.user-input-box {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
+  align-items: center;
+  position: auto;
+  margin-left: 50px;
+}
+
+.user-input-boxes {
+  display: flex;
+  height: 500px;
+}
+
+#change-step-arrow {
+  position: relative;
+  width: 200px;
+  height: 100px;
+}
+
+#change-step-arrow-text-container {
+  position: relative;
+  width: 100px;
+  height: 50px;
+}
+
+#change-step-arrow-text {
+  width: auto;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 10px;
 }
