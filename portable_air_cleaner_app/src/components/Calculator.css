@@ -1,6 +1,25 @@
 #calculatorBox {
   height: 500px;
-  border: 2px solid #bd8a00;
-  background: #bd8a00;
+  border: 2px solid #bd8a00 50%;
+  background: #bd8a00 50%;
   border-radius: 25px;
+  display: flex;
+  align-items: center; /*horizontal centering*/
+  justify-content: center; /*vertical centering*/
+}
+
+#calculator-title {
+  font-size: 25pt;
+  text-align: center;
+  font-weight: bold;
+}
+
+#calculator-wrapper {
+  border: 2px solid black;
+  border-radius: 25px;
+  background: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 25px;
+  margin-top: 50px;
 }
