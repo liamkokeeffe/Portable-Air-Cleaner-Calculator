@@ -14,7 +14,7 @@ export function Calculator(props) {
     const [ventilationType, setVentilationType] = useState(0);
     const [cadr, setCadr] = useState(0);
     const [step, updateStep] = useState(1);
-    const [nextStepArrowText, setNextStepArrowText] = useState('Next Step');
+    const [nextStepArrowText, setNextStepArrowText] = useState("Next Step");
 
     function unitSelectionMade(unitType) {
         setUnits(unitType);
@@ -29,24 +29,49 @@ export function Calculator(props) {
     }
 
     function nextStepArrowClick() {
-        if (props.calculatorType === 'find' && step === 1) {
-            setNextStepArrowText('Result');
+        if (step === 1) {
+            if (floorArea === 0 || ceilingHeight === 0) {
+                console.log('Please fill out all fields to continue');
+                return;
+            } else if (props.calculatorType === "find") {
+                setNextStepArrowText("Result");
+            }
+        } else if (step === 2) {
+            if (props.calculatorType === "find") {
+                console.log("return find result");
+            } else {
+                setNextStepArrowText("Result");
+            }
+        } else {
+            console.log('return test result')
         }
         updateStep(step + 1);
-
-
-        // if find and current step === 1, set next arrow text to result.
-        // if test and current step === 2, set next arrow text to result.
     }
 
     function previousStepArrowClick() {
-        updateStep(step - 1);
+        if (step > 1) {
+            if ((step === 2 && props.calculatorType === "find") || step === 3) {
+                setNextStepArrowText("Next step");
+                updateStep(step - 1);
+            }
+            updateStep(step - 1);
+            setFloorArea(0);
+            setCeilingHeight(0);
+        }
+    }
+
+    function getTitle() {
+        if (props.calculatorType === "find") {
+            return "Find Air Cleaner";
+        }
+        return "Test Air Cleaner Efficiency";
     }
 
     return (
         <div>
-            <h2>{props.title}</h2>
-
+            <h2 id="calculator-title">
+                {getTitle()}
+            </h2>
             <div id="calculator-box">
             
                     {step === 1 && 
@@ -71,7 +96,7 @@ export function Calculator(props) {
                     }
 
                 {step > 1 && (<PreviousStepArrow previousStepArrowClick={previousStepArrowClick} />)}
-                <NextStepArrow nextStepArrowClick={nextStepArrowClick} />
+                <NextStepArrow text={nextStepArrowText} nextStepArrowClick={nextStepArrowClick} />
             </div>
         </div>
     )

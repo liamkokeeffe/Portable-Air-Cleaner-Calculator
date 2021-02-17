@@ -1,5 +1,5 @@
-import './NextStepArrow.css';
-import './Calculator.css';
+import "./NextStepArrow.css";
+import "./Calculator.css";
 
 export function NextStepArrow(props) {
 
@@ -9,7 +9,7 @@ export function NextStepArrow(props) {
                 <div id="next-step-arrow-triangle"></div>
                 <div id="next-step-arrow-rectangle">
                     <div id="change-step-arrow-text-container">
-                        <p id="change-step-arrow-text">Next step</p>
+                        <p id="change-step-arrow-text">{props.text}</p>
                     </div>
                 </div>
             </div>

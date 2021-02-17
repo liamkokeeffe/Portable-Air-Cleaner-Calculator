@@ -17,7 +17,7 @@ export function Subheader(props) {
       <div class="subheader--popup-container">
         <button
           className="subheader--btn-img"
-          onClick={() => this.showHelpPopup("help--popup-find")}
+          onClick={() => showHelpPopup("help--popup-find")}
         >
           <span className="help--popup" id="help--popup-find">
             Choose this option to find an air cleaner that matches your room
@@ -33,7 +33,7 @@ export function Subheader(props) {
       <div class="subheader--popup-container">
         <button
           className="subheader--btn-img"
-          onClick={() => this.showHelpPopup("help--popup-test")}
+          onClick={() => showHelpPopup("help--popup-test")}
         >
           <span className="help--popup" id="help--popup-test">
             Choose this option to test if your air cleaner is sufficient for

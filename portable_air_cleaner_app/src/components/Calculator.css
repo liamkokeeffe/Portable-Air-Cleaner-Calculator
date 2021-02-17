@@ -1,3 +1,7 @@
+#calculator-title {
+  text-align: center;
+}
+
 #calculator-box {
   border: 2px solid #bd8a00;
   background: #bd8a00;
