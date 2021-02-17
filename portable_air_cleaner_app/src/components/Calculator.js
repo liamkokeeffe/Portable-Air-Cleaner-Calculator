@@ -6,12 +6,15 @@ import {CeilingHeightSelection} from './CeilingHeightSelection.js';
 import {CalculatorStep} from './CalculatorStep.js';
 import { NextStepArrow } from './NextStepArrow';
 import { PreviousStepArrow } from './PreviousStepArrow';
+import {VentilationInput} from './VentilationInput';
+import {VentilationInfo} from "./VentilationInfo";
+import {CADR} from "./CADR"
 
 export function Calculator(props) {
     const [floorArea, setFloorArea] = useState(0);
     const [ceilingHeight, setCeilingHeight] = useState(0);
     const [units, setUnits] = useState('feet');
-    const [ventilationType, setVentilationType] = useState(0);
+    const [ventilationType, setVentilationType] = useState("Low");
     const [cadr, setCadr] = useState(0);
     const [step, updateStep] = useState(1);
     const [nextStepArrowText, setNextStepArrowText] = useState("Next Step");
@@ -67,8 +70,12 @@ export function Calculator(props) {
         return "Test Air Cleaner Efficiency";
     }
 
+    function updateVentilationType(type) {
+        setVentilationType(type);
+    }
+
     return (
-        <div>
+        <div className="calculator-wrapper">
             <h2 id="calculator-title">
                 {getTitle()}
             </h2>
@@ -86,12 +93,15 @@ export function Calculator(props) {
                     {step === 2 &&
                     [<CalculatorStep step="Step 2: Outdoor Ventilation"/>,
                     <div className="user-input-boxes">
+                        <VentilationInput updateVentilationType = {updateVentilationType} />
+                        <VentilationInfo type = {ventilationType} />
                     </div>]
                     }
 
                     {step === 3 &&
                     [<CalculatorStep step="Step 3: Clean Air Delivery Rate"/>,
                     <div className="user-input-boxes">
+                        <CADR /> 
                     </div>]
                     }
 
