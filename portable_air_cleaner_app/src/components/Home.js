@@ -1,24 +1,28 @@
 import { useState } from 'react'
 import { Calculator } from './Calculator.js';
 import {Subheader} from './Subheader.js'
+import {AirCleanerRecommendations} from './AirCleanerRecommendations';
 
 export function Home() {
 
     const [calculatorType, setCalculatorType] = useState(null);
-    const [displayResults, setDisplayResults] = useState(false);
+    const [resultType, setResultType] = useState(null);
     const [displayProductDetails, setProductDetails] = useState(false);
-    const [displayAirCleanerEffectiveness, setAirCleanerEffectiveness] = useState(false);
     
     function updateCalculatorType(type) {
         setCalculatorType(type);
     }
 
-
-
+    function showResults(type) {
+        setResultType(type);
+        setCalculatorType(null);
+    }
+    
     return (
         <div>
-            <Subheader updateCalculatorType={updateCalculatorType} />
-            { calculatorType != null && (<Calculator calculatorType={calculatorType} />) }
+            { resultType === null && <Subheader updateCalculatorType={updateCalculatorType} /> }
+            { calculatorType != null && (<Calculator calculatorType={calculatorType} onShowResult={showResults} />) }
+            { resultType != null &&  (<AirCleanerRecommendations />)}
         </div>
     )
 }

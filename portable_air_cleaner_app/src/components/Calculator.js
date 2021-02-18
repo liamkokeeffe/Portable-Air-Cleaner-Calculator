@@ -42,6 +42,7 @@ export function Calculator(props) {
         } else if (step === 2) {
             if (props.calculatorType === "find") {
                 console.log("return find result");
+                props.onShowResult("find");
             } else {
                 setNextStepArrowText("Result");
             }
