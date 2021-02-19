@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Subheader.css";
-import HelpIcon from "../images/helperIcon.png";
+import HelpIcon from "../../images/helperIcon.png";
 
 export function Subheader(props) {
   function showHelpPopup(id) {
@@ -14,7 +14,7 @@ export function Subheader(props) {
       <button className="subheader--btn" id="subheader--btn-find" onClick={() => props.updateCalculatorType("find")}>
         Find Air Cleaner
       </button>
-      <div class="subheader--popup-container">
+      <div className="subheader--popup-container">
         <button
           className="subheader--btn-img"
           onClick={() => showHelpPopup("help--popup-find")}
@@ -30,7 +30,7 @@ export function Subheader(props) {
       <button className="subheader--btn" id="subheader--btn-test" onClick={() => props.updateCalculatorType("test")}>
         Test Air Cleaner
       </button>
-      <div class="subheader--popup-container">
+      <div className="subheader--popup-container">
         <button
           className="subheader--btn-img"
           onClick={() => showHelpPopup("help--popup-test")}

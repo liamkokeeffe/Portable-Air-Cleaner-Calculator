@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Ventilation.css"
-import PoorVentilation from "../images/PoorVentilation.png"
+import PoorVentilation from "../../images/PoorVentilation.png"
 
 export function VentilationInfo(props) {
     let ventilationInfo = "";
