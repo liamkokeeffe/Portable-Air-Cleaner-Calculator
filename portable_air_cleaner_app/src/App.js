@@ -1,6 +1,6 @@
 import './App.css';
-import {Header} from './components/Header.js';
-import {LanguageSelection} from './components/LanguageSelection.js';
+import {Header} from './components/Header/Header.js';
+import {LanguageSelection} from './components/Header/LanguageSelection.js';
 import {Home} from './components/Home.js';
 import {About} from './components/About.js';
 import {AdditionalResources} from './components/AdditionalResources.js';
