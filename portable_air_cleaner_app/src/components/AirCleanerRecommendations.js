@@ -4,16 +4,18 @@ import {FilterOptions} from './FilterOptions';
 import {AirCleanerList} from './AirCleanerList';
 import './AirCleanerRecommendations.css';
 
-export function AirCleanerRecommendations() {
+export function AirCleanerRecommendations(props) {
     const [sortKey, setSortKey] = useState('price');
-    const [filterOptions, setFilterOptions] = useState(null); // object? we're going to have a lot of fields otherwise
+    const [filterOptions, setFilterOptions] = useState(null);
 
     return (
         <div>
             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
             <SortKeyChoice updateSortKey={setSortKey} />
-            <FilterOptions />
-            {/*<AirCleanerList sortKey={sortKey}/>*/}
+            <div id='air-cleaner-recommendations-list-and-filter-options'>
+                <FilterOptions />
+                <AirCleanerList outdoorVentilation={props.outdoorVentilation} sortKey={sortKey} filterOptions={filterOptions} />
+            </div>
         </div>
     );
 }

@@ -16,7 +16,7 @@
 }
 
 .filter-option-unit-dollar {
-    margin-right: 2px;
+    margin-right: 3px;
 }
 
 .filter-option-unit-inch {
@@ -24,11 +24,10 @@
     margin-right: 5px;
 }
 
-.filter-option-unit-other {
+#filter-option-unit-final-inch {
     margin-left: 2px;
 }
 
-.filter-option-text-separator {
-    margin-left: 10px;
-    margin-right: 10px
+.filter-option-unit-other {
+    margin-left: 3px;
 }

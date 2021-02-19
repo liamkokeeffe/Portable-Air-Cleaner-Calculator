@@ -22,7 +22,7 @@ export function Home() {
         <div>
             { resultType === null && <Subheader updateCalculatorType={updateCalculatorType} /> }
             { calculatorType != null && (<Calculator calculatorType={calculatorType} onShowResult={showResults} />) }
-            { resultType != null &&  (<AirCleanerRecommendations />)}
+            { resultType != null &&  (<AirCleanerRecommendations outdoorVentilation={4} />)}
         </div>
     )
 }
