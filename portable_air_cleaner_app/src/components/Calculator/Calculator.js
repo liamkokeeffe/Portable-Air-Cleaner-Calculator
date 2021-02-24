@@ -9,7 +9,6 @@ import { PreviousStepArrow } from './PreviousStepArrow';
 import {VentilationInput} from '../Ventilation/VentilationInput';
 import {VentilationInfo} from "../Ventilation/VentilationInfo";
 import {CADR} from "../CADR/CADR"
-import { Home } from '../Home';
 
 export function Calculator(props) {
     const [step, updateStep] = useState(1);
@@ -26,6 +25,7 @@ export function Calculator(props) {
         } else if (step === 2) {
             if (props.calculatorType === "find") {
                 console.log("return find result");
+                props.onShowResult("find");
             } else {
                 setNextStepArrowText("Result");
             }
@@ -34,7 +34,7 @@ export function Calculator(props) {
                 console.log("Please fill out the CADR Parameter")
                 return;
             } else {
-                props.showAirCleanerEffectiveness(true);
+                props.onShowResult('test');
             }
         }
         updateStep(step + 1);
@@ -82,7 +82,7 @@ export function Calculator(props) {
                         <CalculatorStep step="Step 2: Outdoor Ventilation"/>
                     </div>,
                     <div className="user-input-boxes">
-                        <VentilationInput updateVentilationType = {props.updateVentilationType} />
+                        <VentilationInput updateOutdoorVentilation = {props.updateOutdoorVentilation} />
                         <VentilationInfo type = {props.ventilationType} />
                     </div>]
                     }

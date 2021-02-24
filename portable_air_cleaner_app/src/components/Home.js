@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Calculator } from './Calculator/Calculator.js';
 import {Subheader} from './Subheader/Subheader.js'
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js'
+import {AirCleanerRecommendations} from './AirCleanerRecommendations';
 
 export function Home() {
 
@@ -9,25 +10,24 @@ export function Home() {
         floorArea : 0,
         ceilingHeight : 0,
         units : "feet",
-        outdoorVentilation : "",
+        outdoorVentilation : "Low",
         cadr : 0
     }
 
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
-
-    const [calculatorType, setCalculatorType] = useState("find");
-    const [displayResults, setDisplayResults] = useState(false);
+    const [calculatorType, setCalculatorType] = useState(null);
+    const [resultType, setResultType] = useState(null);
     const [displayProductDetails, setProductDetails] = useState(false);
-    const [displayAirCleanerEffectiveness, setAirCleanerEffectiveness] = useState(false);
     
     function updateCalculatorType(type) {
         setCalculatorType(type);
     }
 
-    function showAirCleanerEffectiveness(state) {
-        setAirCleanerEffectiveness(state);
+    function showResults(type) {
+        setResultType(type);
+        setCalculatorType(null);
     }
-
+    
     function unitSelectionMade(unitType) {
         let newRoomInfo = {
             floorArea : roomInfo.floorArea,
@@ -72,12 +72,12 @@ export function Home() {
         setRoomInfo(newRoomInfo);
     }
 
-    function updateVentilationType(type) {
+    function updateOutdoorVentilation(ventilationLevel) {
         let newRoomInfo = {
             floorArea : roomInfo.floorArea,
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
-            outdoorVentilation : type,
+            outdoorVentilation : ventilationLevel,
             cadr : roomInfo.cadr
         }
         setRoomInfo(newRoomInfo);
@@ -85,11 +85,11 @@ export function Home() {
 
     return (
         <div>
-            {!displayAirCleanerEffectiveness && [<Subheader updateCalculatorType={updateCalculatorType} />, 
-                <Calculator calculatorType={calculatorType} roomInfo={roomInfo} 
-                    unitSelectionMade={unitSelectionMade} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
-                    showAirCleanerEffectiveness={showAirCleanerEffectiveness} updateVentilationType={updateVentilationType} />]}
-            {displayAirCleanerEffectiveness && <RoomSizeRec roomInfo={roomInfo}/>}
+            {resultType === null && <Subheader updateCalculatorType={updateCalculatorType} />}
+            {calculatorType !== null && <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
+                            floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
+                            onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
+            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
         </div>
     )
 }
