@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import "./Ventilation.css"
 
 export function VentilationInput(props) {

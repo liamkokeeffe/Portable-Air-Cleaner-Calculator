@@ -9,7 +9,6 @@ import { PreviousStepArrow } from './PreviousStepArrow';
 import {VentilationInput} from '../Ventilation/VentilationInput';
 import {VentilationInfo} from "../Ventilation/VentilationInfo";
 import {CADR} from "../CADR/CADR"
-import { Home } from '../Home';
 
 export function Calculator(props) {
     const [step, updateStep] = useState(1);
@@ -17,7 +16,7 @@ export function Calculator(props) {
 
     function nextStepArrowClick() {
         if (step === 1) {
-            if (props.floorArea === 0 || props.ceilingHeight === 0) {
+            if (props.roomInfo.floorArea === 0 || props.roomInfo.ceilingHeight === 0) {
                 console.log('Please fill out all fields to continue');
                 return;
             } else if (props.calculatorType === "find") {
@@ -30,7 +29,7 @@ export function Calculator(props) {
                 setNextStepArrowText("Result");
             }
         } else if (step === 3) {
-            if (props.cadr === 0) {
+            if (props.roomInfo.cadr === 0) {
                 console.log("Please fill out the CADR Parameter")
                 return;
             } else {
@@ -83,7 +82,7 @@ export function Calculator(props) {
                     </div>,
                     <div className="user-input-boxes">
                         <VentilationInput updateVentilationType = {props.updateVentilationType} />
-                        <VentilationInfo type = {props.ventilationType} />
+                        <VentilationInfo type = {props.roomInfo.outdoorVentilation} />
                     </div>]
                     }
 
