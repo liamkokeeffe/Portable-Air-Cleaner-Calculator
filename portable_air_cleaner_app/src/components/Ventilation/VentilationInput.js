@@ -3,9 +3,8 @@ import "./Ventilation.css"
 export function VentilationInput(props) {
 
   function handleInputChange(event) {
-    props.updateVentilationType(event.target.value);
+    props.updateOutdoorVentilation(event.target.value);
   }
-
 
   return (
     <div className="calculator-ventilation" id="calculator-ventilation-input">

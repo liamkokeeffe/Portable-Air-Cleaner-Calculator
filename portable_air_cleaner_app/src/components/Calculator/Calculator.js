@@ -25,6 +25,7 @@ export function Calculator(props) {
         } else if (step === 2) {
             if (props.calculatorType === "find") {
                 console.log("return find result");
+                props.onShowResult("find");
             } else {
                 setNextStepArrowText("Result");
             }
@@ -33,7 +34,7 @@ export function Calculator(props) {
                 console.log("Please fill out the CADR Parameter")
                 return;
             } else {
-                props.showAirCleanerEffectiveness(true);
+                props.onShowResult('test');
             }
         }
         updateStep(step + 1);
@@ -81,8 +82,8 @@ export function Calculator(props) {
                         <CalculatorStep step="Step 2: Outdoor Ventilation"/>
                     </div>,
                     <div className="user-input-boxes">
-                        <VentilationInput updateVentilationType = {props.updateVentilationType} />
-                        <VentilationInfo type = {props.roomInfo.outdoorVentilation} />
+                        <VentilationInput updateOutdoorVentilation = {props.updateOutdoorVentilation} />
+                        <VentilationInfo type = {props.ventilationType} />
                     </div>]
                     }
 
