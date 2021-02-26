@@ -19,10 +19,6 @@ export function Home() {
     const [calculatorType, setCalculatorType] = useState(null);
     const [resultType, setResultType] = useState(null);
     const [displayProductDetails, setProductDetails] = useState(false);
-    
-    function updateCalculatorType(type) {
-        setCalculatorType(type);
-    }
 
     function showResults(type) {
         setResultType(type);
@@ -85,11 +81,12 @@ export function Home() {
     }
 
     return (
-            <LandingPage />
-            /* {resultType === null && <Subheader updateCalculatorType={updateCalculatorType} />}
+        <div>
+            {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>}
             {calculatorType !== null && <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
                             floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
                             onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
-            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)} */
+            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
+        </div>
     )
 }

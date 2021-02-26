@@ -1,8 +1,8 @@
 #filter-options {
     width: 250px;
-    border: 1px solid black;
+    height: 550px;
     padding-left: 20px;
-    padding-bottom: 5px;
+    background-color: white;
 }
 
 .filter-option {

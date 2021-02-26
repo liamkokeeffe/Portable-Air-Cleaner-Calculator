@@ -1,20 +1,18 @@
 #air-cleaner-list-item {
-    width: auto;
-    border: 1px solid black;
+    
     display: flex;
     margin-left: 10px;
+    background-color: white;
+    height: 225px;
+    width: 100%;
 }
 
 #air-cleaner-image {
-    width: 450px;
-    border: 0.5px solid black;
-    height: 250px;
+    width: 400px;
 }
 
 #air-cleaner-details {
-    padding-right: 100px;
     padding-left: 5px;
-    width: 550px;
 }
 
 #air-cleaner-name {
