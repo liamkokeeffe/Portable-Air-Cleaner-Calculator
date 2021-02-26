@@ -3,6 +3,7 @@ import { Calculator } from './Calculator/Calculator.js';
 import {Subheader} from './Subheader/Subheader.js'
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js'
 import {AirCleanerRecommendations} from './AirCleanerRecommendations';
+import { LandingPage } from './LandingPage/LandingPage.js';
 
 export function Home() {
 
@@ -84,12 +85,11 @@ export function Home() {
     }
 
     return (
-        <div>
-            {resultType === null && <Subheader updateCalculatorType={updateCalculatorType} />}
+            <LandingPage />
+            /* {resultType === null && <Subheader updateCalculatorType={updateCalculatorType} />}
             {calculatorType !== null && <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
                             floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
                             onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
-            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
-        </div>
+            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)} */
     )
 }

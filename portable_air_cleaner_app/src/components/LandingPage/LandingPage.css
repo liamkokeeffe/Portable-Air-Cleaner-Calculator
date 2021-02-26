@@ -1,0 +1,67 @@
+#body-container {
+  display: flex;
+  width: 100%;
+}
+
+#text-container {
+  display: inline-block;
+  width: 50%;
+  margin-left: 5%;
+}
+
+#title {
+  font-family: Roboto;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 75px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 70%;
+}
+
+#text-calculator-description {
+  width: 70%;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+#buttons-container {
+  margin-top: 8%;
+  margin-left: 1%;
+}
+
+.subheader--btn {
+  background-color: white;
+  border-radius: 7px;
+  border-color: white;
+  width: 230px;
+  height: 60px;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.75px;
+  text-align: center;
+}
+
+#img-container {
+  display: inline-block;
+  width: 35%;
+  margin-right: 5%;
+  margin-left: 3%;
+}
+
+#img-aircleaner {
+  width: 500px;
+}
+
+#subheader--btn-test {
+  margin-left: 15%;
+}
