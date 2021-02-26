@@ -1,27 +1,5 @@
-header {
-  display: flex;
-  margin-bottom: 15px;
-}
-
 body {
-  background-color: rgba(255, 0, 0, 0.2);
-}
+    min-height: 100vh;
+    background: linear-gradient(0deg, #EA5F14 0%, rgba(234, 95, 20, 0.25) 38.27%, rgba(234, 95, 20, 0.05) 83.01%);
 
-#app-title {
-  position: absolute;
-  right: 50px;
-}
-
-.tabs {
-  display: flex;
-  position: absolute;
-  right: 250px;
-  top: 130px;
-  font-size: 25px;
-}
-
-.tab {
-  padding-left: 15px;
-  padding-right: 15px;
-  text-decoration: none;
 }

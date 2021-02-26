@@ -16,7 +16,7 @@ export function Calculator(props) {
 
     function nextStepArrowClick() {
         if (step === 1) {
-            if (props.floorArea === 0 || props.ceilingHeight === 0) {
+            if (props.roomInfo.floorArea === 0 || props.roomInfo.ceilingHeight === 0) {
                 console.log('Please fill out all fields to continue');
                 return;
             } else if (props.calculatorType === "find") {
@@ -30,7 +30,7 @@ export function Calculator(props) {
                 setNextStepArrowText("Result");
             }
         } else if (step === 3) {
-            if (props.cadr === 0) {
+            if (props.roomInfo.cadr === 0) {
                 console.log("Please fill out the CADR Parameter")
                 return;
             } else {

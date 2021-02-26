@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import "./CADR.css"
 
 export function CADR(props) {

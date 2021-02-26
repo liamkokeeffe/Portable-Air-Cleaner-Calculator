@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import "./Subheader.css";
 import HelpIcon from "../../images/helperIcon.png";
 

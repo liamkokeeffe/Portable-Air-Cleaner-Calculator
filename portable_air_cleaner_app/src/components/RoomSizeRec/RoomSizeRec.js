@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import './RoomSizeRec.css'
 import ACHChart from "../../images/ach_chart.png"
 
@@ -10,11 +9,12 @@ const ventilationToACH = {
 }
 
 export function RoomSizeRec(props) {
+    console.log("CADR: " + props.roomInfo.cadr)
     function getACH() {
-        if (props.units === "feet") {
-            return (Math.round((props.cadr * 60 / (props.floorArea * props.ceilingHeight)) * 10) / 10) + ventilationToACH[props.outdoorVentilation]
+        if (props.roomInfo.units === "feet") {
+            return (Math.round((props.roomInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
         } else {
-            return (Math.round(((props.cadr / .58) / (props.floorArea * props.ceilingHeight)) * 10) / 10) + ventilationToACH[props.outdoorVentilation]
+            return (Math.round(((props.roomInfo.cadr / .58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
         }
     }
 
@@ -48,12 +48,13 @@ export function RoomSizeRec(props) {
 
     function calculateRoomSize() {
         let totalCFM = 0;
-        if (props.units == "feet") {
-            totalCFM = ((ventilationToACH[props.outdoorVentilation] * (props.floorArea * props.ceilingHeight)) / 60) + parseFloat(props.cadr);
-            return Math.round((totalCFM * 60) / (5 * props.ceilingHeight));
+        if (props.roomInfo.units === "feet") {
+            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.roomInfo.cadr);
+            console.log(totalCFM)
+            return Math.round((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
         } else {
-            totalCFM = ((ventilationToACH[props.outdoorVentilation] * props.floorArea * props.ceilingHeight * 35.3147) / 60) + parseFloat(props.cadr);
-            return Math.round(((totalCFM*60) / 35.315) / (5 * props.ceilingHeight));
+            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * props.roomInfo.floorArea * props.roomInfo.ceilingHeight * 35.3147) / 60) + parseFloat(props.roomInfo.cadr);
+            return Math.round(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
         }
     }
 

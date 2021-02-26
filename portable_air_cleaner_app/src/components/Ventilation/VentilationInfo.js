@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import "./Ventilation.css"
 import PoorVentilation from "../../images/PoorVentilation.png"
 
@@ -19,7 +18,7 @@ export function VentilationInfo(props) {
             </div>
             <div className="ventilation-info" id="ventilation-info-image">
                 <p id="ventilation-image-title">{imageTitle}</p>
-                <img src={PoorVentilation} alt="Poor ventilation room image" id="ventilation-image"/>
+                <img src={PoorVentilation} alt="Room Ventilation Example" id="ventilation-image"/>
             </div>
         </div>
     )
