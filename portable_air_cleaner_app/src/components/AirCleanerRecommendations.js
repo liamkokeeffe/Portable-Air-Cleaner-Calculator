@@ -18,19 +18,18 @@ export function AirCleanerRecommendations(props) {
     const [filterOptions, setFilterOptions] = useState(filterOptionsInit);
 
     return (
-        <div id='air-cleaner-recommendations-container'>
-            <div id='air-cleaner-recommendations-header'>
-                <div id='back-button'>{'<'} Go Back</div>
-                <div id='air-cleaner-recommendations-title-container'>
-                    <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
-                </div>
-                
-            </div>
-            <div id='air-cleaner-recommendations-list-and-filter-options'>
+        <div id='air-cleaner-recommendations-container'>            
+            <div id='back-button'>{'< Go Back'}</div>
+            <div id='air-cleaner-recommendations'>
                 <FilterOptions filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
-                <div id='air-cleaner-list-and-sort-key-container'>
-                <SortKeyChoice id='sort-key-choice' updateSortKey={setSortKey} />
-                <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} />
+                <div id='air-cleaner-recommendations-page-center-container'>
+                    <div id='air-cleaner-recommendations-page-center'>                        
+                        <div id='air-cleaner-recommendations-title-container'>
+                            <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
+                        </div>
+                        <SortKeyChoice id='sort-key-choice' updateSortKey={setSortKey} />
+                        <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} />                        
+                    </div>
                 </div>
             </div>
         </div>

@@ -48,8 +48,8 @@ export function AirCleanerList(props) {
     );
 
     return (
-        <div id='air-cleaner-list-container'>
-           <div id='air-cleaner-list'>
+        <div >
+           <div>
               {airCleanerComponents}
            </div>
         </div>
