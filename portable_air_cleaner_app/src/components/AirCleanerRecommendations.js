@@ -27,7 +27,7 @@ export function AirCleanerRecommendations(props) {
                         <div id='air-cleaner-recommendations-title-container'>
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                         </div>
-                        <SortKeyChoice id='sort-key-choice' updateSortKey={setSortKey} />
+                        <SortKeyChoice updateSortKey={setSortKey} />
                         <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} />                        
                     </div>
                 </div>

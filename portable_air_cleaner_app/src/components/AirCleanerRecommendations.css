@@ -9,9 +9,10 @@
 
 #back-button {
     background-color: white;
-    padding: 10px;
-    max-width: 100px;
+    padding: 20px;
+    width: 100px;
     margin-top: 50px;
+    font-size: 20px;
     display: inline-block;
 }
 
@@ -26,12 +27,6 @@
 
 #air-cleaner-recommendations-title {
     text-align: center;
-}
-
-#sort-key-choice-container {
-    position: absolute;
-    right: -10px;
-    top: -60px;
 }
 
 #air-cleaner-recommendations {

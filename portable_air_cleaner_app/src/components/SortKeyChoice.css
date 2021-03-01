@@ -1,7 +1,17 @@
+#sort-key-choice-container {
+    position: absolute;
+    right: -10px;
+    top: -65px;
+}
+
 #sort-key-choice {
     display: flex;
+    font-size: 20px;
 }
 
 #sort-key-choice-dropdown {
     margin-left: 10px;
+    margin-top: 8px;
+    font-size: 15px;
+    height: 50px;
 }

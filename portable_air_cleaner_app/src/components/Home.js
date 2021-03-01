@@ -80,13 +80,19 @@ export function Home() {
         setRoomInfo(newRoomInfo);
     }
 
+    function backToCalculator() {
+        setResultType(null);
+        // setCalculatorType(old vals)
+    }
+
     return (
         <div>
             {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>}
             {calculatorType !== null && <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
                             floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
                             onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
-            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
+            {resultType !== null && 
+                (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
         </div>
     )
 }
