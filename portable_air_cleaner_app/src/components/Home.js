@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Calculator } from './Calculator/Calculator.js';
 import {Subheader} from './Subheader/Subheader.js'
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js'
-import {AirCleanerRecommendations} from './AirCleanerRecommendations';
+import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import { LandingPage } from './LandingPage/LandingPage.js';
 
 export function Home() {

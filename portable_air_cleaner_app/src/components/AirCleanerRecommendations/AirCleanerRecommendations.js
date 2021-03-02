@@ -1,11 +1,12 @@
 import {useState} from 'react';
-import {SortKeyChoice} from './SortKeyChoice';
-import {FilterOptions} from './FilterOptions';
-import {AirCleanerList} from './AirCleanerList';
+import {SortKeyChoice} from '../SortKeyChoice.js';
+import {FilterOptions} from '../FilterOptions.js';
+import {AirCleanerList} from './AirCleanerList.js';
+import {AirCleanerDetails} from './AirCleanerDetails.js';
 import './AirCleanerRecommendations.css';
 
 export function AirCleanerRecommendations(props) {
-    let filterOptionsInit = {
+    const filterOptionsInit = {
         maxPrice : -1,
         maxNoise : -1,
         maxWidth : -1,
@@ -16,6 +17,16 @@ export function AirCleanerRecommendations(props) {
 
     const [sortKey, setSortKey] = useState('price');
     const [filterOptions, setFilterOptions] = useState(filterOptionsInit);
+    const [selectedAirCleaner, setSelectedAirCleaner] = useState(null);
+
+    function detailsClick(airCleaner) {
+        console.log(airCleaner)
+        setSelectedAirCleaner(airCleaner);
+    }
+
+    function closeDetailsClick() {
+        setSelectedAirCleaner(null);
+    }
 
     return (
         <div id='air-cleaner-recommendations-container'>            
@@ -28,7 +39,9 @@ export function AirCleanerRecommendations(props) {
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                         </div>
                         <SortKeyChoice updateSortKey={setSortKey} />
-                        <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} />                        
+                        { selectedAirCleaner === null && <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey}
+                                    filterOptions={filterOptions} detailsClick={detailsClick} />}
+                        { selectedAirCleaner !== null && <AirCleanerDetails airCleaner={selectedAirCleaner} closeDetailsClick={closeDetailsClick} /> }
                     </div>
                 </div>
             </div>
