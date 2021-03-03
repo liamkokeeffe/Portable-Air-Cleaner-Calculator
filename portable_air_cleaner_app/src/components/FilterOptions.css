@@ -1,6 +1,6 @@
 #filter-options {
     width: 250px;
-    height: 350px;
+    height: 100%;
     background-color: white;
 }
 
@@ -31,9 +31,10 @@
 }
 
 #filter-options-clear-all-button {
-    height: 25px;
+    height: 100%;
     padding-top: 5px;
-    margin-left: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .filter-option-title {
