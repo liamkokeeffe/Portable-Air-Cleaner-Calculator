@@ -1,0 +1,29 @@
+#air-cleaner-details-container {
+    border: 1px solid black;
+    width: 803px;
+    margin-left: 10px;
+    padding-left: 10px;
+    position: relative;
+    background-color: white;
+}
+
+#air-cleaner-details-header {
+    display: flex;
+}
+
+#close-air-cleaner-details-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 50px;
+    font-size: 20px;
+}
+
+#air-cleaner-details-body {
+    display: flex;
+}
+
+#air-cleaner-details-body p {
+    margin-left: 25px;
+    margin-block-start: 0px;
+}

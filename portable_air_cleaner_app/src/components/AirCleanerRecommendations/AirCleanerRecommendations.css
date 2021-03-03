@@ -1,0 +1,51 @@
+#air-cleaner-recommendations-container {
+    position: relative;
+    padding: 20px;
+    background: rgba(255, 0, 0, 0.2);
+}
+
+#air-cleaner-recommendations-header {
+    display: flex;   
+}
+
+#back-button {
+    background-color: white;
+    padding: 20px;
+    font-size: 20px;
+    position: absolute;
+    left: 20px;
+    top: 35px;
+}
+
+#air-cleaner-recommendations-title-container {
+    background-color: white;
+    padding: 10px;
+    width: 450px;
+    position: absolute;
+    top: -100px;
+    left: 10px;
+}
+
+#air-cleaner-recommendations-title {
+    text-align: center;
+}
+
+#air-cleaner-recommendations {
+    display: flex;
+    margin-top: 125px;
+}
+
+#air-cleaner-list-and-sort-key-container { 
+    width: 100%;
+}
+
+#air-cleaner-recommendations-page-center-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#air-cleaner-recommendations-page-center {
+    position: relative;
+    width: 815px;
+}

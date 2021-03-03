@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { Calculator } from './Calculator/Calculator.js';
-import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js'
-import {AirCleanerRecommendations} from './AirCleanerRecommendations';
+import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js';
+import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import { LandingPage } from './LandingPage/LandingPage.js';
 
 export function Home() {
@@ -11,19 +11,18 @@ export function Home() {
         roomLength: 0,
         floorArea: 0,
         ceilingHeight : 0,
-        units : "feet",
-        outdoorVentilation : "Low",
+        units : 'feet',
+        outdoorVentilation : 'Low',
         cadr : 0
     }
 
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
     const [calculatorType, setCalculatorType] = useState(null);
     const [resultType, setResultType] = useState(null);
-    const [displayProductDetails, setProductDetails] = useState(false);
 
     function showResults(type) {
         setResultType(type);
-        setCalculatorType(null);
+        setCalculatorType('hidden_' + calculatorType);
     }
     
     function unitSelectionMade(unitType) {
@@ -116,14 +115,20 @@ export function Home() {
         }
         setRoomInfo(newRoomInfo);
     }
-    
+
+    function backToCalculator() {
+        setResultType(null);
+        setCalculatorType(calculatorType.substring(7));
+    }
+
     return (
         <div>
             {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>}
-            {calculatorType !== null && <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
-                            roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
-                            onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
-            {resultType !== null && (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
+            {(calculatorType === 'find' || calculatorType === 'test') && 
+                <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
+                roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered}  onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
+            {resultType !== null && 
+                (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
         </div>
     )
 }
