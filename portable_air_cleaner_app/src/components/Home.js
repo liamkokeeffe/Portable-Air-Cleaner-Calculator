@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Calculator } from './Calculator/Calculator.js';
-import {Subheader} from './Subheader/Subheader.js'
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js'
 import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import { LandingPage } from './LandingPage/LandingPage.js';
@@ -8,7 +7,9 @@ import { LandingPage } from './LandingPage/LandingPage.js';
 export function Home() {
 
     let roomInfoInit = {
-        floorArea : 0,
+        roomWidth : 0,
+        roomLength: 0,
+        floorArea: 0,
         ceilingHeight : 0,
         units : "feet",
         outdoorVentilation : "Low",
@@ -27,6 +28,8 @@ export function Home() {
     
     function unitSelectionMade(unitType) {
         let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
             floorArea : roomInfo.floorArea,
             ceilingHeight : roomInfo.ceilingHeight,
             units : unitType,
@@ -36,8 +39,36 @@ export function Home() {
         setRoomInfo(newRoomInfo)
     }
 
+    function roomWidthEntered(width) {
+        let newRoomInfo = {
+            roomWidth : width,
+            roomLength : roomInfo.roomLength,
+            floorArea : roomInfo.floorArea,
+            ceilingHeight : roomInfo.ceilingHeight,
+            units : roomInfo.units,
+            outdoorVentilation : roomInfo.outdoorVentilation,
+            cadr : roomInfo.cadr
+        }
+        setRoomInfo(newRoomInfo);
+    }
+
+    function roomLengthEntered(length) {
+        let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : length,
+            floorArea : roomInfo.floorArea,
+            ceilingHeight : roomInfo.ceilingHeight,
+            units : roomInfo.units,
+            outdoorVentilation : roomInfo.outdoorVentilation,
+            cadr : roomInfo.cadr
+        }
+        setRoomInfo(newRoomInfo);
+    }
+
     function floorAreaEntered(area) {
         let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
             floorArea : area,
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
@@ -49,6 +80,8 @@ export function Home() {
 
     function ceilingHeightEntered(height) {
         let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
             floorArea : roomInfo.floorArea,
             ceilingHeight : height,
             units : roomInfo.units,
@@ -60,6 +93,8 @@ export function Home() {
 
     function cadrEntered(cadr) {
         let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
             floorArea : roomInfo.floorArea,
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
@@ -71,6 +106,8 @@ export function Home() {
 
     function updateOutdoorVentilation(ventilationLevel) {
         let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
             floorArea : roomInfo.floorArea,
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
@@ -89,7 +126,7 @@ export function Home() {
         <div>
             {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>}
             {calculatorType !== null && <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
-                            floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
+                            roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} 
                             onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
             {resultType !== null && 
                 (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
