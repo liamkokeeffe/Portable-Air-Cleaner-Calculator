@@ -12,9 +12,9 @@ export function RoomSizeRec(props) {
     console.log("CADR: " + props.roomInfo.cadr)
     function getACH() {
         if (props.roomInfo.units === "feet") {
-            return (Math.round((props.roomInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
+            return (Math.round((props.roomInfo.cadr * 60 / ((props.roomInfo.roomWidth * props.roomInfo.roomLength) * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
         } else {
-            return (Math.round(((props.roomInfo.cadr / .58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
+            return (Math.round(((props.roomInfo.cadr / .58) / ((props.roomInfo.roomWidth * props.roomInfo.roomLength) * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
         }
     }
 
@@ -49,7 +49,7 @@ export function RoomSizeRec(props) {
     function calculateRoomSize() {
         let totalCFM = 0;
         if (props.roomInfo.units === "feet") {
-            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.roomInfo.cadr);
+            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * ((props.roomInfo.roomWidth * props.roomInfo.roomLength) * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.roomInfo.cadr);
             console.log(totalCFM)
             return Math.round((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
         } else {

@@ -5,11 +5,11 @@ header {
 #header-container {
   display: flex;
   flex-direction: row;
-  background-color: white;
 }
 
 #tabs-container {
   margin-top: 5%;
+  margin-left: 5%;
 }
 
 .tab {
@@ -23,4 +23,5 @@ header {
   line-height: 28px;
   letter-spacing: 0em;
   text-align: left;
+  margin-right: 30%;
 }

@@ -34,6 +34,7 @@
 #buttons-container {
   margin-top: 8%;
   margin-left: 1%;
+  display: flex;
 }
 
 .subheader--btn {
