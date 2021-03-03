@@ -20,7 +20,6 @@ export function AirCleanerRecommendations(props) {
     const [selectedAirCleaner, setSelectedAirCleaner] = useState(null);
 
     function detailsClick(airCleaner) {
-        console.log(airCleaner)
         setSelectedAirCleaner(airCleaner);
     }
 
@@ -30,7 +29,7 @@ export function AirCleanerRecommendations(props) {
 
     return (
         <div id='air-cleaner-recommendations-container'>            
-            <div id='back-button'>{'< Go Back'}</div>
+            <button id='back-button' onClick={() => {props.backToCalculator()}}>{'< Go Back'}</button>
             <div id='air-cleaner-recommendations'>
                 <FilterOptions filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
                 <div id='air-cleaner-recommendations-page-center-container'>

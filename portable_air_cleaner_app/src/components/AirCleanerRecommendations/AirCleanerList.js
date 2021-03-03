@@ -24,24 +24,29 @@ const unsortedAirCleaners = [
 export function AirCleanerList(props) {
     const [airCleaners, setAirCleaners] = useState([]);
 
+    const airCleanerComponents = airCleaners.map((item) => 
+    <AirCleanerListItem airCleaner={item} detailsClick={props.detailsClick} />
+    );
+
     useEffect(() => {
-        unsortedAirCleaners.forEach((airCleaner) => {
-            airCleaner.ach = Math.round((airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight));            
-        });
-        
         let outdoorVentilation = 1;
         if (props.roomInfo.outdoorVentilation === 'Typical') {
             outdoorVentilation = 1.5
         } else if (props.roomInfo.outdoorVentilation === 'Good') {
             outdoorVentilation = 3;
-        } else {
+        } else if (props.roomInfo.outdoorVentilation === 'Enhanced') {
             outdoorVentilation = 4;
         }
         
+        unsortedAirCleaners.forEach((airCleaner) => {
+            airCleaner.ach = Math.round((airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) + outdoorVentilation;      
+        });
+
         let filteredUnsortedAirCleaners = [...unsortedAirCleaners].filter((airCleaner) => {
-            if (airCleaner.ach + outdoorVentilation < 4) { // "good" ACH or better
+            if (airCleaner.ach < 4) { // "good" ACH or better
                 return false;
             }
+
             if ((props.filterOptions.maxPrice > -1) && (props.filterOptions.maxPrice < airCleaner.price)) {
                 return false;
             }
@@ -51,8 +56,10 @@ export function AirCleanerList(props) {
             if ((props.filterOptions.maxPower > -1) && (props.filterOptions.maxPower < airCleaner.power)) {
                 return false;
             }
+
             return true;
         });
+    
         let sortedAirCleaners = filteredUnsortedAirCleaners.sort((a, b) => {
             if (a[props.sortKey] === -1 && b[props.sortKey] !== -1) {
                 return 1;
@@ -66,14 +73,10 @@ export function AirCleanerList(props) {
             }
             return a[props.sortKey] - b[props.sortKey];
         });
-        console.log(sortedAirCleaners);
+        
         setAirCleaners(sortedAirCleaners);
     
     }, [props])
-
-    const airCleanerComponents = airCleaners.map((item) => 
-        <AirCleanerListItem airCleaner={item} detailsClick={props.detailsClick} />
-    );
 
     return (
         <div id='air-cleaner-list'>

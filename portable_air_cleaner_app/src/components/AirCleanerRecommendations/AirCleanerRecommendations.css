@@ -11,10 +11,10 @@
 #back-button {
     background-color: white;
     padding: 20px;
-    width: 100px;
-    margin-top: 50px;
     font-size: 20px;
-    display: inline-block;
+    position: absolute;
+    left: 20px;
+    top: 35px;
 }
 
 #air-cleaner-recommendations-title-container {
@@ -32,7 +32,7 @@
 
 #air-cleaner-recommendations {
     display: flex;
-    margin-top: 25px;
+    margin-top: 125px;
 }
 
 #air-cleaner-list-and-sort-key-container { 

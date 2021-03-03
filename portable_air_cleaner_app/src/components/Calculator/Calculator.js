@@ -23,10 +23,10 @@ export function Calculator(props) {
     function inputIsValid() {
         if (props.calculatorType === "find" && (props.roomInfo.roomWidth === 0 || props.roomInfo.roomLength === 0 || props.roomInfo.ceilingHeight === 0)) {
             console.log("Please fill out all fields to continue");
-            return false
+            return false;
         } else if (props.calculatorType === "test" && (props.roomInfo.roomWidth === 0 || props.roomInfo.roomLength === 0 || props.roomInfo.ceilingHeight === 0 || props.roomInfo.cadr === 0)) {
             console.log("Please fill out all fields to continue");
-            return false
+            return false;
         } else {
             props.floorAreaEntered(props.roomInfo.roomWidth * props.roomInfo.roomLength);
             return true;
@@ -38,7 +38,7 @@ export function Calculator(props) {
             <h2 id="calculator-title">{getTitle()}</h2>   
             <div className="step-wrapper"> 
                 <StepTitle title = "Room Size" currentStep = "1" totalSteps = {getStepCount()} />
-                <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} ceilingHeightEntered={props.ceilingHeightEntered} />
+                <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} ceilingHeightEntered={props.ceilingHeightEntered} roomInfo={props.roomInfo} />
             </div>
             <div className="step-wrapper">
                 <StepTitle title = "Rate Your Current Ventilation" currentStep = "2" totalSteps = {getStepCount()} />
@@ -46,7 +46,7 @@ export function Calculator(props) {
             </div>
             {props.calculatorType === "test" && <div className="step-wrapper">
                 <StepTitle title = "Clean Air Delivery Rate" currentStep = "3" totalSteps = "3" />
-                <CADR cadrEntered={props.cadrEntered} />
+                <CADR cadrEntered={props.cadrEntered} roomInfo={props.roomInfo} />
             </div>}
             <div id="button-wrapper">
                 <button id="results-btn" onClick={(e) => changeScreens()}>VIEW RESULTS</button>
