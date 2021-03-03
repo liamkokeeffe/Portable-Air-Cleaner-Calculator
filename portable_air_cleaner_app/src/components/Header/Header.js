@@ -12,9 +12,9 @@ export function Header() {
             </header>
             <div id="tabs-container">
                 <div className='tab'>
-                    <Link exact to="/" className="tab">Calculator</Link>
-                    <Link to="/about" className="tab">About</Link>
-                    <Link to="/additional-resources" className="tab">Resources</Link>
+                    <a href="/" className="tab">Calculator</a>
+                    <a href="/about" className="tab">About</a>
+                    <a href="/additional-resources" className="tab">Resources</a>
                 </div>
             </div>
         </div>

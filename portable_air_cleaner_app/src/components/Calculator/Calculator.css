@@ -1,91 +1,129 @@
-#calculator-title {
-  text-align: center;
-  font-size: 30pt;
-  margin-top: 20px;
-}
-
-.title {
-  margin-left: 50px;
-  margin-right: 50px;
-  font-size: 15pt;
-  font-weight: bold;
-}
-
-.user-input-box {
-  display: flex;
-  background-color: white;
-  border-radius: 10px;
-  width: 450px;
-  height: 200px;
-  align-items: center;
-  position: auto;
-  margin-left: 50px;
-  margin-top: 20px;
-}
-
-.user-input-boxes {
-  display: flex;
-  height: 500px;
-}
-
-#change-step-arrow {
-  position: relative;
-  width: 200px;
-  height: 100px;
-}
-
-#change-step-arrow-text-container {
-  position: relative;
-  width: 100px;
-  height: 50px;
-}
-
-#calculator-box {
-  height: 500px;
-  border: 2px solid #bd8a00 50%;
-  background: #bd8a00 50%;
-  border-radius: 25px;
-  margin-bottom: 50px;
-  margin: 20px;
+#calculator-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; /*horizontal centering*/
-  justify-content: center; /*vertical centering*/
 }
 
-#calculator-wrapper {
-  border: 2px solid black;
-  border-radius: 25px;
-  background: white;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 25px;
-  margin-top: 50px;
-}
-
-#change-step-arrow-text {
-  width: auto;
+#calculator-title {
+  font-size: 45pt;
   text-align: center;
-  vertical-align: middle;
-  margin-left: 10px;
+  margin-bottom: -5px;
 }
 
-#calculator-title-box {
+.step-wrapper {
+  align-self: center;
+  width: 70%;
+}
+
+.input-wrapper {
   background: white;
-  margin-top: 20px;
+  padding-top: 5px;
+  padding-bottom: 30px;
 }
 
-.step-header {
-  /* background: white; */
-  margin: 20px;
+.input-title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
 }
 
 .user-input {
+  width: 200px;
+  height: 30px;
   font-size: 15pt;
-  width: 120px;
 }
 
-.arrows-container {
+#roomdim-wrapper,
+#cadr-wrapper {
+  padding-left: 8%;
+}
+
+#ventilation-wrapper {
+  padding-top: 30px;
   display: flex;
-  flex-direction: colum;
+  justify-content: space-evenly;
+}
+
+#ventilation-input-box {
+  width: 30%;
+}
+
+#ventilation-info-box {
+  margin-top: 1%;
+}
+
+#ventilation-text {
+  margin-top: 15%;
+  font-family: Noto Sans TC;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+#ventilation-text-title {
+  font-weight: 700;
+}
+
+#button-wrapper {
+  margin: 50px 0 50px 0;
+  margin-left: 73%;
+}
+
+#results-btn {
+  height: 48px;
+  width: 200px;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.75px;
+  text-align: center;
+}
+
+#title-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+#step-counter {
+  background: rgb(234, 95, 20, 1);
+  width: 160px;
+  padding: 2px 5px 2px 5px;
+  margin-bottom: -40px;
+  z-index: 10;
+  box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.25);
+}
+
+#step-counter-title {
+  font-size: 14pt;
+  color: white;
+  margin-left: 10px;
+}
+
+#step-title-wrapper {
+  text-align: center;
+  font-size: 30pt;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+#underline-rect {
+  height: 2px;
+  width: 80%;
+  border-radius: 0px;
+  background: rgb(196, 196, 196, 1);
+  z-index: 10;
+  margin-bottom: 25px;
+  margin-top: -40px;
+  align-self: center;
 }
