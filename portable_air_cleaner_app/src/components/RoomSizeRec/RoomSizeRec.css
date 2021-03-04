@@ -1,73 +1,64 @@
-.roomsize-component {
-  margin-top: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 25px;
-  border-radius: 25px;
-  border: 2px solid black;
-  background-color: white;
+#roomsize-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 2px solid black; */
 }
 
-#roomsize-header {
-  text-align: center;
-}
-
-#roomsize-header-title,
-#roomsize-content-header {
-  text-align: left;
-  margin-inline-start: 25px;
-  margin-top: auto;
-  font-weight: normal;
+#roomsize-header-wrapper {
+  width: 90%;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 #roomsize-header-title {
   font-size: 25pt;
-}
-
-#roomsize-content-header {
-  font-size: 20pt;
+  margin-right: 10%;
 }
 
 #roomsize-header-input {
-  height: 40px;
-  border: 2px solid black;
-  text-align: center;
+  height: 50px;
   font-size: 18pt;
+  text-align: center;
   font-weight: bold;
 }
 
-#roomsize-content-box {
-  height: 500px;
-  border: 2px solid #bd8a00 50%;
-  background: #bd8a00 50%;
-  border-radius: 25px;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  display: flex;
-  align-items: center; /*horizontal centering*/
-  justify-content: center; /*vertical centering*/
+#roomsize-content-wrapper {
+  background: white;
+  margin-top: 2%;
+  width: 90%;
+  padding-bottom: 50px;
 }
 
 #roomsize-content-ach {
-  background: white;
-  border-radius: 25px;
-  border: 2px solid white;
-  height: 275px;
-  width: 40%;
-  margin: 35px;
-  margin-right: 100px;
+  margin-top: 2%;
 }
 
 #roomsize-content-number {
-  height: 75px;
-  width: 100px;
   display: inline-block;
-  margin-right: 15px;
-  margin-left: 60px;
-  margin-top: 30px;
   text-align: center;
   font-size: 16pt;
   font-weight: bold;
+  height: 75px;
+  width: 100px;
+  margin-top: 5%;
+  margin-right: 20px;
+}
+
+.content-text {
+  font-size: 18pt;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+#roomsize-content-title {
+  font-size: 20pt;
+  margin-left: 5%;
+  font-weight: bold;
+  padding-top: 20px;
 }
 
 #results-message {
@@ -75,22 +66,8 @@
   font-size: 16pt;
 }
 
-#roomsize-content-chart {
-  display: inline-block;
-  width: 40%;
-  margin-top: -50px;
-}
-
-.content-text {
-  font-weight: bold;
-  padding-left: 20px;
-  font-size: 18pt;
-}
-
-#btn-details {
-  background: #ea5f14;
-  margin-top: 400px;
-  height: 60px;
-  width: 100px;
-  font-size: 18pt;
+#roomsize-content-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

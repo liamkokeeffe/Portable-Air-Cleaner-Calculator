@@ -127,3 +127,7 @@
   margin-top: -40px;
   align-self: center;
 }
+
+#cadr-input-wrapper {
+  visibility: hidden;
+}
