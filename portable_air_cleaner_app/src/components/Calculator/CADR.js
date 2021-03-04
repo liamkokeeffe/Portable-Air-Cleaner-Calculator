@@ -1,6 +1,9 @@
-import './Calculator.css'
+import "./Calculator.css";
+import { useState } from "react";
 
 export function CADR(props) {
+
+    const [cadr, setCadr] = useState(props.roomInfo.cadr === 0 ? "" : props.roomInfo.cadr);
 
     function checkValue(value) {
         if (value === "I'm not sure") {
@@ -24,7 +27,9 @@ export function CADR(props) {
             </select>
             <div id="cadr-input-wrapper">
                 <p className="input-title">What is the Clean Air Delivery Rate (CADR) of your air cleaner?</p>
-                <input className="user-input" onChange={(e) => props.cadrEntered(e.target.value)} />
+                <input className="user-input" onChange={(e) => {
+                    setCadr(e.target.value);
+                    props.cadrEntered(parseInt(e.target.value));}} value={cadr} />
             </div>
         </div>
     )

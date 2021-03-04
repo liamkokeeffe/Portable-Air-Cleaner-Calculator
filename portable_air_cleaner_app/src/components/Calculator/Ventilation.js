@@ -1,12 +1,13 @@
-import './Calculator.css'
-import VentilationImg from "../../images/PoorVentilation.png"
+import './Calculator.css';
+import VentilationImg from "../../images/PoorVentilation.png";
 
 export function Ventilation(props) {
+
     return (
         <div className="input-wrapper" id="ventilation-wrapper">
             <div id="ventilation-input-box">
                 <p className="input-title">Ventilation</p>
-                <select className="user-input" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}>
+                <select className="user-input" onChange={(e) => props.updateOutdoorVentilation(e.target.value)} value={props.type}>
                     <option value="Low" selected>Low</option>
                     <option value="Typical">Typical</option>
                     <option value="Good">Good</option>
@@ -16,7 +17,7 @@ export function Ventilation(props) {
             </div>
             <div id="ventilation-info-box">
                 <p className="input-title">Example Room Size 146ft^2 x 9ft</p>
-                <img src={VentilationImg} alt="Example image" />
+                <img src={VentilationImg} alt="Example room with low ventilation" />
             </div>
         </div>
     )
