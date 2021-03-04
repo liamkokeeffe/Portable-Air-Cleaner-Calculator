@@ -1,15 +1,14 @@
 import './RoomSizeRec.css'
 import ACHChart from "../../images/ach_chart.png"
 
-const ventilationToACH = {
-    'Low' : 1,
-    'Typical' : 1.5,
-    'Good' : 3,
-    'Enhanced' : 4
-}
-
 export function RoomSizeRec(props) {
-    console.log("CADR: " + props.roomInfo.cadr)
+    const ventilationToACH = {
+        'Low' : 1,
+        'Typical' : 1.5,
+        'Good' : 3,
+        'Enhanced' : 4
+    }
+
     function getACH() {
         if (props.roomInfo.units === "feet") {
             return (Math.round((props.roomInfo.cadr * 60 / ((props.roomInfo.roomWidth * props.roomInfo.roomLength) * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
@@ -57,31 +56,29 @@ export function RoomSizeRec(props) {
             return Math.round(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
         }
     }
-
-
-    return(
+    return (
         <div id="roomsize-wrapper">
-            <div className="roomsize-component" id="roomsize-header">
+            <div id="roomsize-header-wrapper">
                 <h2 id="roomsize-header-title">Recommended Room Size for this Air Cleaner</h2>
                 <input id="roomsize-header-input" value={calculateRoomSize() + " ft^2"} readOnly />
             </div>
-            <div className="roomsize-component" id="roomsize-content">
-                <p className="header" id="roomsize-content-header">Is Your Room Meeting the Target Air Changes Per Hour?</p>
+            <div id="roomsize-content-wrapper">
+                <p id="roomsize-content-title">Is Your Room Meeting the Target Air Changes Per Hour?</p>
                 <div id="roomsize-content-box">
                     <div id="roomsize-content-ach">
-                        <p className="content-text">Total Air Changes in the room per hour (ACH):</p>
-                        <div id="roomsize-content-number" style={{background: getACHColor(getACH())}}>
-                            <p>{getACH()}</p>
-                        </div>
-                        <span id="results-message">{getACHText(getACH())}</span>
+                            <p className="content-text">Total Air Changes in the room per hour (ACH):</p>
+                            <div id="roomsize-content-number" style={{background: getACHColor(getACH())}}>
+                                <p>{getACH()}</p>
+                            </div>
+                            <span id="results-message">{getACHText(getACH())}</span>
                     </div>
                     <div id="roomsize-content-chart">
                         <p className="content-text">Target is at least 5 Air Changes Per Hour</p>
                         <img src={ACHChart} alt="ACH Levels Chart"/>
                     </div>
-                    <button id="btn-details">Details</button>
                 </div>
             </div>
+
         </div>
     )
 }
