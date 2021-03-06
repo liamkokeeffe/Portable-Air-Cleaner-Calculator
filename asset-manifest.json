@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.b86b8c69.chunk.css",
+    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.7e63e357.chunk.js",
+    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.7e63e357.chunk.js.map",
+    "runtime-main.js": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.f1adfd3e.js",
+    "runtime-main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.f1adfd3e.js.map",
+    "static/js/2.9621a419.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.9621a419.chunk.js",
+    "static/js/2.9621a419.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/2.9621a419.chunk.js.map",
+    "static/js/3.25d76b68.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/3.25d76b68.chunk.js",
+    "static/js/3.25d76b68.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/3.25d76b68.chunk.js.map",
+    "index.html": "/Portable-Air-Cleaner-Calculator/index.html",
+    "static/css/main.b86b8c69.chunk.css.map": "/Portable-Air-Cleaner-Calculator/static/css/main.b86b8c69.chunk.css.map",
+    "static/js/2.9621a419.chunk.js.LICENSE.txt": "/Portable-Air-Cleaner-Calculator/static/js/2.9621a419.chunk.js.LICENSE.txt",
+    "static/media/PoorVentilation.ec84bc1a.png": "/Portable-Air-Cleaner-Calculator/static/media/PoorVentilation.ec84bc1a.png",
+    "static/media/ach_chart.505ff22d.png": "/Portable-Air-Cleaner-Calculator/static/media/ach_chart.505ff22d.png",
+    "static/media/aircleaner_clipart.e443db04.png": "/Portable-Air-Cleaner-Calculator/static/media/aircleaner_clipart.e443db04.png",
+    "static/media/departmentOfCommerceLogo.c7979d81.png": "/Portable-Air-Cleaner-Calculator/static/media/departmentOfCommerceLogo.c7979d81.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f1adfd3e.js",
+    "static/js/2.9621a419.chunk.js",
+    "static/css/main.b86b8c69.chunk.css",
+    "static/js/main.7e63e357.chunk.js"
+  ]
+}
