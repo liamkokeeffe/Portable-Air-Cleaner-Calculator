@@ -11,9 +11,9 @@ export function AirCleanerListItem(props) {
             </div>
             <div className='air-cleaner-high-level-details'>
                 <p className='air-cleaner-name'>{props.airCleaner.name}</p>
-                <p>Price: ${props.airCleaner.price}</p>
-                <p>Estimated air changes per hour for your space: {props.airCleaner.ach}</p>
-                <p>Noise Level: {props.airCleaner.noise < 0 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
+                <p data-testid='air-cleaner-price'>Price: ${props.airCleaner.price}</p>
+                <p data-testid='air-cleaner-ach'>Estimated air changes per hour for your space: {props.airCleaner.ach}</p>
+                <p data-testid='air-cleaner-noise'>Noise Level: {props.airCleaner.noise < 0 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
                 <button onClick={() => {props.detailsClick(props.airCleaner)}}>Details</button>
             </div>
         </div>
