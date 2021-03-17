@@ -7,14 +7,12 @@ const unsortedAirCleaners = [
     {name:'Levoit Vital 100 True HEPA Purifier', 
     imageSrc: 'https://images.squarespace-cdn.com/content/v1/5914b7ca46c3c432a410a716/1598433446634-FKEO9ZBTHDGPXO0XYZH5/ke17ZwdGBToddI8pDm48kJUlZr2Ql5GtSKWrQpjur5t7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UfNdxJhjhuaNor070w_QAc94zjGLGXCa1tSmDVMXf8RUVhMJRmnnhuU1v2M8fLFyJw/Vital100LP7.jpg?format=300w', 
     price: 119.99, 
-    noise: 23, 
+    noise: -1, 
     cadr: 130,
    power: 55, maxRoomSize: 0, 
     filterType: '',
     dimensions: '12.8" x 6.4" x 16.1"',
     frequency: 60, manafacturer: '', link:''},
-
-
 
     {name:'Oransi OV200 Air Purifier', imageSrc: 'https://cdn.shopify.com/s/files/1/0488/2877/6600/products/ys4mulijrxffglnignja_large.jpg', price: 329.0, noise: 54, cadr: 150, minPower: 60, power:60, maxRoomSize: 0, filterType: '', dimensions: '13" x 23" x 7"', frequency: 60, manafacturer: '', link:''},
 
@@ -41,7 +39,11 @@ export function AirCleanerList(props) {
             }
             
             unsortedAirCleaners.forEach((airCleaner) => {
-                airCleaner.ach = Math.round((airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) + outdoorVentilation;      
+                if (props.roomInfo.units === 'feet') {
+                    airCleaner.ach = Math.round((airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) * 100) / 100.0 + outdoorVentilation;
+                } else {
+                    airCleaner.ach = Math.round((airCleaner.cadr / 0.58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) * 100) / 100.0 + outdoorVentilation;
+                }
             });
 
             let filteredUnsortedAirCleaners = [...unsortedAirCleaners].filter((airCleaner) => {
@@ -81,7 +83,7 @@ export function AirCleanerList(props) {
         
         calculate();
         
-    }, [props])
+    }, [props]);
 
     return (
         <div id='air-cleaner-list'>
