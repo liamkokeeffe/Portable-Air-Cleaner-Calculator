@@ -1,14 +1,18 @@
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-// import LanguageDetector from 'i18next-browser-languagedetector';
+const detectOptions = {
+  // order and from where user language should be detected
+  order: ['querystring', 'navigator']
+};
 
 i18n
-    .use(Backend)
+  .use(Backend)
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
-  // .use(LanguageDetector)
+  .use(LanguageDetector)
   // pass the i18n instance to react-i18next.
   .use(initReactI18next)
   // init i18next
@@ -17,6 +21,7 @@ i18n
     fallbackLng: 'en',
     debug: true,
     supportedLngs: ['en', 'es'],
+    detection: detectOptions,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     }
