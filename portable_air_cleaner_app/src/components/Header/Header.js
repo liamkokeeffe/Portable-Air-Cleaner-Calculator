@@ -1,8 +1,10 @@
 import './Header.css'
 import logo from '../../images/departmentOfCommerceLogo.png';
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 export function Header() {
+    const {t} = useTranslation();
+
     return (
         <div id="header-container">
             <header>
@@ -12,9 +14,9 @@ export function Header() {
             </header>
             <div id="tabs-container">
                 <div className='tab'>
-                    <a href="/" className="tab">Calculator</a>
-                    <a href="/about" className="tab">About</a>
-                    <a href="/additional-resources" className="tab">Resources</a>
+                    <a href="/" className="tab">{t('Tabs.Calculator')}</a>
+                    <a href="/about" className="tab">{t('Tabs.About')}</a>
+                    <a href="/additional-resources" className="tab">{t('Tabs.Resources')}</a>
                 </div>
             </div>
         </div>
