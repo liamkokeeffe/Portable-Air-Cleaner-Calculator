@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.b86b8c69.chunk.css",
-    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.7505b6c2.chunk.js",
-    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.7505b6c2.chunk.js.map",
+    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.e99cfd3c.chunk.js",
+    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.e99cfd3c.chunk.js.map",
     "runtime-main.js": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.f1adfd3e.js",
     "runtime-main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.f1adfd3e.js.map",
     "static/js/2.9621a419.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.9621a419.chunk.js",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.f1adfd3e.js",
     "static/js/2.9621a419.chunk.js",
     "static/css/main.b86b8c69.chunk.css",
-    "static/js/main.7505b6c2.chunk.js"
+    "static/js/main.e99cfd3c.chunk.js"
   ]
 }
