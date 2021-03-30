@@ -13,21 +13,21 @@ function getAchFromAirCleaner(roomWidth, roomLength, ceilingHeight, units, cadr)
 beforeEach(() => render(<Home />))
 
 it('shows basic parts of landing page successfully', () => {
-    expect(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'})).toBeTruthy();
-    expect(screen.getByRole('button', {name: 'TEST MY AIR CLEANER\'S EFFICIENCY'})).toBeTruthy();
+    expect(screen.getByRole('button', {name: 'Find an air cleaner'})).toBeTruthy();
+    expect(screen.getByRole('button', {name: 'Test my air cleaner\'s efficiency'})).toBeTruthy();
 });
 
 it('shows basic parts of calculator page (for finding an air cleaner) successfully', () => {
-    fireEvent.click(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'}));
+    fireEvent.click(screen.getByRole('button', {name: 'Find an air cleaner'}));
 
-    expect(screen.queryByRole('button', {name: 'FIND AN AIR CLEANER'})).toBeNull();
-    expect(screen.queryByRole('button', {name: 'TEST MY AIR CLEANER\'S EFFICIENCY'})).toBeNull();
+    expect(screen.queryByRole('button', {name: 'Find an air cleaner'})).toBeNull();
+    expect(screen.queryByRole('button', {name: 'Test my air cleaner\'s efficiency'})).toBeNull();
     expect(screen.getByLabelText('Units').value).toBe('feet'); // feet should be selected by default
     expect(screen.getByLabelText('Ventilation').value).toBe('Low'); // low ventilation should be selected by default
 });
 
 it('displays air cleaners with correct ach for a basic calculation', () => {
-    fireEvent.click(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'}));
+    fireEvent.click(screen.getByRole('button', {name: 'Find an air cleaner'}));
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
@@ -49,7 +49,7 @@ it('displays air cleaners with correct ach for a basic calculation', () => {
 });
 
 it('should allow users to go back to the calculator and edit their inputs when on the recommended air cleaners screen', () => {
-    fireEvent.click(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'}));
+    fireEvent.click(screen.getByRole('button', {name: 'Find an air cleaner'}));
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
@@ -92,7 +92,7 @@ it('should allow users to go back to the calculator and edit their inputs when o
 });
 
 it('should only display any air cleaners if no air cleaners with 4 ACH or greater', () => {
-    fireEvent.click(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'}));
+    fireEvent.click(screen.getByRole('button', {name: 'Find an air cleaner'}));
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
@@ -129,7 +129,7 @@ it('should only display any air cleaners if no air cleaners with 4 ACH or greate
 });
 
 it('converts outdoor ventilation levels to the correct ACH', () => {
-    fireEvent.click(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'}));
+    fireEvent.click(screen.getByRole('button', {name: 'Find an air cleaner'}));
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
@@ -178,7 +178,7 @@ it('converts outdoor ventilation levels to the correct ACH', () => {
 });
 
 it('should work if the selected units are meters', () => {
-    fireEvent.click(screen.getByRole('button', {name: 'FIND AN AIR CLEANER'}));
+    fireEvent.click(screen.getByRole('button', {name: 'Find an air cleaner'}));
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
