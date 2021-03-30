@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {SortKeyChoice} from '../SortKeyChoice.js';
-import {FilterOptions} from '../FilterOptions.js';
+import {SortKeyChoice} from './SortKeyChoice.js';
+import {FilterOptions} from './FilterOptions.js';
 import {AirCleanerList} from './AirCleanerList.js';
 import {AirCleanerDetails} from './AirCleanerDetails.js';
 import './AirCleanerRecommendations.css';
