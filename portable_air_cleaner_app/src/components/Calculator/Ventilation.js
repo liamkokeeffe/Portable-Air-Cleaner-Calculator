@@ -6,9 +6,9 @@ export function Ventilation(props) {
     return (
         <div className="input-wrapper" id="ventilation-wrapper">
             <div id="ventilation-input-box">
-                <p className="input-title">Ventilation</p>
-                <select className="user-input" onChange={(e) => props.updateOutdoorVentilation(e.target.value)} value={props.type}>
-                    <option value="Low" selected>Low</option>
+                <label htmlFor="ventilation-selection" className="input-title">Ventilation</label>
+                <select id="ventilation-selection" className="user-input" onChange={(e) => props.updateOutdoorVentilation(e.target.value)} value={props.type}>
+                    <option value="Low">Low</option>
                     <option value="Typical">Typical</option>
                     <option value="Good">Good</option>
                     <option value="Enhanced">Enhanced</option>
