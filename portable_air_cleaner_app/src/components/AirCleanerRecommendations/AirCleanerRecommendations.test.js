@@ -1,6 +1,8 @@
 import {fireEvent, render, screen} from '@testing-library/react';
 import {AirCleanerRecommendations} from './AirCleanerRecommendations.js';
 
+import {airCleaners} from '../Home.test.js';
+
 const defaultRoomInfo = { 
     roomWidth : 20,
     roomLength: 10,
@@ -18,14 +20,14 @@ const defaultFilterOptions = {
 };
 
 it('renders basic parts successfully', () => {
-    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} />);
+    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleaners} />);
     expect(screen.getByText('Recommended Portable Air Cleaners')).toBeTruthy();
     expect(screen.getByText('Sort By')).toBeTruthy();
     expect(screen.getByText('Filter by:')).toBeTruthy();
 });
 
 it('filters air cleaners correctly', () => {
-    const recommendationsScreen = render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} />);
+    const recommendationsScreen = render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleaners}/>);
 
     // filter by price
     const maxPriceInput = screen.getByLabelText('$');
@@ -62,7 +64,7 @@ it('filters air cleaners correctly', () => {
 });
 
 it('sorts air cleaners correctly', () => {
-    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} />);
+    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleaners} />);
     const sortAirCleanerDropdown = screen.getByLabelText('Sort By');
 
     // make sure list of air cleaners is sorted by price by default

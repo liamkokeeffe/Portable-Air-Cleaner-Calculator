@@ -1,7 +1,13 @@
 import {fireEvent, render, screen} from '@testing-library/react';
 import {Home} from './Home.js';
 
-const cadrs = [142, 130, 150, 219, 162]; // these are the cadr values of the air cleaners used for testing
+export const airCleaners = [
+    {name:'Whirlpool® WPT80 Whispure™ Large Tower Air Purifier', price: 167.99, noise: -1, cadr: 142, power: 43, maxRoomSize: 0, filterType: '', dimensions: '8.46" x 6.93" x 23"', frequency: 60, manafacturer: '', link:''},
+    {name:'Levoit Vital 100 True HEPA Purifier', price: 119.99, noise: -1, cadr: 130, power: 55, maxRoomSize: 0, filterType: '',
+    dimensions: '12.8" x 6.4" x 16.1"', frequency: 60, manafacturer: '', link:''},
+    {name:'Oransi OV200 Air Purifier', price: 329.0, noise: 54, cadr: 150, minPower: 60, power:60, maxRoomSize: 0, filterType: '', dimensions: '13" x 23" x 7"', frequency: 60, manafacturer: '', link:''},
+    {name:'Coway Airmega 150', price: 189.99, noise: 48.3, cadr: 219, power: 60, maxRoomSize: 0, filterType: '', dimensions: '13.4" x 6.5" x 18.5"', frequency: 0, manafacturer: '', link:''},
+    {name:'BioGS 2.0 Ultra Quiet Air Purifier SPA- 550A', price: 369.95, noise: 48.6, cadr: 162, power: 29, maxRoomSize: 0, filterType: '', dimensions: '22.2" x 16.6" x 9.8"', frequency: 0, manafacturer: '', link:''}];
 
 function getAchFromAirCleaner(roomWidth, roomLength, ceilingHeight, units, cadr) {
     if (units === 'feet') {
@@ -10,7 +16,7 @@ function getAchFromAirCleaner(roomWidth, roomLength, ceilingHeight, units, cadr)
     return Math.round((cadr / 0.58) / (roomWidth * roomLength * ceilingHeight) * 100) / 100.0;
 }
 
-beforeEach(() => render(<Home />))
+beforeEach(() => render(<Home airCleaners={airCleaners} />))
 
 it('shows basic parts of landing page successfully', () => {
     expect(screen.getByRole('button', {name: 'Find an air cleaner'})).toBeTruthy();
@@ -42,8 +48,8 @@ it('displays air cleaners with correct ach for a basic calculation', () => {
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
 
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(20, 10, 8, 'feet', cadr) + 1.5;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(20, 10, 8, 'feet', airCleaner.cadr) + 1.5;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
 });
@@ -63,8 +69,8 @@ it('should allow users to go back to the calculator and edit their inputs when o
     fireEvent.change(outdoorVentilationSelection, {target: {value: 'Typical'}});
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(20, 10, 8, 'feet', cadr) + 1.5;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(20, 10, 8, 'feet', airCleaner.cadr) + 1.5;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
 
@@ -85,8 +91,8 @@ it('should allow users to go back to the calculator and edit their inputs when o
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
 
     
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(15, 10, 8, 'feet', cadr) + 4;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(15, 10, 8, 'feet', airCleaner.cadr) + 4;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
 });
@@ -105,8 +111,8 @@ it('should only display any air cleaners if no air cleaners with 4 ACH or greate
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
     expect(screen.getByText('Sorry, but there were no portable air cleaners found.')).toBeTruthy();
 
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(28, 20, 8, 'feet', cadr) + 1;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(28, 20, 8, 'feet', airCleaner.cadr) + 1;
         expect(screen.queryByText('Estimated air changes per hour for your space: ' + ach)).toBeNull();
     });
 
@@ -141,8 +147,8 @@ it('converts outdoor ventilation levels to the correct ACH', () => {
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
     
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', cadr) + 1;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', airCleaner.cadr) + 1;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
     
@@ -151,8 +157,8 @@ it('converts outdoor ventilation levels to the correct ACH', () => {
     fireEvent.change(outdoorVentilationSelection, {target: {value: 'Typical'}});
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', cadr) + 1.5;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', airCleaner.cadr) + 1.5;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
     
@@ -161,8 +167,8 @@ it('converts outdoor ventilation levels to the correct ACH', () => {
     fireEvent.change(outdoorVentilationSelection, {target: {value: 'Good'}});
     
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', cadr) + 3;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', airCleaner.cadr) + 3;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
 
@@ -171,8 +177,8 @@ it('converts outdoor ventilation levels to the correct ACH', () => {
     fireEvent.change(outdoorVentilationSelection, {target: {value: 'Enhanced'}});
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', cadr) + 4;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(10, 10, 9, 'feet', airCleaner.cadr) + 4;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
 });
@@ -188,8 +194,8 @@ it('should work if the selected units are meters', () => {
     fireEvent.change(ceilingHeightInput, {target: {value: 7}});
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(15, 10, 7, 'feet', cadr) + 1;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(15, 10, 7, 'feet', airCleaner.cadr) + 1;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
     
@@ -199,8 +205,8 @@ it('should work if the selected units are meters', () => {
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
     expect(screen.getByText('Sorry, but there were no portable air cleaners found.')).toBeTruthy();
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(15, 10, 7, 'meters', cadr) + 1;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(15, 10, 7, 'meters', airCleaner.cadr) + 1;
         expect(screen.queryByText('Estimated air changes per hour for your space: ' + ach)).toBeNull();
     });
 
@@ -216,8 +222,8 @@ it('should work if the selected units are meters', () => {
     fireEvent.change(ceilingHeightInput, {target: {value: 2}});
 
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    cadrs.forEach((cadr) => {
-        let ach = getAchFromAirCleaner(4.5, 3, 2, 'meters', cadr) + 1;
+    airCleaners.forEach((airCleaner) => {
+        let ach = getAchFromAirCleaner(4.5, 3, 2, 'meters', airCleaner.cadr) + 1;
         expect(screen.getByText('Estimated air changes per hour for your space: ' + ach)).toBeTruthy();
     });
 });

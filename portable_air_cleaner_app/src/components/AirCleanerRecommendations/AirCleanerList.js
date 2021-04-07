@@ -2,24 +2,6 @@ import './AirCleanerList.css';
 import { AirCleanerListItem } from './AirCleanerListItem';
 import {useEffect, useState} from 'react';
 
-const unsortedAirCleaners = [
-    {name:'Whirlpool® WPT80 Whispure™ Large Tower Air Purifier', imageSrc: 'https://i5.walmartimages.com/asr/85569bb9-9ba5-44cc-97d6-bb67681dbe34.71db55e05471e0e951f0cb7582391a71.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff', price: 167.99, noise: -1, cadr: 142, power: 43, maxRoomSize: 0, filterType: '', dimensions: '8.46" x 6.93" x 23"', frequency: 60, manafacturer: '', link:''},
-    {name:'Levoit Vital 100 True HEPA Purifier', 
-    imageSrc: 'https://images.squarespace-cdn.com/content/v1/5914b7ca46c3c432a410a716/1598433446634-FKEO9ZBTHDGPXO0XYZH5/ke17ZwdGBToddI8pDm48kJUlZr2Ql5GtSKWrQpjur5t7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UfNdxJhjhuaNor070w_QAc94zjGLGXCa1tSmDVMXf8RUVhMJRmnnhuU1v2M8fLFyJw/Vital100LP7.jpg?format=300w', 
-    price: 119.99, 
-    noise: -1, 
-    cadr: 130,
-   power: 55, maxRoomSize: 0, 
-    filterType: '',
-    dimensions: '12.8" x 6.4" x 16.1"',
-    frequency: 60, manafacturer: '', link:''},
-
-    {name:'Oransi OV200 Air Purifier', imageSrc: 'https://cdn.shopify.com/s/files/1/0488/2877/6600/products/ys4mulijrxffglnignja_large.jpg', price: 329.0, noise: 54, cadr: 150, minPower: 60, power:60, maxRoomSize: 0, filterType: '', dimensions: '13" x 23" x 7"', frequency: 60, manafacturer: '', link:''},
-
-    {name:'Coway Airmega 150', imageSrc: 'https://cdn.accentuate.io/35302008225951/1614359585901/airmega00083-47re2.jpg', price: 189.99, noise: 48.3, cadr: 219, power: 60, maxRoomSize: 0, filterType: '', dimensions: '13.4" x 6.5" x 18.5"', frequency: 0, manafacturer: '', link:''},
-
-    {name:'BioGS 2.0 Ultra Quiet Air Purifier SPA- 550A', imageSrc: 'https://cdn.shopify.com/s/files/1/0260/5699/files/biogs2_home_chest_ukulele_couch_720x.jpg', price: 369.95, noise: 48.6, cadr: 162, power: 29, maxRoomSize: 0, filterType: '', dimensions: '22.2" x 16.6" x 9.8"', frequency: 0, manafacturer: '', link:''}];
-
 export function AirCleanerList(props) {
     const [airCleaners, setAirCleaners] = useState([]);
 
@@ -38,7 +20,8 @@ export function AirCleanerList(props) {
                 outdoorVentilation = 4;
             }
             
-            unsortedAirCleaners.forEach((airCleaner) => {
+            let airCleaners = props.airCleaners;
+            airCleaners.forEach((airCleaner) => {
                 if (props.roomInfo.units === 'feet') {
                     airCleaner.ach = Math.round((airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) * 100) / 100.0 + outdoorVentilation;
                 } else {
@@ -46,7 +29,7 @@ export function AirCleanerList(props) {
                 }
             });
 
-            let filteredUnsortedAirCleaners = [...unsortedAirCleaners].filter((airCleaner) => {
+            let filteredUnsortedAirCleaners = [...airCleaners].filter((airCleaner) => {
                 if (airCleaner.ach < 4) { // "good" ACH or better
                     return false;
                 }
@@ -80,7 +63,6 @@ export function AirCleanerList(props) {
             
             setAirCleaners(sortedAirCleaners);
         }
-        
         calculate();
         
     }, [props]);

@@ -38,8 +38,9 @@ export function AirCleanerRecommendations(props) {
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                         </div>
                         <SortKeyChoice updateSortKey={setSortKey} />
-                        { selectedAirCleaner === null && <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey}
-                                    filterOptions={filterOptions} detailsClick={detailsClick} />}
+                        
+                        { selectedAirCleaner === null &&
+                             <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} detailsClick={detailsClick} airCleaners={props.airCleaners} />}
                         { selectedAirCleaner !== null && <AirCleanerDetails airCleaner={selectedAirCleaner} closeDetailsClick={closeDetailsClick} /> }
                     </div>
                 </div>
