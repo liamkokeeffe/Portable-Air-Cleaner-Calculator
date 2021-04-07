@@ -12,7 +12,7 @@ export function Home() {
         floorArea: 0,
         ceilingHeight : 0,
         units : 'feet',
-        outdoorVentilation : 'Low',
+        outdoorVentilation : 'Poor',
         cadr : 0
     }
 

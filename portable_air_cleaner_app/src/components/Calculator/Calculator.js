@@ -1,17 +1,12 @@
 import "./Calculator.css"
-import {StepTitle} from "./StepTitle.js"
 import {RoomDim} from "./RoomDim.js"
 import {Ventilation} from "./Ventilation.js"
 import {CADR} from "./CADR.js"
 
 export function Calculator(props) {
     function getTitle() {
-        document.body.style.background = "rgb(234,95,20,0.25)";
+        document.body.style.background = "linear-gradient(180deg, rgba(234, 95, 20, 0.25) 0%, rgba(234, 95, 20, 0.25) 41.15%, rgba(234, 95, 20, 0.25) 76.56%, rgba(226, 167, 0, 0.25) 100%)";
         return props.calculatorType === "find" ? "Find Air Cleaner" : "Test Air Cleaner Efficiency";
-    }
-
-    function getStepCount() {
-        return props.calculatorType === "find" ? "2" : "3";
     }
 
     function changeScreens() {
@@ -37,15 +32,15 @@ export function Calculator(props) {
         <div id="calculator-wrapper">
             <h2 id="calculator-title">{getTitle()}</h2>   
             <div className="step-wrapper"> 
-                <StepTitle title = "Room Size" currentStep = "1" totalSteps = {getStepCount()} />
+                <h3 className="step-title">Step 1: Room Dimension</h3>
                 <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} ceilingHeightEntered={props.ceilingHeightEntered} roomInfo={props.roomInfo} />
             </div>
             <div className="step-wrapper">
-                <StepTitle title = "Rate Your Current Ventilation" currentStep = "2" totalSteps = {getStepCount()} />
+                <h3 className="step-title">Step 2: Ventilation Rating</h3>
                 <Ventilation updateOutdoorVentilation={props.updateOutdoorVentilation} type={props.roomInfo.outdoorVentilation}/>
             </div>
             {props.calculatorType === "test" && <div className="step-wrapper">
-                <StepTitle title = "Clean Air Delivery Rate" currentStep = "3" totalSteps = "3" />
+                <h3 className="step-title">Step 3: Clean Air Delivery Rate (CADR)</h3>
                 <CADR cadrEntered={props.cadrEntered} roomInfo={props.roomInfo} />
             </div>}
             <div id="button-wrapper">

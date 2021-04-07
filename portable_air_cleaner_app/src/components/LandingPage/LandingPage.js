@@ -1,5 +1,5 @@
 import "./LandingPage.css";
-import AirCleanerImg from "../../images/aircleaner_clipart.png";
+import AirCleanerImg from "../../images/aircleaner_animated.png";
 import { useTranslation } from "react-i18next";
 
 export function LandingPage(props) {
@@ -13,8 +13,8 @@ export function LandingPage(props) {
                 for your business to help keep employees and customers safe or test your own portable air cleaner to find out whether 
                 it’s effectively ventilating your business.</p>
                 <div id="buttons-container">
-                    <button className="subheader--btn" id="subheader--btn-find" onClick={() => props.setCalculatorType("find")}>{t("Find an air cleaner")}</button>
-                    <button className="subheader--btn" id="subheader--btn-test" onClick={() => props.setCalculatorType("test")}>{t("Test my air cleaner's efficiency")}</button>
+                    <button className="subheader--btn" id="subheader--btn-find" onClick={() => props.setCalculatorType("find")}>{t("FIND AIR CLEANER")}</button>
+                    <button className="subheader--btn" id="subheader--btn-test" onClick={() => props.setCalculatorType("test")}>{t("TEST AIR CLEANER")}</button>
                 </div>
             </div>
             <div id="img-container">
