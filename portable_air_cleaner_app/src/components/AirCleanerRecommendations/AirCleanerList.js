@@ -3,9 +3,9 @@ import { AirCleanerListItem } from './AirCleanerListItem';
 import {useEffect, useState} from 'react';
 
 export function AirCleanerList(props) {
-    const [airCleaners, setAirCleaners] = useState([]);
+    const [recommendedAirCleaners, setRecommendedAirCleaners] = useState([]);
 
-    const airCleanerComponents = airCleaners.map((item) => 
+    const airCleanerComponents = recommendedAirCleaners.map((item) => 
     <AirCleanerListItem key={item.name} airCleaner={item} detailsClick={props.detailsClick} />
     );
 
@@ -37,7 +37,7 @@ export function AirCleanerList(props) {
                 if ((props.filterOptions.maxPrice > -1) && (props.filterOptions.maxPrice < airCleaner.price)) {
                     return false;
                 }
-                if ((props.filterOptions.maxNoise > -1) && (props.filterOptions.maxNoise < airCleaner.noise)) {
+                if ((props.filterOptions.maxNoise > -1) && ((props.filterOptions.maxNoise < airCleaner.noise) || airCleaner.noise === -1)) {
                     return false;
                 }
                 if ((props.filterOptions.maxPower > -1) && (props.filterOptions.maxPower < airCleaner.power)) {
@@ -61,7 +61,7 @@ export function AirCleanerList(props) {
                 return a[props.sortKey] - b[props.sortKey];
             });
             
-            setAirCleaners(sortedAirCleaners);
+            setRecommendedAirCleaners(sortedAirCleaners);
         }
         calculate();
         
@@ -69,8 +69,7 @@ export function AirCleanerList(props) {
 
     return (
         <div id='air-cleaner-list'>
-            {airCleaners.length > 0 ? airCleanerComponents : 
-               
+            {airCleanerComponents.length > 0 ? airCleanerComponents :
                 <div id='no-air-cleaners-found-message-container'>
                     <p>Sorry, but there were no portable air cleaners found.</p>
                 </div>

@@ -21,7 +21,7 @@ export function Home(props) {
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
     const [calculatorType, setCalculatorType] = useState(null);
     const [resultType, setResultType] = useState(null);
-    // props.airCleaners will always be null in production, but this allows us to pass in specific air cleaners for testing.
+    // props.airCleaners will always be undefined in production, but this allows us to pass in specific air cleaners for testing.
     const [airCleaners, setAirCleaners] = useState(props.airCleaners === undefined ? null : props.airCleaners);
 
     useEffect(() => {
@@ -30,13 +30,15 @@ export function Home(props) {
                 return {
                     name: d['Name'],
                     cadr: +d['CADR'],
-                    price: +d['Price (USD)'],
-                    noise: +d['Noise Rating (db)'],
-                    power: +d['Power (W)'],
-                    dimensions: d['Size (in)'],
+                    price: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
+                    noise: d['Noise Rating (db)'] === '' ? -1 : +d['Noise Rating (db)'],
+                    power: d['Power (W)'] === '' ? -1 : +d['Power (W)'],
+                    size: d['Size (in)'],
+                    maxRoomSize: d['Room Size (sq ft)'] === '' ? -1 : +d['Room Size (sq ft)'],
                     link: d['Where to Buy?']
-                } 
+                }
             });
+            console.log(result);
             setAirCleaners(result);
         }
         if (airCleaners === null) {

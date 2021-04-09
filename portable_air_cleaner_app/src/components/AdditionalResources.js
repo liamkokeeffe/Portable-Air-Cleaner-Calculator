@@ -2,9 +2,9 @@ import './AdditionalResources.css';
 
 export function AdditionalResources() {
     return (
-        <div>
+        <div id='additional-resources-container'>
             <h1>Resources and Frequently Asked Questions</h1>
-            <h2>Demo Video</h2>
+            <h2 className='additional-resources-subheading'>Demo Video</h2>
             <p>space for demo video</p>
             <h2>Disclaimer</h2>
             <p>Wearing masks, social distancing, increasing airflow from outdoors with open doors and windows, and upgrading the filter
@@ -17,7 +17,7 @@ export function AdditionalResources() {
                 you or others in the space the air cleaner is located to not be infected with COVID-19. You can read
                 more about portable air cleaners <a href='#'>here</a>.
             </p>
-            <h2>Frequently Asked Questions (FAQs)</h2>
+            <h2 className='additional-resources-subheading'>Frequently Asked Questions (FAQs)</h2>
             <strong><p>Where should I place my air cleaner?</p></strong>
             <p>Portable air cleaners should usually be elevated about 3 feet off the ground (SOURCE?). They should be
                 placed in an area that will cover as much of the room as possible, which is usually the center of the
@@ -35,7 +35,7 @@ export function AdditionalResources() {
             <p>Use the dust CADR rating.</p>
             <strong><p>How do I estimate my room's ventilation rating?</p></strong>
             <p>The room ventilation can be calculated by using a CO_2 monitor. You can use <a href="#">this</a>
-            link to measure it. If you can't/don't want to do this, you can estimate based on any upgrades to
+             link to measure it. If you can't/don't want to do this, you can estimate based on any upgrades to
             your ventilation system and how much fresh air you think is being circulated in the room.</p>
             <h2>Terminologies</h2>
             <h2>References</h2>
