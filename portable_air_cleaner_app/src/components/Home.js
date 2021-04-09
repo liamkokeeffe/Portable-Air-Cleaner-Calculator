@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calculator } from './Calculator/Calculator.js';
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js';
 import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import { LandingPage } from './LandingPage/LandingPage.js';
 
-export function Home() {
+import data from '../air_cleaner_list.csv';
+import * as d3 from 'd3';
 
+export function Home(props) {
     let roomInfoInit = {
         roomWidth : 0,
         roomLength: 0,
@@ -19,6 +21,30 @@ export function Home() {
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
     const [calculatorType, setCalculatorType] = useState(null);
     const [resultType, setResultType] = useState(null);
+    // props.airCleaners will always be undefined in production, but this allows us to pass in specific air cleaners for testing.
+    const [airCleaners, setAirCleaners] = useState(props.airCleaners === undefined ? null : props.airCleaners);
+
+    useEffect(() => {
+        async function getAirCleaners() {
+            const result = await d3.csv(data, (d) => {
+                return {
+                    name: d['Name'],
+                    cadr: +d['CADR'],
+                    price: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
+                    noise: d['Noise Rating (db)'] === '' ? -1 : +d['Noise Rating (db)'],
+                    power: d['Power (W)'] === '' ? -1 : +d['Power (W)'],
+                    size: d['Size (in)'],
+                    maxRoomSize: d['Room Size (sq ft)'] === '' ? -1 : +d['Room Size (sq ft)'],
+                    link: d['Where to Buy?']
+                }
+            });
+            console.log(result);
+            setAirCleaners(result);
+        }
+        if (airCleaners === null) {
+            getAirCleaners();
+        }
+    });
 
     function showResults(type) {
         setResultType(type);
@@ -126,9 +152,9 @@ export function Home() {
             {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>}
             {(calculatorType === 'find' || calculatorType === 'test') && 
                 <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
-                roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered}  onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
-            {resultType !== null && 
-                (resultType === 'find' ? <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} /> : <RoomSizeRec roomInfo={roomInfo}/>)}
+                roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered} cadrEntered={cadrEntered} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} />}
+            {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
+            {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo}/>}
         </div>
-    )
+    );
 }
