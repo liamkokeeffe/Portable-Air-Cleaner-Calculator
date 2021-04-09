@@ -1,4 +1,62 @@
-p {
-    text-align: center;
-    padding: 30px;
+h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30pt;
+  /* line-height: 112px; */
+  color: #00a2c7;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+  margin-top: -1%;
+}
+
+.about-submodule-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 12%;
+}
+
+.about-text-container {
+  width: 50%;
+}
+
+.about-text-container p {
+  font-size: 22pt;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 200;
+}
+
+#img-logo,
+#img-commerce-logo {
+  width: 350px;
+  height: 350px;
+}
+
+#img-product {
+  width: 450px;
+  height: 500px;
+}
+
+#about-team-container,
+#about-sponsor-container {
+  margin-right: 15%;
+}
+
+#about-product-container {
+  margin-left: 8%;
 }

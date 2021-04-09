@@ -22,9 +22,9 @@ export function Header() {
                     <a href="/additional-resources" className="tab">{t('Tabs.Resources')}</a>
                 </div>
             </div>
-            <div id="team-logo-container">
+            {/* <div id="team-logo-container">
                 <img src={coralLogo} alt="Team Logo" id="team-logo"/>
-            </div>
+            </div> */}
         </div>
     )
 }
