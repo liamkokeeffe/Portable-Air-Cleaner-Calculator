@@ -9,10 +9,11 @@ export function Calculator(props) {
         return props.calculatorType === "find" ? "Find Air Cleaner" : "Test Air Cleaner Efficiency";
     }
 
-    function changeScreens() {
+    function showResults() {
         if (inputIsValid()) {
             props.onShowResult(props.calculatorType);
         } 
+        window.scrollTo(0, 0);
     }
 
     function inputIsValid() {
@@ -44,7 +45,7 @@ export function Calculator(props) {
                 <CADR cadrEntered={props.cadrEntered} roomInfo={props.roomInfo} />
             </div>}
             <div id="button-wrapper">
-                <button id="results-btn" onClick={(e) => changeScreens()}>VIEW RESULTS</button>
+                <button id="results-btn" onClick={() => showResults()}>VIEW RESULTS</button>
             </div>
         </div>
     )

@@ -1,16 +1,14 @@
-header {
-  height: fit-content;
-}
-
 #header-container {
   display: flex;
-  flex-direction: row;
   background-color: white;
+  border-bottom: 5px solid lightgray;
+  height: 155px;
 }
 
 #tabs-container {
-  margin-top: 5%;
-  margin-left: 5%;
+  position: absolute;
+  top: 65px;
+  left: 40%;
 }
 
 .tab {
@@ -27,7 +25,7 @@ header {
 }
 
 .tab-divider {
-  margin: 0 10% 0 10%;
+  margin: 0 5% 0 5%;
 }
 
 #team-logo {
@@ -39,4 +37,10 @@ header {
   right: 0px;
   position: absolute;
   margin: 1% 2% 0 0;
+}
+
+#wa-dept-of-commerce-logo {
+  position: absolute;
+  top: -45px;
+  left: -35px;
 }

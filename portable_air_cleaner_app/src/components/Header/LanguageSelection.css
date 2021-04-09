@@ -1,14 +1,21 @@
 #language-selection {
     display: flex;
     position: absolute;
-    right: 35px;
-    top: 108px;
+    right: 1%;
+    top: 60px;
     font-size: 23px;
+    background-color: rgb(234, 95, 20, 1);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #language-selection-dropdown {
     font-size: 20px;
     height: 28px;
-    margin-top: 23px;
     margin-left: 10px;
+    background-color: rgb(234, 95, 20, 1);
+    color: white;
+    border: 0px;
+    outline: 0px;
 }
