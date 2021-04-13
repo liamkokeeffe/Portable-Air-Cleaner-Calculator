@@ -12,11 +12,11 @@ export function Header() {
                 <img id='wa-dept-of-commerce-logo' src={logo} alt='Washington State Department of Commerce Logo' width='550' height="250" />
                 <div id="tabs-container">
                     <div className='tab'>
-                        <a href="/" className="tab">{t('Tabs.Calculator')}</a>
+                        <a href="Portable-Air-Cleaner-Calculator/#/" className="tab">{t('Tabs.Calculator')}</a>
                         <span className="tab-divider">|</span>
-                        <a href="/about" className="tab">{t('Tabs.About')}</a>
+                        <a href="Portable-Air-Cleaner-Calculator/#/about" className="tab">{t('Tabs.About')}</a>
                         <span className="tab-divider">|</span>
-                        <a href="/additional-resources" className="tab">{t('Tabs.Resources')}</a>
+                        <a href="Portable-Air-Cleaner-Calculator/#/additional-resources" className="tab">{t('Tabs.Resources')}</a>
                     </div>
                 </div>
                 <LanguageSelection />
