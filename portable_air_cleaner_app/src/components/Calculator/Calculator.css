@@ -1,17 +1,18 @@
 #calculator-wrapper {
   display: flex;
   flex-direction: column;
+  /* text-align: center; */
 }
 
 #calculator-title {
   font-size: 45pt;
-  text-align: center;
-  margin-bottom: -10%;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   line-height: 152px;
   color: #555555;
+  margin: 0 auto;
+  margin-bottom: -10%;
 }
 
 .step-wrapper {

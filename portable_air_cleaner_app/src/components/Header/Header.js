@@ -21,7 +21,6 @@ export function Header() {
                 </div>
                 <LanguageSelection />
             </header>
-            
         </div>
     )
 }

@@ -1,12 +1,26 @@
 import './RoomSizeRec.css'
-import ACHChart from "../../images/ach_chart.png"
+import GaugeChart from 'react-gauge-chart'
 
 export function RoomSizeRec(props) {
     const ventilationToACH = {
-        'Low' : 1,
+        'Poor' : 1,
         'Typical' : 1.5,
         'Good' : 3,
         'Enhanced' : 4
+    }
+
+    function achToMessage(ach) {
+        if (ach < 3) {
+            return "VERY LOW";
+        } else if (ach < 4) {
+            return "BARE MINIMUM";
+        } else if (ach < 5) {
+            return "OKAY";
+        } else if (ach < 6) {
+            return "GOOD";
+        } else {
+            return "IDEAL";
+        }
     }
 
     function getACH() {
@@ -17,31 +31,18 @@ export function RoomSizeRec(props) {
         }
     }
 
-    function getACHText(ach) {
-        if (ach < 3) {
-            return "Your room meets a low level of ACH";
-        } else if (ach < 4) {
-            return "Your room meets the bare minimum of ACH";
-        } else if (ach < 5) {
-            return "Your room meets a good level of ACH";
-        } else if (ach < 6) {
-            return "Your room meets an excellent level of ACH!";
+    function getPercent() {
+        let ach = getACH();
+        if (ach <= 3) {
+            return ach / 15;
+        } else if (ach <= 4) {
+            return ach / 10.26;
+        } else if (ach <= 5) {
+            return ach / 8.62;
+        } else if (ach <= 6) {
+            return ach / 7.79;
         } else {
-            return "Your room meets an ideal level of ACH!";
-        }
-    }
-
-    function getACHColor(ach) {
-        if (ach < 3) {
-            return "#FF0000";
-        } else if (ach < 4) {
-            return "#EA9999";
-        } else if (ach < 5) {
-            return "#FFD966";
-        } else if (ach < 6) {
-            return "#00FF00";
-        } else {
-            return "#38761D";
+            return .77 + (.01 * ach)
         }
     }
 
@@ -56,29 +57,49 @@ export function RoomSizeRec(props) {
             return Math.round(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
         }
     }
+
     return (
-        <div id="roomsize-wrapper">
-            <div id="roomsize-header-wrapper">
-                <h2 id="roomsize-header-title">Recommended Room Size for this Air Cleaner</h2>
-                <input id="roomsize-header-input" value={calculateRoomSize() + " ft^2"} readOnly />
+        <div id="roomsizerec-container">
+            <div id="roomsizerec-header">
+                <button id="btn-back" onClick={() => {props.backToCalculator()}}>{'< Go Back'}</button>
+                <h2>ACH Efficiency Report</h2>
             </div>
-            <div id="roomsize-content-wrapper">
-                <p id="roomsize-content-title">Is Your Room Meeting the Target Air Changes Per Hour?</p>
-                <div id="roomsize-content-box">
-                    <div id="roomsize-content-ach">
-                            <p className="content-text">Total Air Changes in the room per hour (ACH):</p>
-                            <div id="roomsize-content-number" style={{background: getACHColor(getACH())}}>
-                                <p>{getACH()}</p>
-                            </div>
-                            <span id="results-message">{getACHText(getACH())}</span>
+            <div id="roomsizerec-content">
+                <div id="roomsizerec-gauge">
+                    <h3>Is your room meeting the recommended guidelines?</h3>
+                    <GaugeChart id="gauge-chart1" 
+                    nrOfLevels={5}
+                    colors={["#FF0D0D", "#FF8E15", "#FAB733", "#ACB334", "#69B34C"]}
+                    arcPadding={0.05}
+                    arcsLength={[0.20, 0.19, .19, .19, 0.20]}
+                    animate={true}
+                    percent={getPercent()}
+                    formatTextValue={value => getACH()}
+                    />
+                    <p id="gauge-footer">Air Changes Per Hour</p>
+                    <div id="gauge-result-message">
+                        <p id="result-message">{achToMessage(getACH())}</p>
                     </div>
-                    <div id="roomsize-content-chart">
-                        <p className="content-text">Target is at least 5 Air Changes Per Hour</p>
-                        <img src={ACHChart} alt="ACH Levels Chart"/>
+                </div>
+                <div id="roomsizerec-details">
+                    <div className="details-module">
+                        <p className="details-top" id="superscript-feet">{calculateRoomSize()} ft <span id="superscript-number">2</span></p>
+                        <p className="details-bottom">Recommended Room Area</p>
+                    </div>
+                    <div className="details-module">
+                        <p className="details-top">{props.roomInfo.outdoorVentilation.toUpperCase()}</p>
+                        <p className="details-bottom">Ventilation Rating</p>
+                    </div>
+                    <div className="details-module">
+                        <p className="details-top">EPSOM-6429</p>
+                        <p className="details-bottom">Air Cleaner Model Name</p>
+                    </div>
+                    <div className="details-module">
+                        <p className="details-top">{props.roomInfo.cadr}</p>
+                        <p className="details-bottom">Clean Air Delivery Rate</p>
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
