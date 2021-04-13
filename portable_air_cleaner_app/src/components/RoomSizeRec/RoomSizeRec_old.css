@@ -1,0 +1,73 @@
+#roomsize-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 2px solid black; */
+}
+
+#roomsize-header-wrapper {
+  width: 90%;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#roomsize-header-title {
+  font-size: 25pt;
+  margin-right: 10%;
+}
+
+#roomsize-header-input {
+  height: 50px;
+  font-size: 18pt;
+  text-align: center;
+  font-weight: bold;
+}
+
+#roomsize-content-wrapper {
+  background: white;
+  margin-top: 2%;
+  width: 90%;
+  padding-bottom: 50px;
+}
+
+#roomsize-content-ach {
+  margin-top: 2%;
+}
+
+#roomsize-content-number {
+  display: inline-block;
+  text-align: center;
+  font-size: 16pt;
+  font-weight: bold;
+  height: 75px;
+  width: 100px;
+  margin-top: 5%;
+  margin-right: 20px;
+}
+
+.content-text {
+  font-size: 18pt;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+#roomsize-content-title {
+  font-size: 20pt;
+  margin-left: 5%;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+#results-message {
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+#roomsize-content-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -6,7 +6,6 @@ import './About.css'
 export function About() {
     return (
         <div>
-            <hr />
             <div className="about-submodule-container">
                 <div className="about-text-container" id="about-team-container">
                     <h2>About the Team</h2>

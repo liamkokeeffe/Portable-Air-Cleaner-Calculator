@@ -1,5 +1,6 @@
 {
   "name": "portable_air_cleaner_app",
+  "homepage": "http://liamkokeeffe.github.io/Portable-Air-Cleaner-Calculator/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +14,9 @@
     "i18next-http-backend": "^1.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-gauge-chart": "^0.3.0",
     "react-i18next": "^11.8.10",
+    "react-native": "^0.64.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"

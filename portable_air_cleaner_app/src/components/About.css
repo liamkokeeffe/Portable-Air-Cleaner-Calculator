@@ -4,18 +4,7 @@ h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 30pt;
-  /* line-height: 112px; */
   color: #00a2c7;
-}
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 2px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-  margin-top: -1%;
 }
 
 .about-submodule-container {
