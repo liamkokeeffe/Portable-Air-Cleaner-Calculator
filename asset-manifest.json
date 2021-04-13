@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.dbb3032d.chunk.css",
-    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.3914758d.chunk.js",
-    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.3914758d.chunk.js.map",
+    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.29dc44aa.chunk.js",
+    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.29dc44aa.chunk.js.map",
     "runtime-main.js": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.89db54e8.js",
     "runtime-main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.89db54e8.js.map",
-    "static/js/2.b44340aa.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.b44340aa.chunk.js",
-    "static/js/2.b44340aa.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/2.b44340aa.chunk.js.map",
+    "static/js/2.e16630d4.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.e16630d4.chunk.js",
+    "static/js/2.e16630d4.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/2.e16630d4.chunk.js.map",
     "static/js/3.49868a5f.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/3.49868a5f.chunk.js",
     "static/js/3.49868a5f.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/3.49868a5f.chunk.js.map",
     "index.html": "/Portable-Air-Cleaner-Calculator/index.html",
     "static/css/main.dbb3032d.chunk.css.map": "/Portable-Air-Cleaner-Calculator/static/css/main.dbb3032d.chunk.css.map",
-    "static/js/2.b44340aa.chunk.js.LICENSE.txt": "/Portable-Air-Cleaner-Calculator/static/js/2.b44340aa.chunk.js.LICENSE.txt",
+    "static/js/2.e16630d4.chunk.js.LICENSE.txt": "/Portable-Air-Cleaner-Calculator/static/js/2.e16630d4.chunk.js.LICENSE.txt",
     "static/media/about_product.ed72463d.png": "/Portable-Air-Cleaner-Calculator/static/media/about_product.ed72463d.png",
     "static/media/air_cleaner_list.9d47eafa.csv": "/Portable-Air-Cleaner-Calculator/static/media/air_cleaner_list.9d47eafa.csv",
     "static/media/aircleaner_animated.3e5eb9b7.png": "/Portable-Air-Cleaner-Calculator/static/media/aircleaner_animated.3e5eb9b7.png",
@@ -26,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.89db54e8.js",
-    "static/js/2.b44340aa.chunk.js",
+    "static/js/2.e16630d4.chunk.js",
     "static/css/main.dbb3032d.chunk.css",
-    "static/js/main.3914758d.chunk.js"
+    "static/js/main.29dc44aa.chunk.js"
   ]
 }
