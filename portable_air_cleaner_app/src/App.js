@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Layout>
-        <Router>
+        <Router basename="/">
             <Routes />
         </Router>
       </Layout>
