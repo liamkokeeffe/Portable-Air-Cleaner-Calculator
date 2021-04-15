@@ -38,7 +38,6 @@ export function Home(props) {
                     link: d['Where to Buy?']
                 }
             });
-            console.log(result);
             setAirCleaners(result);
         }
         if (airCleaners === null) {
