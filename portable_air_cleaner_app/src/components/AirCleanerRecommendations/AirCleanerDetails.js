@@ -18,9 +18,10 @@ export function AirCleanerDetails(props) {
                     <button id='close-air-cleaner-details-button' onClick={() => {console.log(props.airCleaner); props.closeDetailsClick()}}>Close</button>
                 </div>
                 <div id='air-cleaner-details-body'>
-                    <img src={props.airCleaner.imageSrc} alt={props.airCleaner.name} width='240' height='200' />
+                    <img className='air-cleaner-details-image' src={props.airCleaner.imageLink} alt={props.airCleaner.name} />
                     <div>
                     <p><strong>Link to buy:</strong> <a href={props.airCleaner.link}>Here</a></p>
+                    <p><strong> Estimated air changes per hour for your space:</strong>  {props.airCleaner.ach}</p>
                     <p><strong>Price:</strong> ${props.airCleaner.price}</p>
                     <p><strong>Noise:</strong> {props.airCleaner.noise === -1 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
                     <p><strong>Power Requirement:</strong> {props.airCleaner.power === -1 ? 'Not available' : props.airCleaner.power + ' W'}</p>

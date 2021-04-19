@@ -35,7 +35,8 @@ export function Home(props) {
                     power: d['Power (W)'] === '' ? -1 : +d['Power (W)'],
                     size: d['Size (in)'],
                     maxRoomSize: d['Room Size (sq ft)'] === '' ? -1 : +d['Room Size (sq ft)'],
-                    link: d['Where to Buy?']
+                    link: d['Link'],
+                    imageLink: d['Image Link']
                 }
             });
             setAirCleaners(result);

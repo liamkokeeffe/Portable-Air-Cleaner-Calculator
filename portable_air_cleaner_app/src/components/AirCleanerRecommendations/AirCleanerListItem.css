@@ -1,7 +1,6 @@
 .air-cleaner-list-item {
     display: flex;
     background-color: white;
-    height: 225px;
     width: 100%;
     border-left: 2px solid grey;
     border-right: 2px solid grey;
@@ -11,6 +10,13 @@
 
 .air-cleaner-image-container {
     margin: 5px;
+    margin-top: 25px;
+}
+
+.air-cleaner-image {
+    width: 175px;
+    height: 175px;
+    object-fit: contain;
 }
 
 .air-cleaner-high-level-details {
@@ -19,4 +25,29 @@
 
 .air-cleaner-name {
     font-size: 20px;
+}
+
+@media (max-width: 960px) {
+    .air-cleaner-details-button {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .air-cleaner-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .air-cleaner-name {
+        font-size: 15px;
+    }
+
+    .air-cleaner-list-item p {
+        font-size: 11px;
+    }
+
+    .air-cleaner-details-button {
+        margin-bottom: 0px;
+    }
 }

@@ -38,10 +38,10 @@ export function AirCleanerRecommendations(props) {
                     <FilterOptions filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
                     <div id='air-cleaner-recommendations-page-center-container'>
                         <div id='air-cleaner-recommendations-page-center'>
-                            <img id='various-air-cleaners-image' src={VariousPortableAirCleaners} alt='Various portable air cleaners' width='100%' height='200' />                   
-                            <div id='air-cleaner-recommendations-title-container'>
-                                <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
+                            <div id='various-air-cleaners-image-container'>
+                            <img id='various-air-cleaners-image' src={VariousPortableAirCleaners} alt='Various portable air cleaners' />
                             </div>
+                            <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                             <SortKeyChoice updateSortKey={setSortKey} />
                             <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} detailsClick={detailsClick} airCleaners={props.airCleaners} />
                             

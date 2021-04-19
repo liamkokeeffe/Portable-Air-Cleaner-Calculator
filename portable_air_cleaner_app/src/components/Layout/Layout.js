@@ -1,4 +1,5 @@
-import {Header} from "./Header/Header.js"
+import {Header} from "./Header.js";
+import {Footer} from "./Footer.js";
 
 export function Layout({children}) {
     return (
@@ -7,7 +8,7 @@ export function Layout({children}) {
             <div>
                 {children}
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }

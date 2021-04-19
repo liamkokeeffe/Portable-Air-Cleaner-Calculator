@@ -12,7 +12,7 @@ const resources = {
   es: {
     translation: translationES
   }
-}
+};
 
 const detectOptions = {
   // order and from where user language should be detected
