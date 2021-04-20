@@ -18,6 +18,7 @@
 
 #filter-options-title-container {
     display: flex;
+    flex-direction: row;
     border-bottom: 1px solid black;
     align-items: center;
     padding-top: 15px;
@@ -56,10 +57,37 @@
     margin-left: 3px;
 }
 
+.filter-option-label-and-input {
+    display: flex;
+}
+
 #last-filter-option-container {
     border-bottom: 0px solid black;
 }
 
 .submit-filter-options-button {
     margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    #filter-options {
+        width: 150px;
+        margin-top: 150px;
+    }
+
+    #filter-options-title-container {
+        flex-direction: column;
+    }
+
+    #filter-options-title {
+        font-size: 18px;
+    }
+
+    .filter-option-title {
+        font-size: 15px;
+    }
+
+    .filter-option {
+        flex-direction: column;
+    }
 }

@@ -12,7 +12,7 @@ export function LanguageSelection() {
 
     return (
         <div id='language-selection'>
-            <label htmlFor='language-selection-dropdown'>{t('Language') + ':'}</label>
+            <label id='language-selection-label' htmlFor='language-selection-dropdown'>{t('Language') + ':'}</label>
             <select id='language-selection-dropdown' onChange={(e) => i18n.changeLanguage(e.target.value)} value={getCurrentLanguage()}>
                 <option value='en'>English</option>
                 <option value='es'>Español</option>

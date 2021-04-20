@@ -1,4 +1,5 @@
 import './AirCleanerList.css';
+import './AirCleanerRecommendations.css';
 import { AirCleanerListItem } from './AirCleanerListItem';
 import {useEffect, useState} from 'react';
 

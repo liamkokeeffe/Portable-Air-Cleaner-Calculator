@@ -3,7 +3,7 @@
     position: absolute;
     right: 1%;
     top: 60px;
-    font-size: 23px;
+    font-size: 22px;
     background-color: rgb(234, 95, 20, 1);
     color: white;
     padding: 10px;
@@ -11,7 +11,7 @@
 }
 
 #language-selection-dropdown {
-    font-size: 20px;
+    font-size: 19px;
     height: 28px;
     margin-left: 10px;
     background-color: rgb(234, 95, 20, 1);
@@ -22,24 +22,29 @@
 
 @media (max-width: 1024px) {
     #language-selection {
-        font-size: 20px;
+        font-size: 17px;
         padding-left: 5px;
+        margin-top: 5px;
+    }
+
+    #language-selection-label {
+        margin-top: 3px;
     }
 
     #language-selection-dropdown {
-        font-size: 18px;
+        font-size: 16px;
+        margin-left: 5px;
     }
 }
 
 @media (max-width: 768px) {
     #language-selection {
-        position: absolute;
-        bottom: 5px;
-        top: auto;
+        margin: 0 auto;
+        position: static;
     }
-}
 
-@media (max-width: 425px) {
-
-    /* just put it in footer, we can then show it in the footer on page shrink and hide it here. move the component out of this directory too.*/
+    #language-selection-container {
+        display: flex;
+        align-items: center;
+    }
 }

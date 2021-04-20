@@ -1,6 +1,5 @@
 import './Header.css';
 import logo from '../../images/departmentOfCommerceLogo.png';
-import {LanguageSelection} from './LanguageSelection.js';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 
@@ -26,6 +25,8 @@ export function Header() {
                         <Link to="/about" className="tab">{t('Tabs.About')}</Link>
                         <span className="tab-divider">|</span>
                         <Link to="/additional-resources" className="tab">{t('Tabs.Resources')}</Link>
+                        <span className="tab-divider">|</span>
+                        <Link to="/help" className="tab">{t('Help')}</Link>
                     </div>
                     <div id='hamburger-menu' onClick={() => expandHamburgerMenu()}>
                         <div className="hamburger-menu-line"></div>
@@ -33,7 +34,6 @@ export function Header() {
                         <div className="hamburger-menu-line"></div>
                     </div>
                 </nav>
-                <LanguageSelection />
             </header>
         </div>
     )
