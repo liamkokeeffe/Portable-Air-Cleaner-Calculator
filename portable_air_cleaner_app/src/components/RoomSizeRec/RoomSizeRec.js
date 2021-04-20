@@ -60,9 +60,11 @@ export function RoomSizeRec(props) {
 
     return (
         <div id="roomsizerec-container">
-            <div id="roomsizerec-header">
-                <button id="btn-back" onClick={() => {props.backToCalculator()}}>{'< Go Back'}</button>
-                <h2>ACH Efficiency Report</h2>
+            <div id="roomsizerec-header" unselectable="on">
+                <button id='btn-back' onClick={() => {
+                    props.backToCalculator();
+                }}>{'< Go Back'}</button>
+                <p id="roomsizerec-title">ACH Efficiency Report</p>
             </div>
             <div id="roomsizerec-content">
                 <div id="roomsizerec-gauge">

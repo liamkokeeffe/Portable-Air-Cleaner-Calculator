@@ -7,11 +7,8 @@ export function CADR(props) {
     const [cadr, setCadr] = useState(props.roomInfo.cadr === 0 ? "" : props.roomInfo.cadr);
 
     function checkValue(value) {
-        if (value === "I'm not sure") {
-            document.getElementById("cadr-input-wrapper").style.visibility = "visible"
-        } else {
+        if (value !== "I'm not sure") {
             // Should get the model's CADR here and pass it through cadr entered (200 just a default value for now)
-            document.getElementById("cadr-input-wrapper").style.visibility = "hidden"
             props.cadrEntered(200);
         }
     }
@@ -28,13 +25,12 @@ export function CADR(props) {
                     <option value="Conway Vital 100 True HEPA Purifier">Conway Vital 100 True HEPA Purifier</option>
                     <option value="I'm not sure">I'm not sure</option>
                 </select>
-                <div id="cadr-input-wrapper">
-                    <p className="input-title">CADR of air cleaner</p>
-                    <input className="user-input" onChange={(e) => {
-                        setCadr(e.target.value);
-                        props.cadrEntered(parseInt(e.target.value));}} value={cadr} />
-                </div>
+                <p className="input-title">CADR of air cleaner</p>
+                <input className="user-input" onChange={(e) => {
+                    setCadr(e.target.value);
+                    props.cadrEntered(parseInt(e.target.value));}} value={cadr} />
             </div>
+            <p className="help-text" id="cadr-help-text">If you are unsure of your cleaner’s model name, then input the CADR value of your air cleaner. It is commonly listed at the bottom of the air cleaner on the specifications sticker.</p>
         </div>
     )
 }
