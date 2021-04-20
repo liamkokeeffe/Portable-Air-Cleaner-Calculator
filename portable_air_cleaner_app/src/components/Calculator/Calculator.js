@@ -2,6 +2,7 @@ import "./Calculator.css"
 import {RoomDim} from "./RoomDim.js"
 import {Ventilation} from "./Ventilation.js"
 import {CADR} from "./CADR.js"
+import {Density} from "./Density.js"
 
 export function Calculator(props) {
     function getTitle() {
@@ -34,7 +35,8 @@ export function Calculator(props) {
             <h2 id="calculator-title">{getTitle()}</h2>   
             <div className="step-wrapper"> 
                 <h3 className="step-title">Step 1: Room Dimension</h3>
-                <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} ceilingHeightEntered={props.ceilingHeightEntered} roomInfo={props.roomInfo} />
+                <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} 
+                ceilingHeightEntered={props.ceilingHeightEntered} floorAreaEntered={props.floorAreaEntered} roomInfo={props.roomInfo} />
             </div>
             <div className="step-wrapper">
                 <h3 className="step-title">Step 2: Ventilation Rating</h3>
@@ -44,6 +46,11 @@ export function Calculator(props) {
                 <h3 className="step-title">Step 3: Clean Air Delivery Rate (CADR)</h3>
                 <CADR cadrEntered={props.cadrEntered} roomInfo={props.roomInfo} />
             </div>}
+
+            <div className="step-wrapper">
+                <h3 className="step-title">Step 4: Occupant Density</h3>
+                <Density updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateOccupancy={props.updateOccupancy} roomInfo={props.roomInfo}/>
+            </div>
             <div id="button-wrapper">
                 <button id="results-btn" onClick={() => showResults()}>VIEW RESULTS</button>
             </div>

@@ -40,13 +40,20 @@
   align-items: center;
 }
 
-h3 {
+h3,
+#roomsizerec-title {
   font-family: Roboto;
   font-style: normal;
   font-weight: 600;
   line-height: 56px;
   font-size: 25pt;
   color: #00a2c7;
+}
+
+#roomsizerec-title {
+  text-align: center;
+  margin-left: 22%;
+  font-size: 35pt;
 }
 
 #gauge-footer {

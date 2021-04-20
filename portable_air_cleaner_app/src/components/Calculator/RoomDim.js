@@ -6,39 +6,50 @@ export function RoomDim(props) {
     const [roomWidth, setRoomWidth] = useState(props.roomInfo.roomWidth === 0 ? "" : props.roomInfo.roomWidth);
     const [roomLength, setRoomLength] = useState(props.roomInfo.roomLength === 0 ? "" : props.roomInfo.roomLength);
     const [ceilingHeight, setCeilingHeight] = useState(props.roomInfo.ceilingHeight === 0 ? "" : props.roomInfo.ceilingHeight);
+    const [floorArea, setFloorArea] = useState(props.roomInfo.floorArea === 0 ? "" : props.roomInfo.floorArea);
 
     return (
         <div id="roomdim-wrapper">
             <img src={roomDimPic} alt="Room Dimmension ClipArt" id="img-roomdim"/>
-            <div className="input-wrapper" id="roomdim-wrapper">
-                <div>
-                    <label htmlFor="unit-selection-dropdown" className="input-title">Units</label>
-                    <select id="unit-selection-dropdown" className="user-input" onChange={(e) => props.unitSelectionMade(e.target.value)} value={props.roomInfo.units}>
-                        <option value="feet">Feet</option>
-                        <option value="meters">Meters</option>
-                    </select>
+            <div id="roomdim-right-container">
+                <div className="input-wrapper" id="roomdim-wrapper">
+                    <div>
+                        <label htmlFor="unit-selection-dropdown" className="input-title">Units</label>
+                        <select id="unit-selection-dropdown" className="user-input" onChange={(e) => props.unitSelectionMade(e.target.value)} value={props.roomInfo.units}>
+                            <option value="feet">Feet</option>
+                            <option value="meters">Meters</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="room-width-input" className="input-title">Room Width</label>
+                        <input id="room-width-input" className="user-input" onChange={(e) => { 
+                            setRoomWidth(e.target.value);
+                            props.roomWidthEntered(parseFloat(e.target.value))
+                        }} value={roomWidth} />
+                    </div>
+                    <div>
+                        <label htmlFor="room-length-input" className="input-title">Room Length</label>
+                        <input id="room-length-input" className="user-input" onChange={(e) => {
+                            setRoomLength(e.target.value);
+                            props.roomLengthEntered(parseFloat(e.target.value));
+                        }} value={roomLength} />
+                    </div>
+                    <div>
+                        <label htmlFor="floor-area-input" className="input-title">Floor Area</label>
+                        <input className="user-input" onChange={(e) => {
+                            setFloorArea(parseFloat(e.target.value));
+                            props.floorAreaEntered(parseFloat(e.target.value));
+                        }} value={floorArea} />
+                    </div>
+                    <div>
+                        <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height</label>
+                        <input id="ceiling-height-input" className="user-input" onChange={(e) => { 
+                            setCeilingHeight(e.target.value);
+                            props.ceilingHeightEntered(parseFloat(e.target.value));
+                            }} value={ceilingHeight} />
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="room-width-input" className="input-title">Room Width</label>
-                    <input id="room-width-input" className="user-input" onChange={(e) => { 
-                        setRoomWidth(e.target.value);
-                        props.roomWidthEntered(parseFloat(e.target.value))
-                    }} value={roomWidth} />
-                </div>
-                <div>
-                    <label htmlFor="room-length-input" className="input-title">Room Length</label>
-                    <input id="room-length-input" className="user-input" onChange={(e) => {
-                        setRoomLength(e.target.value);
-                        props.roomLengthEntered(parseFloat(e.target.value));
-                    }} value={roomLength} />
-                </div>
-                <div>
-                    <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height</label>
-                    <input id="ceiling-height-input" className="user-input" onChange={(e) => { 
-                        setCeilingHeight(e.target.value);
-                        props.ceilingHeightEntered(parseFloat(e.target.value));
-                        }} value={ceilingHeight} />
-                </div>
+                <p id="roomdim-help-text" className="help-text">If you don’t know your room’s length or width. Please enter your room’s overall floor area specified in building information. </p>
             </div>
         </div>
     )

@@ -1,7 +1,6 @@
 #calculator-wrapper {
   display: flex;
   flex-direction: column;
-  /* text-align: center; */
 }
 
 #calculator-title {
@@ -17,7 +16,7 @@
 
 .step-wrapper {
   align-self: center;
-  width: 90%;
+  width: 95%;
 }
 
 .input-wrapper {
@@ -49,29 +48,39 @@
 }
 
 #img-roomdim {
-  width: 700px;
-  height: 500px;
-  margin-right: 15%;
+  width: 600px;
+  height: 450px;
 }
 
 #roomdim-wrapper,
 #ventilation-wrapper,
-#cadr-wrapper {
+#cadr-wrapper,
+#density-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 5% 0 5%;
+}
+
+#cadr-wrapper,
+#density-wrapper {
+  justify-content: space-between;
+}
+
+#ventilation-left-box {
+  width: 50%;
 }
 
 #ventilation-text {
   margin-top: 5%;
   font-family: Noto Sans TC;
-  font-size: 20px;
+  font-size: 19pt;
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
   letter-spacing: 0em;
   text-align: left;
-  width: 45%;
+  width: 60%;
 }
 
 #img-ventilation {
@@ -81,6 +90,7 @@
 
 #ventilation-text-title {
   font-weight: 700;
+  font-size: 20pt;
 }
 
 #button-wrapper {
@@ -109,7 +119,6 @@
 }
 
 #img-cadr {
-  margin-right: 20%;
   height: 600px;
   width: 400px;
 }
@@ -122,4 +131,56 @@
   font-size: 50pt;
   color: #555555;
   margin-top: 15%;
+}
+
+#density-middle-title,
+#density-bottom-title {
+  margin-top: 10%;
+}
+
+.density-bold {
+  font-weight: bold;
+}
+
+#density-recommendation {
+  visibility: hidden;
+  width: 75%;
+  font-size: 15pt;
+}
+
+#img-density {
+  height: 600px;
+  width: 400px;
+  margin-left: -10%;
+}
+
+.help-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 19pt;
+  color: black;
+  text-align: left;
+  /* width: 30%; */
+}
+
+#cadr-help-text {
+  width: 20%;
+  margin-left: -10%;
+}
+
+#roomdim-help-text {
+  margin-top: 15%;
+  width: 40%;
+}
+
+#density-help-text {
+  width: 30%;
+  font-size: 21pt;
+  margin-top: -5%;
+}
+
+#roomdim-right-container {
+  display: flex;
+  justify-content: space-between;
 }
