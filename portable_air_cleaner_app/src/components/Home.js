@@ -15,10 +15,12 @@ export function Home(props) {
         ceilingHeight : 0,
         units : 'feet',
         outdoorVentilation : 'Poor',
+        modelName : '',
         cadr : 0,
-        roomType : 'Eating & Drinking',
+        roomType : '',
         usableSpace : 0,
-        maxOccupancy : 0
+        maxOccupancy : 0,
+        aveOccupancy : 0
     }
 
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
@@ -62,10 +64,12 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : unitType,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo)
     }
@@ -78,10 +82,12 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -94,26 +100,30 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
 
-    function floorAreaEntered(area) {
+    function floorAreaEntered(area, length, width) {
         let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
+            roomWidth : width,
+            roomLength : length,
             floorArea : area,
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -126,10 +136,12 @@ export function Home(props) {
             ceilingHeight : height,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -142,10 +154,12 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -158,10 +172,12 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : ventilationLevel,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -174,10 +190,12 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -190,15 +208,17 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
 
-    function updateOccupancy(maxOccupancy) {
+    function updateMaxOccupancy(maxOccupancy) {
         let newRoomInfo = {
             roomWidth : roomInfo.roomWidth,
             roomLength : roomInfo.roomLength,
@@ -206,10 +226,48 @@ export function Home(props) {
             ceilingHeight : roomInfo.ceilingHeight,
             units : roomInfo.units,
             outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
             cadr : roomInfo.cadr,
             roomType : roomInfo.roomType,
             usableSpace : roomInfo.usableSpace,
-            maxOccupancy : maxOccupancy
+            maxOccupancy : maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
+        }
+        setRoomInfo(newRoomInfo);
+    }
+
+    function updateAveOccupancy(aveOccupancy) {
+        let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
+            floorArea : roomInfo.floorArea,
+            ceilingHeight : roomInfo.ceilingHeight,
+            units : roomInfo.units,
+            outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : roomInfo.modelName,
+            cadr : roomInfo.cadr,
+            roomType : roomInfo.roomType,
+            usableSpace : roomInfo.usableSpace,
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : aveOccupancy
+        }
+        setRoomInfo(newRoomInfo);
+    }
+
+    function updateModelName(modelName, cadr) {
+        let newRoomInfo = {
+            roomWidth : roomInfo.roomWidth,
+            roomLength : roomInfo.roomLength,
+            floorArea : roomInfo.floorArea,
+            ceilingHeight : roomInfo.ceilingHeight,
+            units : roomInfo.units,
+            outdoorVentilation : roomInfo.outdoorVentilation,
+            modelName : modelName,
+            cadr : cadr,
+            roomType : roomInfo.roomType,
+            usableSpace : roomInfo.usableSpace,
+            maxOccupancy : roomInfo.maxOccupancy,
+            aveOccupancy : roomInfo.aveOccupancy
         }
         setRoomInfo(newRoomInfo);
     }
@@ -226,7 +284,8 @@ export function Home(props) {
                 <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
                 roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered}
                  cadrEntered={cadrEntered} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} updateRoomType={updateRoomType} 
-                 updateUsableSpace={updateUsableSpace} updateOccupancy={updateOccupancy} />}
+                 updateUsableSpace={updateUsableSpace} updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} 
+                 updateModelName={updateModelName} airCleaners={airCleaners}/>}
             {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
             {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} backToCalculator={backToCalculator} />}
         </div>
