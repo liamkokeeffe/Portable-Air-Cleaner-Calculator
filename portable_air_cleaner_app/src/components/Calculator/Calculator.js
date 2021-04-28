@@ -18,38 +18,40 @@ export function Calculator(props) {
     }
 
     function inputIsValid() {
-        if (props.calculatorType === "find" && (props.roomInfo.roomWidth === 0 || props.roomInfo.roomLength === 0 || props.roomInfo.ceilingHeight === 0)) {
+        if (props.calculatorType === "find" && (props.roomInfo.floorArea === 0 || props.roomInfo.ceilingHeight === 0)) {
             console.log("Please fill out all fields to continue");
             return false;
-        } else if (props.calculatorType === "test" && (props.roomInfo.roomWidth === 0 || props.roomInfo.roomLength === 0 || props.roomInfo.ceilingHeight === 0 || props.roomInfo.cadr === 0)) {
+        } else if (props.calculatorType === "test" && (props.roomInfo.floorArea === 0 || props.roomInfo.ceilingHeight === 0 || props.roomInfo.cadr === 0)) {
             console.log("Please fill out all fields to continue");
+            console.log(props.roomInfo)
             return false;
         } else {
-            props.floorAreaEntered(props.roomInfo.roomWidth * props.roomInfo.roomLength);
             return true;
         }
     }
 
     return (
         <div id="calculator-wrapper">
-            <h2 id="calculator-title">{getTitle()}</h2>   
-            <div className="step-wrapper"> 
-                <h3 className="step-title">Step 1: Room Dimension</h3>
+            <h2 id="calculator-title">{getTitle()}</h2>
+            <h3 className="step-title">Step 1: Room Dimension</h3>
+            <div> 
                 <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} 
                 ceilingHeightEntered={props.ceilingHeightEntered} floorAreaEntered={props.floorAreaEntered} roomInfo={props.roomInfo} />
             </div>
-            <div className="step-wrapper">
-                <h3 className="step-title">Step 2: Ventilation Rating</h3>
+            <h3 className="step-title">Step 2: Ventilation Rating</h3>
+            <div>
                 <Ventilation updateOutdoorVentilation={props.updateOutdoorVentilation} type={props.roomInfo.outdoorVentilation}/>
             </div>
-            {props.calculatorType === "test" && <div className="step-wrapper">
+            {props.calculatorType === "test" &&
+            <div>
                 <h3 className="step-title">Step 3: Clean Air Delivery Rate (CADR)</h3>
-                <CADR cadrEntered={props.cadrEntered} roomInfo={props.roomInfo} />
+                <div>
+                    <CADR cadrEntered={props.cadrEntered} updateModelName={props.updateModelName} roomInfo={props.roomInfo} airCleaners={props.airCleaners}/>
+                </div>
             </div>}
-
-            <div className="step-wrapper">
-                <h3 className="step-title">Step 4: Occupant Density</h3>
-                <Density updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateOccupancy={props.updateOccupancy} roomInfo={props.roomInfo}/>
+            <h3 className="step-title">Step 4: Occupant Density</h3>
+            <div>
+                <Density updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} roomInfo={props.roomInfo}/>
             </div>
             <div id="button-wrapper">
                 <button id="results-btn" onClick={() => showResults()}>VIEW RESULTS</button>
