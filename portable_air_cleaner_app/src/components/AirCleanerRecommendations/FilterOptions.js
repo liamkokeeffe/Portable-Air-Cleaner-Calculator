@@ -39,7 +39,7 @@ export function FilterOptions(props) {
             <div className='filter-option-container'>
                 <p className='filter-option-title'>Max Price (U.S dollars)</p>                
                 <div className='filter-option'>
-                    <div className='filter-option-label-and-input'>
+                    <div id='price-label-and-input'>
                         <label htmlFor='price-input' className='filter-option-unit-dollar'>$</label>
                         <input id='price-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxPriceInput} />
                     </div>
@@ -49,7 +49,7 @@ export function FilterOptions(props) {
             <div className='filter-option-container'>
                 <p className='filter-option-title'>Max Noise (decibels)</p>
                 <div className='filter-option'>
-                    <div className='filter-option-label-and-input'>
+                    <div id='noise-label-and-input'>
                         <input id='noise-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxNoiseInput} />
                         <label htmlFor='noise-input' className='filter-option-unit-other'>dB</label>
                     </div>
@@ -59,7 +59,7 @@ export function FilterOptions(props) {
             <div id='last-filter-option-container' className='filter-option-container'>
                 <p className='filter-option-title'>Max Power Usage (Watts)</p>
                 <div className='filter-option'>
-                    <div className='filter-option-label-and-input'>
+                    <div id='power-label-and-input'>
                         <input id='power-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxPowerInput} />
                         <label htmlFor='power-input' className='filter-option-unit-other'>W</label>
                     </div>
