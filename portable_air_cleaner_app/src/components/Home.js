@@ -35,7 +35,7 @@ export function Home(props) {
                 return {
                     name: d['Name'],
                     cadr: +d['CADR'],
-                    price: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
+                    priceOfOneAirCleaner: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
                     noise: d['Noise Rating (db)'] === '' ? -1 : +d['Noise Rating (db)'],
                     power: d['Power (W)'] === '' ? -1 : +d['Power (W)'],
                     size: d['Size (in)'],

@@ -82,19 +82,23 @@
     margin-left: 11px;
 }
 
-#price-label-and-input {
+#price-input-and-units-label {
     margin-right: 23px;
 }
 
-#noise-label-and-input {
+#noise-input-and-units-label {
     margin-left: 13px;
 }
 
-#power-label-and-input {
+#power-input-and-units-label {
     margin-left: 13px;
     margin-right: 5px;
 }
 
+#max-num-air-cleaners-input {
+    margin-left: 13px;
+    margin-right: 23px;
+}
 
 @media (max-width: 768px) {
     #filter-options {
@@ -122,6 +126,14 @@
         flex-direction: column;
         display: block;
         align-items: unset;
+    }
+
+    #price-input-and-units-label {
+        margin-right: 0px;
+    }
+
+    #power-input-and-units-label {
+        margin-right: 0px;
     }
 
     .submit-filter-options-button {
