@@ -60,7 +60,19 @@
 }
 
 #air-cleaner-list {
-    margin-top: 100px;
+    margin-top: 180px;
+}
+
+#disclaimer-message {
+    background-color: rgb(234, 95, 20, 1);
+    position: absolute;
+    top: 305px;
+    padding: 10px;
+}
+
+#disclaimer-message p {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
 }
 
 @media (max-width: 1150px) {

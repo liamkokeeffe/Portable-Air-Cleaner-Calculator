@@ -72,5 +72,5 @@ export function Density(props) {
             <p className="extra-text" id="density-extra-text"><span className="extra-text-title">Usable space: </span>The percentage of space in your room 
             not occupied by furniture or household goods. The percentage of space that is usually occupied by employees, customers or family members.</p>
         </div>
-    )
+    );
 }

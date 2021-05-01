@@ -6,8 +6,8 @@ import {useEffect, useState} from 'react';
 export function AirCleanerList(props) {
     const [recommendedAirCleaners, setRecommendedAirCleaners] = useState([]);
 
-    const airCleanerComponents = recommendedAirCleaners.map((item) => 
-    <AirCleanerListItem key={item.name} airCleaner={item} detailsClick={props.detailsClick} />
+    const airCleanerComponents = recommendedAirCleaners.map((item, index) => 
+    <AirCleanerListItem key={item.name} id={index} airCleaner={item} detailsClick={props.detailsClick} />
     );
 
     useEffect(() => {
@@ -32,12 +32,11 @@ export function AirCleanerList(props) {
                 ach = (airCleaner.cadr / 0.58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) + outdoorVentilation;
             }
 
+            airCleaner.achFromOneAirCleaner = Math.round(ach * 100) / 100.0;
             let numAirCleaners = 1;
             if (ach < 4) {  // worse than "good" ACH
-                let achFromOneAirCleaner = ach;
-                
                 for (let i = 1; i < props.filterOptions.maxNumAirCleaners; i++) {
-                        ach += achFromOneAirCleaner;
+                        ach += airCleaner.achFromOneAirCleaner;
                         numAirCleaners++;
                 
                         if (ach >= 4) {

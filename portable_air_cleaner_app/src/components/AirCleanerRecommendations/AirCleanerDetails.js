@@ -1,8 +1,13 @@
 import './AirCleanerDetails.css';
+import {useEffect, useState} from 'react';
+import * as d3 from 'd3';
 
 import {numAirCleanersNeededLabel} from './AirCleanerListItem.js';
 
 export function AirCleanerDetails(props) {
+    const [changeableNumAirCleaners, setChangeableNumAirCleaners] = useState(props.airCleaner.numAirCleaners);
+    const [achBasedOnSelectedNumAirCleaners, setAchBasedOnSelectedNumAirCleaners] = useState(props.airCleaner.ach);
+    const [priceBasedOnSelectedNumAirCleaners, setPriceBasedOnSelectedNumAirCleaners] = useState(props.airCleaner.price);
 
     function sizeWithInchMarks(airCleanerSize) {
         const firstInchMarkInsertionLocation = airCleanerSize.indexOf('x') - 1;
@@ -12,23 +17,40 @@ export function AirCleanerDetails(props) {
                airCleanerSize.slice(secondInchMarkInsertionLocation) + ' inches';   
     }
 
-    let estimatedACHLabel = `Estimated air changes per hour ${props.airCleaner.numAirCleaners} of these air cleaners would give your space: `;
-    let priceLabel = `Price for ${props.airCleaner.numAirCleaners} air cleaners of this type: `;
+    function updateACHValueColor(ach) {
+        const idealACH = 6;
+        if (ach < 4) {
+            document.querySelector('.color-coded-ach-level').style.color = d3.interpolate('red', 'greenyellow')(ach / idealACH);
+        } else if (ach < 8) {
+            document.querySelector('.color-coded-ach-level').style.color = d3.interpolate('greenyellow', 'green')(ach / idealACH);
+        } else {
+            document.querySelector('.color-coded-ach-level').style.color = 'green';
+        }
+    }
+
+    let estimatedACHLabel = `Estimated air changes per hour ${changeableNumAirCleaners} of these air cleaners would give your space: `;
+    let priceLabel = `Price for ${changeableNumAirCleaners} air cleaners of this type: `;
     let noiseLabel = 'Noise (of each air cleaner): ';
     let powerLabel = 'Power Requirement (of each air cleaner): ';
     let cadrLabel = 'Clean Air Delivery Rate (CADR) of each air cleaner: ';
     let sizeLabel = 'Size (of each air cleaner): ';
     let maxRoomSizeLabel = 'Max Room Size (of each air cleaner): ';
 
-    if (props.airCleaner.numAirCleaners === 1) {
+    if (changeableNumAirCleaners === 1) {
         estimatedACHLabel = 'Estimated air changes per hour this air cleaner would give your space: ';
         priceLabel = 'Price: ';
         noiseLabel = 'Noise: ';
-        powerLabel = 'Power Requirement: '
+        powerLabel = 'Power Requirement: ';
         cadrLabel = 'Clean Air Delivery Rate (CADR): ';
         sizeLabel = 'Size: ';
-        maxRoomSizeLabel = 'Max Room Size:'
+        maxRoomSizeLabel = 'Max Room Size: ';
     }
+
+    useEffect(() => {
+        if (document.querySelector('.color-coded-ach-level').style.color === '') {
+            updateACHValueColor(props.airCleaner.ach);
+        }
+    });
 
     return(
         <div id='air-cleaner-details-container'>
@@ -42,8 +64,23 @@ export function AirCleanerDetails(props) {
                     <div>
                     <p><strong>Link to buy:</strong> <a href={props.airCleaner.link}>Here</a></p>
                     <p><strong>{numAirCleanersNeededLabel}</strong>{props.airCleaner.numAirCleaners}</p>
-                    <p><strong>{estimatedACHLabel}</strong>{props.airCleaner.ach}</p>
-                    <p><strong>{priceLabel}</strong>${props.airCleaner.price}</p>
+                    <p>If you used{' '}
+                         <input id='change-num-air-cleaners-input' onChange={(e) => {
+                            if (e.target.value < 1) {
+                                return;
+                            }
+                            setChangeableNumAirCleaners(e.target.value);
+                            setAchBasedOnSelectedNumAirCleaners(props.airCleaner.achFromOneAirCleaner * e.target.value);
+                            setPriceBasedOnSelectedNumAirCleaners(props.airCleaner.priceOfOneAirCleaner * e.target.value);
+                            updateACHValueColor(props.airCleaner.achFromOneAirCleaner * e.target.value);
+                        }} defaultValue={props.airCleaner.numAirCleaners} type='number'/>
+                        {' '}air cleaners:
+                    </p>
+                    
+                    <p><strong>{estimatedACHLabel}</strong>
+                        <span className='color-coded-ach-level'>{achBasedOnSelectedNumAirCleaners}</span>
+                    </p>
+                    <p><strong>{priceLabel}</strong>${priceBasedOnSelectedNumAirCleaners}</p>
                     <p><strong>{noiseLabel}</strong> {props.airCleaner.noise === -1 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
                     <p><strong>{powerLabel}</strong> {props.airCleaner.power === -1 ? 'Not available' : props.airCleaner.power + ' W'}</p>
                     <p><strong>{cadrLabel}</strong> {props.airCleaner.cadr} meters<sup>3</sup>/minute</p>
