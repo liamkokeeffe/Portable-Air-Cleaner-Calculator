@@ -15,15 +15,19 @@ export function Home(props) {
         ceilingHeight : 0,
         units : 'feet',
         outdoorVentilation : 'Poor',
-        modelName : '',
-        cadr : 0,
         roomType : '',
         usableSpace : 0,
         maxOccupancy : 0,
         aveOccupancy : 0
-    }
+    };
+
+    let airCleanerInfoInit = {
+        modelName : '',
+        cadr : 0
+    };
 
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
+    const [airCleanerInfo, setAirCleanerInfo] = useState(airCleanerInfoInit);
     const [calculatorType, setCalculatorType] = useState(null);
     const [resultType, setResultType] = useState(null);
     // props.airCleaners will always be undefined in production, but this allows us to pass in specific air cleaners for testing.
@@ -35,7 +39,7 @@ export function Home(props) {
                 return {
                     name: d['Name'],
                     cadr: +d['CADR'],
-                    price: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
+                    priceOfOneAirCleaner: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
                     noise: d['Noise Rating (db)'] === '' ? -1 : +d['Noise Rating (db)'],
                     power: d['Power (W)'] === '' ? -1 : +d['Power (W)'],
                     size: d['Size (in)'],
@@ -57,219 +61,78 @@ export function Home(props) {
     }
     
     function unitSelectionMade(unitType) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : unitType,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo; 
+        newRoomInfo.units = unitType;
         setRoomInfo(newRoomInfo)
     }
 
     function roomWidthEntered(width) {
-        let newRoomInfo = {
-            roomWidth : width,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.roomWidth = width;
         setRoomInfo(newRoomInfo);
     }
 
     function roomLengthEntered(length) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : length,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.roomLength = length;
         setRoomInfo(newRoomInfo);
     }
 
     function floorAreaEntered(area, length, width) {
-        let newRoomInfo = {
-            roomWidth : width,
-            roomLength : length,
-            floorArea : area,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.roomWidth = width;
+        newRoomInfo.roomLength = length;
+        newRoomInfo.floorArea = area;
         setRoomInfo(newRoomInfo);
     }
 
     function ceilingHeightEntered(height) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : height,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
-        setRoomInfo(newRoomInfo);
-    }
-
-    function cadrEntered(cadr) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.ceilingHeight = height;
         setRoomInfo(newRoomInfo);
     }
 
     function updateOutdoorVentilation(ventilationLevel) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : ventilationLevel,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.outdoorVentilation = ventilationLevel;
         setRoomInfo(newRoomInfo);
     }
 
     function updateRoomType(roomType) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.roomType = roomType;
         setRoomInfo(newRoomInfo);
     }
 
     function updateUsableSpace(usableSpace) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.usableSpace = usableSpace;
         setRoomInfo(newRoomInfo);
     }
 
     function updateMaxOccupancy(maxOccupancy) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.maxOccupancy = maxOccupancy;
         setRoomInfo(newRoomInfo);
     }
 
     function updateAveOccupancy(aveOccupancy) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : roomInfo.modelName,
-            cadr : roomInfo.cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : aveOccupancy
-        }
+        let newRoomInfo = roomInfo;
+        newRoomInfo.aveOccupancy = aveOccupancy;
         setRoomInfo(newRoomInfo);
     }
 
+    function updateCADR(cadr) {
+        let newAirCleanerInfo = airCleanerInfo;
+        newAirCleanerInfo.cadr = cadr;
+        setAirCleanerInfo(newAirCleanerInfo);
+    }
+
     function updateModelName(modelName, cadr) {
-        let newRoomInfo = {
-            roomWidth : roomInfo.roomWidth,
-            roomLength : roomInfo.roomLength,
-            floorArea : roomInfo.floorArea,
-            ceilingHeight : roomInfo.ceilingHeight,
-            units : roomInfo.units,
-            outdoorVentilation : roomInfo.outdoorVentilation,
-            modelName : modelName,
-            cadr : cadr,
-            roomType : roomInfo.roomType,
-            usableSpace : roomInfo.usableSpace,
-            maxOccupancy : roomInfo.maxOccupancy,
-            aveOccupancy : roomInfo.aveOccupancy
-        }
-        setRoomInfo(newRoomInfo);
+        let newAirCleanerInfo = airCleanerInfo;
+        newAirCleanerInfo.modelName = modelName;
+        newAirCleanerInfo.cadr = cadr;
+        setAirCleanerInfo(newAirCleanerInfo);
     }
 
     function backToCalculator() {
@@ -281,13 +144,13 @@ export function Home(props) {
         <div>
             {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>}
             {(calculatorType === 'find' || calculatorType === 'test') && 
-                <Calculator calculatorType={calculatorType} roomInfo={roomInfo} unitSelectionMade={unitSelectionMade}
+                <Calculator calculatorType={calculatorType} roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} unitSelectionMade={unitSelectionMade}
                 roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered}
-                 cadrEntered={cadrEntered} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} updateRoomType={updateRoomType} 
+                 updateCADR={updateCADR} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} updateRoomType={updateRoomType} 
                  updateUsableSpace={updateUsableSpace} updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} 
                  updateModelName={updateModelName} airCleaners={airCleaners}/>}
             {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
-            {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} backToCalculator={backToCalculator} />}
+            {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} backToCalculator={backToCalculator} />}
         </div>
     );
 }

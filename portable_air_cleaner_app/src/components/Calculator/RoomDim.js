@@ -87,7 +87,7 @@ export function RoomDim(props) {
                     }
                     }} value={ceilingHeight} />
             </div>
-            <img src={roomDimPic} alt="Room Dimmension ClipArt" id="img-roomdim"/>
+            <img src={roomDimPic} alt="Room Dimension ClipArt" id="img-roomdim"/>
         </div>
     )
 }

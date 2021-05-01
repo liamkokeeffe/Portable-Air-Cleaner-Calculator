@@ -5,7 +5,7 @@ import React from "react"
 
 export function CADR(props) {
 
-    const [cadr, setCadr] = useState(props.roomInfo.cadr === 0 ? "" : props.roomInfo.cadr);
+    const [cadr, setCadr] = useState(props.cadr === 0 ? "" : props.cadr);
 
     function createSelectItems(airCleaners) {
         let items = [];  
@@ -35,7 +35,6 @@ export function CADR(props) {
                 <div className="input-wrapper">
                     <p className="input-title">Air Cleaner Model Name</p>
                     <select className="user-input" id="cadr-input" onChange={(e) => {
-                            console.log(e)
                             setCadr(e.target.value);
                             props.updateModelName(e.target.selectedOptions[0].label, e.target.value);
                     }}>
@@ -46,7 +45,7 @@ export function CADR(props) {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setCadr(value);
-                            props.cadrEntered(parseInt(value));
+                            props.updateCADR(parseInt(value));
                         }
                     }} value={cadr} />
                 </div>

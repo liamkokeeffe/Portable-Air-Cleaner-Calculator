@@ -6,12 +6,12 @@ import {useEffect, useState} from 'react';
 export function AirCleanerList(props) {
     const [recommendedAirCleaners, setRecommendedAirCleaners] = useState([]);
 
-    const airCleanerComponents = recommendedAirCleaners.map((item) => 
-    <AirCleanerListItem key={item.name} airCleaner={item} detailsClick={props.detailsClick} />
+    const airCleanerComponents = recommendedAirCleaners.map((item, index) => 
+    <AirCleanerListItem key={item.name} id={index} airCleaner={item} detailsClick={props.detailsClick} />
     );
 
     useEffect(() => {
-        function calculate() {
+        function getOutdoorVentilation() {
             let outdoorVentilation = 1;
             if (props.roomInfo.outdoorVentilation === 'Typical') {
                 outdoorVentilation = 1.5
@@ -20,18 +20,39 @@ export function AirCleanerList(props) {
             } else if (props.roomInfo.outdoorVentilation === 'Enhanced') {
                 outdoorVentilation = 4;
             }
-            
-            let airCleaners = props.airCleaners;
-            airCleaners.forEach((airCleaner) => {
-                if (props.roomInfo.units === 'feet') {
-                    airCleaner.ach = Math.round((airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) * 100) / 100.0 + outdoorVentilation;
-                } else {
-                    airCleaner.ach = Math.round((airCleaner.cadr / 0.58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) * 100) / 100.0 + outdoorVentilation;
-                }
-            });
+            return outdoorVentilation;
+        }
+        
+        function addAdditionalAttributesToAirCleaner(airCleaner) {
+            let outdoorVentilation = getOutdoorVentilation();
+            let ach;
+            if (props.roomInfo.units === 'feet') {
+                ach = (airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) + outdoorVentilation;
+            } else {
+                ach = (airCleaner.cadr / 0.58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) + outdoorVentilation;
+            }
 
-            let filteredUnsortedAirCleaners = [...airCleaners].filter((airCleaner) => {
-                if (airCleaner.ach < 4) { // "good" ACH or better
+            airCleaner.achFromOneAirCleaner = Math.round(ach * 100) / 100.0;
+            let numAirCleaners = 1;
+            if (ach < 4) {  // worse than "good" ACH
+                for (let i = 1; i < props.filterOptions.maxNumAirCleaners; i++) {
+                        ach += airCleaner.achFromOneAirCleaner;
+                        numAirCleaners++;
+                
+                        if (ach >= 4) {
+                            break;
+                        }
+                }
+            }
+
+            airCleaner.ach = Math.round(ach * 100) / 100.0;
+            airCleaner.numAirCleaners = numAirCleaners;
+            airCleaner.price = Math.round(airCleaner.priceOfOneAirCleaner * numAirCleaners * 100) / 100.0;
+        }
+
+        function filterAirCleaners(airCleaners) {
+            return [...airCleaners].filter((airCleaner) => {
+                if (airCleaner.ach < 4) { // worse than "good" ACH
                     return false;
                 }
 
@@ -47,8 +68,10 @@ export function AirCleanerList(props) {
 
                 return true;
             });
-        
-            let sortedAirCleaners = filteredUnsortedAirCleaners.sort((a, b) => {
+        }
+
+        function sortAirCleaners(filteredUnsortedAirCleaners) {
+            return filteredUnsortedAirCleaners.sort((a, b) => {
                 if (a[props.sortKey] === -1 && b[props.sortKey] !== -1) {
                     return 1;
                 }
@@ -61,18 +84,24 @@ export function AirCleanerList(props) {
                 }
                 return a[props.sortKey] - b[props.sortKey];
             });
-            
-            setRecommendedAirCleaners(sortedAirCleaners);
         }
-        calculate();
+
+        let airCleaners = props.airCleaners;
+        airCleaners.forEach((airCleaner) => {
+            addAdditionalAttributesToAirCleaner(airCleaner)
+        });
+
+        let filteredUnsortedAirCleaners = filterAirCleaners(airCleaners);
+        let sortedAirCleaners = sortAirCleaners(filteredUnsortedAirCleaners);
         
+        setRecommendedAirCleaners(sortedAirCleaners);
     }, [props]);
 
     return (
         <div id='air-cleaner-list'>
             {airCleanerComponents.length > 0 ? airCleanerComponents :
                 <div id='no-air-cleaners-found-message-container'>
-                    <p>Sorry, but there were no portable air cleaners found.</p>
+                    <p>Sorry, but there were no portable air cleaners found. You may be using filtering options that are too specific, or your space may be too large to be properly ventilated with the portable air cleaners we are recommending.</p>
                 </div>
             }
         </div>

@@ -1,0 +1,51 @@
+#disclaimer {
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: lightgrey;
+}
+
+#disclaimer-title {
+    font-size: 30px;
+}
+
+.disclaimer-body-text {
+    font-size: 20px;
+}
+
+#close-disclaimer-button {
+    font-size: 25px;
+    color: white;
+    background-color: rgb(234, 95, 20, 1);
+    border: 0px;
+    padding: 10px;
+}
+
+#disclaimer-container {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .disclaimer-body-text {
+        font-size: 18px;
+    }
+
+    #close-disclaimer-button {
+        font-size: 20px;
+        padding: 9px;
+    }
+}
+
+
+@media (max-width: 425px) {
+    .disclaimer-body-text {
+        font-size: 15px;
+    }
+
+    #close-disclaimer-button {
+        font-size: 18px;
+        padding: 5px;
+    }
+}
