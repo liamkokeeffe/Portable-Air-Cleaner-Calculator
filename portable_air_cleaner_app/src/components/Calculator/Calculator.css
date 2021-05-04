@@ -15,7 +15,7 @@
   font-weight: bold;
   font-size: 40pt;
   color: #555555;
-  margin: 4% 0 8% 5%;
+  margin: 4% 0 5% 5%;
 }
 
 .step-wrapper {
@@ -44,7 +44,6 @@
   width: 250px;
   height: 50px;
   font-size: 18pt;
-  margin-bottom: 15px;
 }
 
 #img-roomdim {
@@ -115,6 +114,46 @@
 
 span {
   font-weight: bold;
+}
+
+.radio-help-text {
+  margin-left: 5%;
+  font-size: 13pt;
+  width: 90%;
+}
+
+.radio-btn-text {
+  font-size: 17pt;
+  margin-left: 1%;
+}
+
+.input-line-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#ventilation-input-title {
+  margin-bottom: 3%;
+}
+
+.unit-text {
+  margin-left: 8px;
+  font-size: 17pt;
+  font-weight: bold;
+  width: 5%;
+}
+
+#unit-input {
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
+#density-input,
+#cadr-input {
+  margin-bottom: 18px;
 }
 
 @media (max-width: 920px) {

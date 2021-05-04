@@ -2,6 +2,7 @@ import './Header.css';
 import logo from '../../images/departmentOfCommerceLogo.png';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
+import {Home} from '../Home.js'
 
 export function Header() {
     const {t} = useTranslation();

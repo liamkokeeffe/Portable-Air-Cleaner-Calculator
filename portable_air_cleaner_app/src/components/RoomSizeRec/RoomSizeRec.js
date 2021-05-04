@@ -1,12 +1,9 @@
 import './RoomSizeRec.css'
 import GaugeChart from 'react-gauge-chart'
-// import {View, Text} from 'react-native'
 
 export function RoomSizeRec(props) {
 
     console.log(props.roomInfo)
-
-    const OCCUPANCYLIMIT = .5;
 
     const ventilationToACH = {
         'Poor' : 1,
@@ -85,7 +82,7 @@ export function RoomSizeRec(props) {
         }
     }
 
-    function getOccupancyNumber() {
+    function getOccupancyNumber(occupancy) {
         let recOccupancy = 0;
         if (props.roomInfo.roomType === "" || props.roomInfo.usableSpace === 0 || props.roomInfo.aveOccupancy === 0) {
             return "N/A"
@@ -97,14 +94,17 @@ export function RoomSizeRec(props) {
         if (isNaN(props.roomInfo.maxOccupancy) || props.roomInfo.maxOccupancy === 0) {
             recOccupancy = method1Calc;
         } else {
-            method2Calc = props.roomInfo.maxOccupancy * OCCUPANCYLIMIT; 
+            method2Calc = props.roomInfo.maxOccupancy * occupancy; 
             recOccupancy = method1Calc < method2Calc ? method1Calc : method2Calc;
         }
-
-        // if (props.roomInfo.aveOccupancy >= recOccupancy) {
-        //     document.getElementById("recommendation-text").style.display = "none";
-        // }
         return Math.floor(recOccupancy) + " Persons"
+    }
+
+    function getACHText(ach) {
+        if (ach > 6) {
+            return "Your room is meeting an Ideal level of Air Changes per hour! If you'd still like to see a list of portable air cleaners fit for your room please click the button below."
+        }
+        return "Your room is currently not meeting an Ideal level of Air Changes per hour. If you'd like to see a list of our recommended air cleaners for your room, please click the button below."
     }
 
     function getModelName() {
@@ -113,6 +113,11 @@ export function RoomSizeRec(props) {
         }
         return props.roomInfo.modelName;
     }
+
+    const chartStyle = {
+        height: 375,
+        width: 800
+      }
 
     return (
         <div id="roomsizerec-container">
@@ -125,24 +130,29 @@ export function RoomSizeRec(props) {
             <div id="roomsizerec-content">
                 <div id="roomsizerec-gauge">
                     <h3>Is your room meeting the recommended guidelines?</h3>
-                    <GaugeChart id="gauge-chart1" 
+                    <GaugeChart id="gauge-chart" 
                     nrOfLevels={5}
                     colors={["#FF0D0D", "#FF8E15", "#FAB733", "#ACB334", "#69B34C"]}
                     arcPadding={0.05}
                     arcsLength={[0.20, 0.19, .19, .19, 0.20]}
                     animate={true}
                     percent={getPercent()}
+                    style={chartStyle}
                     formatTextValue={value => getACH()}
                     />
                     <p id="gauge-footer">Air Changes Per Hour</p>
                     <div id="gauge-result-message" style={{background: getACHColor(getACH())}}>
                         <p id="result-message">{achToMessage(getACH())}</p>
                     </div>
+                    <p id="list-btn-text">{getACHText(getACH())}</p>
+                    <button id="list-btn" onClick={(e) => {
+                        props.showResults("find");
+                    }}>Air Cleaner List</button>
                 </div>
                 <div id="roomsizerec-details">
                     <div className="details-module">
                         <p className="details-title">Recommended <br />Room Area:</p>
-                        <p className="details-value" id="superscript-feet">{calculateRoomSize()} ft<sup>2</sup></p>
+                        <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
                     <hr />
                     <div className="details-module">
@@ -161,11 +171,28 @@ export function RoomSizeRec(props) {
                     </div>
                     <hr />
                     <div className="details-module">
-                        <p className="details-title">Occupancy <br />Recommendation:</p>
-                        <p className="details-value">{getOccupancyNumber()}</p>
+                        <p className="details-title">Average Number of <br />People in Your Room:</p>
+                        <p className="details-value">{props.roomInfo.aveOccupancy === 0 ? "N/A" : props.roomInfo.aveOccupancy + " Persons"}</p>
                     </div>
-                    <p id="recommendation-text"><span>Note: </span>Since the average number of people in your room ({props.roomInfo.aveOccupancy} persons) is greater than the recommended occupancy level we 
-                    recommend purchasing a portable air cleaner with at least 6 air changes per hour for your room.</p>
+                    <hr />
+                    <div id="occupancy-module">
+                        <p className="details-title">Occupancy Recommendation:</p>
+                        <table>
+                            <tr>
+                                <th>25% Occupancy</th>
+                                <th>50% Occupancy</th>
+                                <th>75% Occupancy</th>
+                                <th>100% Occupancy</th>
+                            </tr>
+                            <tr>
+                                <td>{getOccupancyNumber(.25)}</td>
+                                <td>{getOccupancyNumber(.5)}</td>
+                                <td>{getOccupancyNumber(.75)}</td>
+                                <td>{getOccupancyNumber(1)}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p id="recommendation-text"><span>Note: </span>Please refer to your current county/state phase's occupancy guidelines for the above table. Washington State's current phase can be found <a href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process" target="_blank">here.</a> If your average number of people is greater than the value above we recommend purchasing an air cleaner with at least 6 air changes per hour for your room.</p>
                 </div>
             </div>
         </div>

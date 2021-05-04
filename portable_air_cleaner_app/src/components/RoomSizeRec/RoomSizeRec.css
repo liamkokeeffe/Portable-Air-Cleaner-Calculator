@@ -11,14 +11,24 @@
   text-align: center;
 }
 
-#btn-back {
-  height: 50px;
-  width: 150px;
+#btn-back,
+#list-btn {
   font-size: 16pt;
   background-color: rgb(234, 95, 20, 1);
   border: none;
   color: white;
+}
+
+#btn-back {
   margin-left: 5%;
+  height: 50px;
+  width: 150px;
+}
+
+#list-btn {
+  margin: 0 auto 20px auto;
+  height: 60px;
+  width: 200px;
 }
 
 #roomsizerec-content {
@@ -26,13 +36,18 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: -1%;
 }
 
 #roomsizerec-gauge {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  width: 50%;
+}
+
+#gauge-chart {
+  height: 200;
 }
 
 h3,
@@ -79,7 +94,7 @@ h3,
 #gauge-result-message {
   border-radius: 30px;
   color: white;
-  font-size: 28pt;
+  font-size: 25pt;
   width: 50%;
   text-align: center;
   margin-bottom: 5%;
@@ -100,6 +115,25 @@ hr {
 
 #recommendation-text {
   font-size: 13pt;
+}
+
+#list-btn-text {
+  width: 80%;
+  margin: 20px auto;
+  font-size: 15pt;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  font-size: 14pt;
 }
 
 @media (max-width: 1180px) {
