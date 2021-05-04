@@ -23,7 +23,7 @@ export function Density(props) {
             <div className="step-wrapper">
                 <div className="input-wrapper">
                     <label htmlFor="roomtype-selection" className="input-title">Room Type</label>
-                    <select className="user-input" value={roomType} onChange={(e) => { 
+                    <select id="density-input" className="user-input" value={roomType} onChange={(e) => { 
                         setRoomType(e.target.value)
                         props.updateRoomType(e.target.value);
                     }}>
@@ -34,7 +34,7 @@ export function Density(props) {
                         <option value="library">{'Library'}</option>
                     </select>
                     <label htmlFor="space-selection" className="input-title">Usable Space</label>
-                    <select className="user-input" value={usableSpace} onChange={(e) => {
+                    <select id="density-input" className="user-input" value={usableSpace} onChange={(e) => {
                         setUsableSpace(parseFloat(e.target.value));
                         props.updateUsableSpace(parseFloat(e.target.value));
                     }}>
@@ -51,7 +51,7 @@ export function Density(props) {
                         <option value="100">100%</option>
                     </select>
                     <label htmlFor="average-occupancy" className="input-title">Average Number of <br />People in Room</label>
-                    <input className="user-input" onChange={(e) => {
+                    <input id="density-input" className="user-input" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setAveOccupancy(parseFloat(value));

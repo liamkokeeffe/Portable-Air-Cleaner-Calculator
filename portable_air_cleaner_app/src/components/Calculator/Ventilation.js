@@ -6,15 +6,28 @@ export function Ventilation(props) {
         <div className="step-wrapper">
             <div id="ventilation-left-box">
                 <div className="input-wrapper">
-                    <label htmlFor="ventilation-selection" className="input-title">Ventilation</label>
-                    <select className="user-input" onChange={(e) => props.updateOutdoorVentilation(e.target.value)} value={props.type}>
-                        <option value="Poor">Poor</option>
-                        <option value="Typical">Typical</option>
-                        <option value="Good">Good</option>
-                        <option value="Enhanced">Enhanced</option>
-                    </select>
+                    <label htmlFor="ventilation-selection" className="input-title" id="ventilation-input-title">Ventilation</label>
+                    <div>
+                        <input name="ventilation" type="radio" value="Poor" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}/>
+                        <span className="radio-btn-text">Poor</span>
+                        <p className="radio-help-text">Select this if your environment has poor ventilation or you're not sure. Some signs of poor ventilation include lingering smells, condensation on windows, mould and dust.</p>
+                    </div>
+                    <div>
+                        <input name="ventilation" type="radio" value="Typical" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}/>
+                        <span className="radio-btn-text">Typical</span>
+                        <p className="radio-help-text">Select this if you have an average Heating Ventilation Air Conditioning (HVAC) system.</p>
+                    </div>
+                    <div>
+                        <input name="ventilation" type="radio" value="Good" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}/>
+                        <span className="radio-btn-text">Good</span>
+                        <p className="radio-help-text">Select this if your Heating Ventilation Air Conditioning System (HVAC) is well maintained and the filters are replaced regularly.</p>
+                    </div>
+                    <div>
+                        <input name="ventilation" type="radio" value="Enhanced" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}/>
+                        <span className="radio-btn-text">Enhanced</span>
+                        <p className="radio-help-text">Select this if your building has made enhacements to your ventilation system above the code minimums.</p>
+                    </div>
                 </div>
-                <p className="extra-text"><span className="extra-text-title">{props.type}:</span><br /> Select this if your environment has poor ventilation or you're not sure (for reference, a typical U.S. home is 0.5 ACH)</p>
             </div>
             <img src={VentilationImg} alt="Ventilation Clip Art" id="img-ventilation"/>
         </div>

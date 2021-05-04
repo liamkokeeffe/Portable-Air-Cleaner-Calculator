@@ -3,6 +3,7 @@ import { Calculator } from './Calculator/Calculator.js';
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js';
 import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import { LandingPage } from './LandingPage/LandingPage.js';
+import './Home.css';
 
 import data from '../air_cleaner_list.csv';
 import * as d3 from 'd3';
@@ -150,7 +151,7 @@ export function Home(props) {
                  updateUsableSpace={updateUsableSpace} updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} 
                  updateModelName={updateModelName} airCleaners={airCleaners}/>}
             {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
-            {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} backToCalculator={backToCalculator} />}
+            {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} showResults={showResults} backToCalculator={backToCalculator} />}
         </div>
     );
 }
