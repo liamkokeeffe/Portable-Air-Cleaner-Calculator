@@ -46,7 +46,7 @@ export function Calculator(props) {
             <div>
                 <h3 className="step-title">Step 3: Clean Air Delivery Rate (CADR)</h3>
                 <div>
-                    <CADR cadrEntered={props.cadrEntered} updateModelName={props.updateModelName} roomInfo={props.roomInfo} airCleaners={props.airCleaners}/>
+                    <CADR updateCADR={props.updateCADR} updateModelName={props.updateModelName} cadr={props.airCleanerInfo.cadr} airCleaners={props.airCleaners}/>
                 </div>
             </div>}
             <h3 className="step-title">Step 4: Occupant Density</h3>

@@ -108,7 +108,7 @@ export function RoomDim(props) {
                     <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}</p>
                 </div>
             </div>
-            <img src={roomDimPic} alt="Room Dimmension ClipArt" id="img-roomdim"/>
+            <img src={roomDimPic} alt="Room Dimension ClipArt" id="img-roomdim"/>
         </div>
     )
 }

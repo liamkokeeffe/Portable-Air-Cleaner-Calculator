@@ -1,9 +1,7 @@
-import './RoomSizeRec.css'
-import GaugeChart from 'react-gauge-chart'
+import './RoomSizeRec.css';
+import GaugeChart from 'react-gauge-chart';
 
 export function RoomSizeRec(props) {
-
-    console.log(props.roomInfo)
 
     const ventilationToACH = {
         'Poor' : 1,
@@ -35,9 +33,9 @@ export function RoomSizeRec(props) {
 
     function getACH() {
         if (props.roomInfo.units === "feet") {
-            return (Math.round((props.roomInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
+            return (Math.round((props.airCleanerInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
         } else {
-            return (Math.round(((props.roomInfo.cadr / .58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
+            return (Math.round(((props.airCleanerInfo.cadr / .58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
         }
     }
 
@@ -73,11 +71,11 @@ export function RoomSizeRec(props) {
     function calculateRoomSize() {
         let totalCFM = 0;
         if (props.roomInfo.units === "feet") {
-            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.roomInfo.cadr);
+            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.airCleanerInfo.cadr);
             console.log(totalCFM)
             return Math.round((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
         } else {
-            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * props.roomInfo.floorArea * props.roomInfo.ceilingHeight * 35.3147) / 60) + parseFloat(props.roomInfo.cadr);
+            totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * props.roomInfo.floorArea * props.roomInfo.ceilingHeight * 35.3147) / 60) + parseFloat(props.airCleanerInfo.cadr);
             return Math.round(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
         }
     }
@@ -108,10 +106,10 @@ export function RoomSizeRec(props) {
     }
 
     function getModelName() {
-        if (props.roomInfo.modelName === "I'm not sure") {
+        if (props.airCleanerInfo.modelName === "I'm not sure") {
             return "N/A";
         }
-        return props.roomInfo.modelName;
+        return props.airCleanerInfo.modelName;
     }
 
     const chartStyle = {
@@ -167,7 +165,7 @@ export function RoomSizeRec(props) {
                     <hr />
                     <div className="details-module">
                         <p className="details-title">Clean Air Delivery Rate:</p>
-                        <p className="details-value">{props.roomInfo.cadr}</p>
+                        <p className="details-value">{props.airCleanerInfo.cadr}</p>
                     </div>
                     <hr />
                     <div className="details-module">

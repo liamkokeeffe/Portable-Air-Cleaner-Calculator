@@ -5,10 +5,18 @@
     margin-top: 100px;
 }
 
+#filter-options p {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 .filter-option-container {
     padding-left: 10px;
     border-bottom: 1px solid black;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .filter-option {
@@ -37,11 +45,12 @@
     padding-top: 5px;
     margin-left: 10%;
     margin-right: 10%;
+    width: 65px;
 }
 
 .filter-option-title {
     margin-block-end: 0px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .filter-option-input {
@@ -69,6 +78,28 @@
     margin-left: 10px;
 }
 
+.label-placeholder {
+    margin-left: 11px;
+}
+
+#price-input-and-units-label {
+    margin-right: 23px;
+}
+
+#noise-input-and-units-label {
+    margin-left: 13px;
+}
+
+#power-input-and-units-label {
+    margin-left: 13px;
+    margin-right: 5px;
+}
+
+#max-num-air-cleaners-input {
+    margin-left: 13px;
+    margin-right: 23px;
+}
+
 @media (max-width: 768px) {
     #filter-options {
         width: 150px;
@@ -77,10 +108,14 @@
 
     #filter-options-title-container {
         flex-direction: column;
+        padding-bottom: 10px;
+        padding-top: 10px;
     }
 
     #filter-options-title {
         font-size: 18px;
+        padding-left: 0px;
+        padding-bottom: 10px;
     }
 
     .filter-option-title {
@@ -89,5 +124,20 @@
 
     .filter-option {
         flex-direction: column;
+        display: block;
+        align-items: unset;
+    }
+
+    #price-input-and-units-label {
+        margin-right: 0px;
+    }
+
+    #power-input-and-units-label {
+        margin-right: 0px;
+    }
+
+    .submit-filter-options-button {
+        margin-left: 13px;
+        margin-top: 5px;
     }
 }

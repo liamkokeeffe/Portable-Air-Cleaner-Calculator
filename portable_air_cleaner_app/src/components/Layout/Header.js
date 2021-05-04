@@ -25,7 +25,7 @@ export function Header() {
                         <span className="tab-divider">|</span>
                         <Link to="/about" className="tab">{t('Tabs.About')}</Link>
                         <span className="tab-divider">|</span>
-                        <Link to="/additional-resources" className="tab">{t('Tabs.Resources')}</Link>
+                        <Link to="/resources" className="tab">{t('Tabs.Resources')}</Link>
                         <span className="tab-divider">|</span>
                         <Link to="/help" className="tab">{t('Help')}</Link>
                     </div>
