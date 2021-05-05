@@ -10,7 +10,7 @@ export function CADR(props) {
     function createSelectItems(airCleaners) {
         let items = [];  
         items.push(<option></option>);
-        console.log(airCleaners)
+        console.log(props)
         for (let i = 0; i <= airCleaners.length - 2; i++) {   
             var cadr = airCleaners[i].cadr
             var name = airCleaners[i].name       
