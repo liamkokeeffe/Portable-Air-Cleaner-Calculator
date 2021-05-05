@@ -13,11 +13,11 @@ export function LandingPage(props) {
     }
 
     return (
-        <div id="body-container">
+        <div >
             {(!disclaimerClicked ? 
                 <Disclaimer closeDisclaimer={closeDisclaimer}/>
             :
-            <div>
+            <div id="body-container">
                 <div id="text-container">
                     <h1 id="title">{t('Title')}</h1>
                     <p id="text-calculator-description">Click a button below to calculate which portable air cleaner is best suited 

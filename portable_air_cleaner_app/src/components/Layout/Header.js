@@ -27,7 +27,7 @@ export function Header() {
                         <span className="tab-divider">|</span>
                         <Link to="/resources" className="tab">{t('Tabs.Resources')}</Link>
                         <span className="tab-divider">|</span>
-                        <Link to="/help" className="tab">{t('Help')}</Link>
+                        <Link to="/faq" className="tab">{t('FAQ')}</Link>
                     </div>
                     <div id='hamburger-menu' onClick={() => expandHamburgerMenu()}>
                         <div className="hamburger-menu-line"></div>

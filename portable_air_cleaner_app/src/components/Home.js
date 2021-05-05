@@ -138,6 +138,7 @@ export function Home(props) {
 
     function backToCalculator() {
         setResultType(null);
+        console.log(calculatorType.substring(7))
         setCalculatorType(calculatorType.substring(7));
     }
 
