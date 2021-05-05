@@ -2,12 +2,12 @@
   display: flex;
   background-color: white;
   border-bottom: 5px solid lightgray;
-  height: 125px;
+  height: 95px;
 }
 
 #tabs-container {
   position: absolute;
-  top: 70px;
+  top: 45px;
   left: 29%;
   display: flex;
   flex-direction: row;
@@ -45,7 +45,7 @@
 
 #wa-dept-of-commerce-logo {
   position: absolute;
-  top: 25px;
+  top: 0px;
   left: 0px;
   width: 225px;
   height: 95px;
@@ -80,7 +80,7 @@
   #hamburger-menu {
     position: absolute;
     right: 20px;
-    top: 55px;
+    top: 35px;
     cursor: pointer;
   }
 

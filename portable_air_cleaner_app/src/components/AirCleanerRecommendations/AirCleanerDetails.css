@@ -68,12 +68,12 @@
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 310px) {
     #air-cleaner-details-container {
         display: block;
     }
 
     #air-cleaner-details {
-        width: 400px;
+        width: 320px;
     }
 }

@@ -20,8 +20,8 @@ export function LandingPage(props) {
             <div>
                 <div id="text-container">
                     <h1 id="title">{t('Title')}</h1>
-                    <p id="text-calculator-description">Click a button below to calculate which portable air cleaner is best suited 
-                    for your business to help keep employees and customers safe or test your own portable air cleaner to find out whether 
+                    <p id="text-calculator-description">Click a button below to either find a portable air cleaner that helps 
+                    to keep your employees and customers safe or test your own portable air cleaner to find out whether 
                     it’s effectively ventilating your business.</p>
                     <div id="buttons-container">
                         <button className="subheader--btn" id="subheader--btn-find" onClick={() => props.setCalculatorType("find")}>{t("FIND AIR CLEANER")}</button>
