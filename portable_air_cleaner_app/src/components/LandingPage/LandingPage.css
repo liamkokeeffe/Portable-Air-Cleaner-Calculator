@@ -1,16 +1,16 @@
 #body-container {
   width: 100%;
-  text-align: center;
-  vertical-align: middle;
-  margin-bottom: 50px;
-  margin-top: 75px;
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 8%;
 }
 
 #text-container {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   width: 40%;
-  margin-left: 10%;
   text-align: left;
 }
 
@@ -68,8 +68,6 @@
 #img-aircleaner {
   height: 420px;
   width: 420px;
-  margin-left: 5%;
-  margin-top: 15px;
 }
 
 #subheader--btn-test {

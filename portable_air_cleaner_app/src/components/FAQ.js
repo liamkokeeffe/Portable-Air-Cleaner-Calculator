@@ -1,6 +1,6 @@
-import './Help.css';
+import './FAQ.css';
 
-export function Help() {
+export function FAQ() {
     return (
         <div id='help-content-container'>
             <h2 className='help-subheading'>Demo Video</h2>

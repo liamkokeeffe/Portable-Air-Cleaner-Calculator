@@ -3,6 +3,8 @@ import GaugeChart from 'react-gauge-chart';
 
 export function RoomSizeRec(props) {
 
+    document.body.style.background = "rgba(234, 95, 20, 0.25)";
+
     const ventilationToACH = {
         'Poor' : 1,
         'Typical' : 1.5,
