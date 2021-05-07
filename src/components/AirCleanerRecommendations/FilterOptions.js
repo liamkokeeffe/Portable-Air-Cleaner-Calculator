@@ -3,11 +3,11 @@ import './FilterOptions.css';
 
 export function FilterOptions(props) {
 
-    const [filterOptions, setFilterOptions] = useState({});
+    const defaultMaxNumAirCleaners = 5;
+    const [filterOptions, setFilterOptions] = useState(props.defaultFilterOptions);
     const maxPriceInput = useRef(null);
     const maxNoiseInput = useRef(null);
     const maxPowerInput = useRef(null);
-    const defaultMaxNumAirCleaners = 5;
     const maxNumAirCleanersInput = useRef(defaultMaxNumAirCleaners);
 
     function clearFilterOptions() {
@@ -21,6 +21,7 @@ export function FilterOptions(props) {
             maxPower: -1,
             maxNumAirCleaners: defaultMaxNumAirCleaners
         };
+        setFilterOptions(newFilterOptions);
         props.setFilterOptions(newFilterOptions);
     }
 
@@ -29,7 +30,8 @@ export function FilterOptions(props) {
             maxPrice: maxPriceInput.current.value !== '' ? maxPriceInput.current.value : -1,
             maxNoise: maxNoiseInput.current.value !== '' ? maxNoiseInput.current.value : -1,
             maxPower: maxPowerInput.current.value !== '' ? maxPowerInput.current.value : -1,
-            maxNumAirCleaners: maxNumAirCleanersInput.current.value < 1 ? 1 : maxNumAirCleanersInput.current.value
+            maxNumAirCleaners: ((maxNumAirCleanersInput.current.value < 1) || 
+                               (maxNumAirCleanersInput.current.value === '')) ? 1 : maxNumAirCleanersInput.current.value
         };
         setFilterOptions(newFilterOptions);
     }
@@ -75,10 +77,9 @@ export function FilterOptions(props) {
                 <p className='filter-option-title'>Max Number of Air Cleaners to Buy</p>
                 <input id='max-num-air-cleaners-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxNumAirCleanersInput} defaultValue={defaultMaxNumAirCleaners} type='number' />
                 <button data-testid='max-num-air-cleaners-filter-submit-button' className='submit-filter-options-button' onClick={() => {
-                    if (maxNumAirCleanersInput.current.value !== '') {
                         props.setFilterOptions(filterOptions);
-                    }
-                    }}>Submit</button>
+                    }}
+                >Submit</button>
             </div>
         </div>
     );

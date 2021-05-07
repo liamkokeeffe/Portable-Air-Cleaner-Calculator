@@ -55,14 +55,13 @@ export function AirCleanerList(props) {
                 if (airCleaner.ach < 4) { // worse than "good" ACH
                     return false;
                 }
-
                 if ((props.filterOptions.maxPrice > -1) && (props.filterOptions.maxPrice < airCleaner.price)) {
                     return false;
                 }
                 if ((props.filterOptions.maxNoise > -1) && ((props.filterOptions.maxNoise < airCleaner.noise) || airCleaner.noise === -1)) {
                     return false;
                 }
-                if ((props.filterOptions.maxPower > -1) && (props.filterOptions.maxPower < airCleaner.power)) {
+                if ((props.filterOptions.maxPower > -1) && ((props.filterOptions.maxPower < airCleaner.power) || airCleaner.power === -1)) {
                     return false;
                 }
 
