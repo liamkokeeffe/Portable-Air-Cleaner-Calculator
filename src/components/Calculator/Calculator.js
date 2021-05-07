@@ -6,7 +6,7 @@ import {Density} from "./Density.js"
 
 export function Calculator(props) {
     function getTitle() {
-        document.body.style.background = "linear-gradient(180deg, rgba(234, 95, 20, 0.25) 0%, rgba(234, 95, 20, 0.25) 41.15%, rgba(234, 95, 20, 0.25) 76.56%, rgba(226, 167, 0, 0.25) 100%)";
+        document.body.style.background = "linear-gradient(180deg,rgba(234, 95, 20, 0.25) 0%,rgba(226, 167, 0, 0.25) 25%, rgba(226, 165, 0, 0.25) 50%, rgba(155, 0, 89, 0.25) 75%)";
         return props.calculatorType === "find" ? "Find Air Cleaner" : "Test Air Cleaner Efficiency";
     }
 
@@ -49,7 +49,7 @@ export function Calculator(props) {
                     <CADR updateCADR={props.updateCADR} updateModelName={props.updateModelName} cadr={props.airCleanerInfo.cadr} airCleaners={props.airCleaners}/>
                 </div>
             </div>}
-            <h3 className="step-title">Step 4: Occupant Density</h3>
+            <h3 className="step-title"> {props.calculatorType === "find" ? "Step 3: Occupant Density" : "Step 4: Occupant Density"}</h3>
             <div>
                 <Density updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} roomInfo={props.roomInfo}/>
             </div>

@@ -2,7 +2,6 @@ import './Header.css';
 import logo from '../../images/departmentOfCommerceLogo.png';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
-import {Home} from '../Home.js'
 
 export function Header() {
     const {t} = useTranslation();
@@ -18,7 +17,9 @@ export function Header() {
     return (
         <div id="header-container">
             <header>
-                <img id='wa-dept-of-commerce-logo' src={logo} alt='Washington State Department of Commerce Logo' />
+                <Link to="/">
+                    <img id='wa-dept-of-commerce-logo' src={logo} alt='Washington State Department of Commerce Logo' />
+                </Link>
                 <nav>
                     <div id="tabs-container">
                         <Link to="/" className="tab">{t('Tabs.Home')}</Link>
@@ -27,7 +28,7 @@ export function Header() {
                         <span className="tab-divider">|</span>
                         <Link to="/resources" className="tab">{t('Tabs.Resources')}</Link>
                         <span className="tab-divider">|</span>
-                        <Link to="/help" className="tab">{t('Help')}</Link>
+                        <Link to="/faq" className="tab">{t('FAQ')}</Link>
                     </div>
                     <div id='hamburger-menu' onClick={() => expandHamburgerMenu()}>
                         <div className="hamburger-menu-line"></div>
