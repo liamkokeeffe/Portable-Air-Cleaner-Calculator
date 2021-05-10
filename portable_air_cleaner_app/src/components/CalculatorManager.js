@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Calculator } from './Calculator/Calculator.js';
-import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js';
-import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
-import { LandingPage } from './LandingPage/LandingPage.js';
+import { RoomSizeRec } from './RoomSizeRec/RoomSizeRec.js';
+import { AirCleanerRecommendations } from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import './CalculatorManager.css';
 
 import data from '../air_cleaner_list.csv';
@@ -144,7 +143,6 @@ export function CalculatorManager(props) {
 
     return (
         <div>
-            {/* {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>} */}
             {(calculatorType === 'find' || (airCleaners !== null && calculatorType === 'test')) && 
                 <Calculator calculatorType={calculatorType} roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} unitSelectionMade={unitSelectionMade}
                 roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered}

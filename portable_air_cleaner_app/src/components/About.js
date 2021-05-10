@@ -3,7 +3,7 @@ import commerceLogo from '../images/commerce_about_logo.png'
 import airCleaner from '../images/aircleaner_animated.png'
 import featureEfficiency from '../images/about_efficiency.png'
 import featureFinding from '../images/about_finding.png'
-import demoVideo from '../videos/MVP_demo.mp4'
+import demoVideo from '../videos/Presentation.mp4'
 import './About.css'
 
 export function About() {
@@ -29,7 +29,7 @@ export function About() {
             <div id="about-features-container">
                 <h2 id="about-features-title">Key Features</h2>
                 <div className="features-module-container">
-                    <img className="features-img" src={featureEfficiency} alt="Image of Efficiency Results Dashboard" />
+                    <img className="features-img" src={featureEfficiency} alt="Efficiency Results Dashboard" />
                     <div className="features-text-container">
                         <h3>Efficiency Calculator</h3>
                         <p>Efficiency calculator enables you to find how effective your air cleaner is at cleaning out the room. Once you put in all the necessary 
@@ -43,7 +43,7 @@ export function About() {
                         <p>Air cleaner calculator lets you find a perfect air cleaner for your establishment. Just put in your establishment’s room dimension, 
                             ventilation rating, and occupant density and it will give you a catalog with plenty of air cleaners to choose from.</p>
                     </div>
-                    <img className="features-img" src={featureFinding} alt="Image of Finding Air Cleaner List" />
+                    <img className="features-img" src={featureFinding} alt="Finding Air Cleaner List" />
                 </div>
             </div>
             <div id="about-features-anglerect"></div>
@@ -76,7 +76,7 @@ export function About() {
                          If you have any questions, feel free to contact Restart partner at info@restart.us.</p>
                 </div>
                 {/* kinda hacky but makes it work with flexbox */}
-                <img src={commerceLogo} id="img-blank" />
+                <img src={commerceLogo} id="img-blank" alt="Commerce Logo"/>
             </div>
         </div>
     )

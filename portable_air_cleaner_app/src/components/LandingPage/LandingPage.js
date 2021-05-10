@@ -5,19 +5,20 @@ import "./LandingPage.css";
 import AirCleanerImg from "../../images/aircleaner_animated.png";
 import { Link } from "react-router-dom";
 
-export function LandingPage(props) {
+export function LandingPage() {
     const {t} = useTranslation();
     const [disclaimerClicked, setDisclaimerClicked] = useState(false);
 
     document.body.style.background = "white";
 
     function closeDisclaimer() {
+        window.$disclaimerClicked = true;
         setDisclaimerClicked(true);
     }
 
     return (
         <div >
-            {(!disclaimerClicked ? 
+            {(!window.$disclaimerClicked ? 
                 <Disclaimer closeDisclaimer={closeDisclaimer}/>
             :
             <div id="body-container">

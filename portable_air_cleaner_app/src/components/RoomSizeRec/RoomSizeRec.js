@@ -192,7 +192,7 @@ export function RoomSizeRec(props) {
                             </tr>
                         </table>
                     </div>
-                    <p id="recommendation-text"><span>Note: </span>Please refer to your current county/state phase's occupancy guidelines for the above table. Washington State's current phase can be found <a href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process" target="_blank">here.</a> If your average number of people is greater than the value above we recommend purchasing an air cleaner with at least 6 air changes per hour for your room.</p>
+                    <p id="recommendation-text"><span>Note: </span>Please refer to your current county/state phase's occupancy guidelines for the above table. Washington State's current phase can be found <a href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process" target="_blank" rel="noreferrer">here.</a> If your average number of people is greater than the value above we recommend purchasing an air cleaner with at least 6 air changes per hour for your room.</p>
                 </div>
             </div>
         </div>
