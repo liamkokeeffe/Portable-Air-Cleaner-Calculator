@@ -50,7 +50,7 @@
   height: 200;
 }
 
-h3,
+#gauge-chart-description,
 #roomsizerec-title {
   font-family: Roboto;
   font-style: normal;
@@ -169,7 +169,6 @@ td {
   }
 
   h3 {
-    /* margin: 10px; */
     font-size: 20pt;
     text-align: center;
   }

@@ -9,13 +9,18 @@
   font-weight: bold;
   color: #555555;
   text-align: center;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-top: 75px;
 }
 
 .step-title {
   font-weight: bold;
-  font-size: 40pt;
+  font-size: 55px;
+  font-family: Roboto;
+  font-style: normal;
   color: #555555;
-  margin: 4% 0 5% 5%;
+  margin: 5% 0 5% 5%;
 }
 
 .step-wrapper {
@@ -28,8 +33,8 @@
   display: flex;
   background: rgba(110, 118, 125, 0.5);
   padding: 20px;
-  width: fit-content;
   flex-direction: column;
+  max-width: 500px;
 }
 
 .input-title {
@@ -37,7 +42,7 @@
   font-size: 25px;
   font-weight: bold;
   text-align: left;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .user-input {
@@ -81,7 +86,9 @@
 }
 
 #button-wrapper {
-  margin: 2% 5% 5% 70%;
+  position: relative;
+  height: 48px;
+  margin-bottom: 20px;
 }
 
 #results-btn {
@@ -92,6 +99,8 @@
   width: 200px;
   font-size: 18px;
   text-align: center;
+  position: absolute;
+  right: 10%;
 }
 
 #img-cadr {
@@ -130,13 +139,8 @@ span {
 .input-line-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 10px;
-}
-
-#ventilation-input-title {
-  margin-bottom: 3%;
 }
 
 .unit-text {
@@ -148,7 +152,6 @@ span {
 
 #unit-input {
   margin-bottom: 10px;
-  margin-left: 5px;
 }
 
 #density-input,
@@ -166,15 +169,13 @@ span {
   }
 
   #calculator-title {
-    font-size: 35pt;
+    font-size: 45px;
+    margin-top: 50px;
   }
 
   .step-title {
-    font-size: 30pt;
-  }
-
-  .input-title {
-    font-size: 15pt;
+    font-size: 45px;
+    margin: 6% 0 6% 5%;
   }
 
   .user-input {
@@ -191,15 +192,21 @@ span {
   .step-wrapper {
     justify-content: center;
   }
+  
+  #ventilation-options {
+    width: 75%;
+  }
 }
 
 @media (max-width: 420px) {
   #calculator-title {
-    font-size: 23pt;
+    font-size: 35px;
+    margin-top: 35px;
   }
 
   .step-title {
-    font-size: 20pt;
+    font-size: 35px;
+    padding-right: 10px;
   }
 
   .user-input {
@@ -213,6 +220,10 @@ span {
     align-items: center;
   }
 
+  .input-wrapper {
+    width: 75%;
+  }
+
   .help-text {
     font-size: 15pt;
     width: fit-content;
@@ -220,7 +231,6 @@ span {
   }
 
   #ventilation-text {
-    width: fit-content;
     font-size: 15pt;
     margin: 3%;
   }
@@ -229,16 +239,11 @@ span {
     font-size: 16pt;
   }
 
-  #ventilation-left-box,
   #density-left-box {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
-
-  #button-wrapper {
-    margin: 20px auto;
   }
 }

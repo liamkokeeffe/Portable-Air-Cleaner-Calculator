@@ -9,6 +9,7 @@ export function AirCleanerList(props) {
     const airCleanerComponents = recommendedAirCleaners.map((item, index) => 
     <AirCleanerListItem key={item.name} id={index} airCleaner={item} detailsClick={props.detailsClick} />
     );
+    const minACHLevelToRecommend = 5;
 
     useEffect(() => {
         function getOutdoorVentilation() {
@@ -34,12 +35,12 @@ export function AirCleanerList(props) {
 
             airCleaner.achFromOneAirCleaner = Math.round(ach * 100) / 100.0;
             let numAirCleaners = 1;
-            if (ach < 4) {  // worse than "good" ACH
+            if (ach < minACHLevelToRecommend) {
                 for (let i = 1; i < props.filterOptions.maxNumAirCleaners; i++) {
                         ach += airCleaner.achFromOneAirCleaner;
                         numAirCleaners++;
                 
-                        if (ach >= 4) {
+                        if (ach >= minACHLevelToRecommend) {
                             break;
                         }
                 }
@@ -52,7 +53,7 @@ export function AirCleanerList(props) {
 
         function filterAirCleaners(airCleaners) {
             return [...airCleaners].filter((airCleaner) => {
-                if (airCleaner.ach < 4) { // worse than "good" ACH
+                if (airCleaner.ach < minACHLevelToRecommend) {
                     return false;
                 }
                 if ((props.filterOptions.maxPrice > -1) && (props.filterOptions.maxPrice < airCleaner.price)) {

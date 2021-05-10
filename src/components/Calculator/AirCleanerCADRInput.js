@@ -3,17 +3,17 @@ import { useState } from "react";
 import CadrImg from '../../images/cadr_clipart.png'
 import React from "react"
 
-export function CADR(props) {
+export function AirCleanerCADRInput(props) {
 
     const [cadr, setCadr] = useState(props.cadr === 0 ? "" : props.cadr);
 
     function createSelectItems(airCleaners) {
         let items = [];  
         items.push(<option></option>);
-        console.log(props)
+        
         for (let i = 0; i <= airCleaners.length - 2; i++) {   
-            var cadr = airCleaners[i].cadr
-            var name = airCleaners[i].name       
+            let cadr = airCleaners[i].cadr;
+            let name = airCleaners[i].name;      
             items.push(<option value={cadr}>{name}</option>);   
         }
         items.push(<option value={0}>I'm not sure</option>);

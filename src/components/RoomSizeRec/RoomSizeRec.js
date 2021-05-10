@@ -129,7 +129,7 @@ export function RoomSizeRec(props) {
             </div>
             <div id="roomsizerec-content">
                 <div id="roomsizerec-gauge">
-                    <h3>Is your room meeting the recommended guidelines?</h3>
+                    <h3 id="gauge-chart-description">Is your room meeting the recommended guidelines?</h3>
                     <GaugeChart id="gauge-chart" 
                     nrOfLevels={5}
                     colors={["#FF0D0D", "#FF8E15", "#FAB733", "#ACB334", "#69B34C"]}

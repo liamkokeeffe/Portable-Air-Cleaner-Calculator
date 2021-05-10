@@ -3,7 +3,7 @@ import { useState } from "react";
 import roomDimPic from '../../images/roomdim-img.png'
 import React from "react"
 
-export function RoomDim(props) {
+export function RoomDimensionsInput(props) {
     const [roomWidth, _setRoomWidth] = useState(props.roomInfo.roomWidth === 0 ? "" : props.roomInfo.roomWidth);
     const [roomLength, _setRoomLength] = useState(props.roomInfo.roomLength === 0 ? "" : props.roomInfo.roomLength);
     const [ceilingHeight, setCeilingHeight] = useState(props.roomInfo.ceilingHeight === 0 ? "" : props.roomInfo.ceilingHeight);
@@ -62,7 +62,7 @@ export function RoomDim(props) {
                 <label htmlFor="room-width-input" className="input-title">Room Width</label>
                 <div className="input-line-wrapper">
                     <input className="user-input" onChange={(e) => {
-                        let value = e.target.value
+                        let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setRoomWidth(value);
                             if (!calculateFloorArea()) {
@@ -75,7 +75,7 @@ export function RoomDim(props) {
                 <label htmlFor="room-length-input" className="input-title">Room Length</label>
                 <div className="input-line-wrapper">
                     <input className="user-input" onChange={(e) => {
-                        let value = e.target.value
+                        let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setRoomLength(value);
                             if (!calculateFloorArea()) {
@@ -88,7 +88,7 @@ export function RoomDim(props) {
                 <label htmlFor="floor-area-input" className="input-title">Floor Area</label>
                 <div className="input-line-wrapper">
                     <input className="user-input" onChange={(e) => {
-                        let value = e.target.value
+                        let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setFloorArea(value);
                             props.floorAreaEntered(parseFloat(value));
@@ -99,7 +99,7 @@ export function RoomDim(props) {
                 <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height</label>
                 <div className="input-line-wrapper">
                     <input className="user-input" onChange={(e) => { 
-                        let value = e.target.value
+                        let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setCeilingHeight(value);
                             props.ceilingHeightEntered(parseFloat(value));

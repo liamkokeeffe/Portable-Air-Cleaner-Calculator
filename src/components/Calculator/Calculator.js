@@ -1,8 +1,8 @@
 import "./Calculator.css"
-import {RoomDim} from "./RoomDim.js"
-import {Ventilation} from "./Ventilation.js"
-import {CADR} from "./CADR.js"
-import {Density} from "./Density.js"
+import {RoomDimensionsInput} from "./RoomDimensionsInput.js"
+import {RoomVentilationInput} from "./RoomVentilationInput.js"
+import {AirCleanerCADRInput} from "./AirCleanerCADRInput.js"
+import {RoomDensityInput} from "./RoomDensityInput.js"
 
 export function Calculator(props) {
     function getTitle() {
@@ -35,23 +35,23 @@ export function Calculator(props) {
             <h2 id="calculator-title">{getTitle()}</h2>
             <h3 className="step-title">Step 1: Room Dimension</h3>
             <div> 
-                <RoomDim unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} 
+                <RoomDimensionsInput unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} 
                 ceilingHeightEntered={props.ceilingHeightEntered} floorAreaEntered={props.floorAreaEntered} roomInfo={props.roomInfo} />
             </div>
             <h3 className="step-title">Step 2: Ventilation Rating</h3>
             <div>
-                <Ventilation updateOutdoorVentilation={props.updateOutdoorVentilation} type={props.roomInfo.outdoorVentilation}/>
+                <RoomVentilationInput updateOutdoorVentilation={props.updateOutdoorVentilation} type={props.roomInfo.outdoorVentilation}/>
             </div>
             {props.calculatorType === "test" &&
             <div>
                 <h3 className="step-title">Step 3: Clean Air Delivery Rate (CADR)</h3>
                 <div>
-                    <CADR updateCADR={props.updateCADR} updateModelName={props.updateModelName} cadr={props.airCleanerInfo.cadr} airCleaners={props.airCleaners}/>
+                    <AirCleanerCADRInput updateCADR={props.updateCADR} updateModelName={props.updateModelName} cadr={props.airCleanerInfo.cadr} airCleaners={props.airCleaners}/>
                 </div>
             </div>}
             <h3 className="step-title"> {props.calculatorType === "find" ? "Step 3: Occupant Density" : "Step 4: Occupant Density"}</h3>
             <div>
-                <Density updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} roomInfo={props.roomInfo}/>
+                <RoomDensityInput updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} roomInfo={props.roomInfo}/>
             </div>
             <div id="button-wrapper">
                 <button id="results-btn" onClick={() => showResults()}>VIEW RESULTS</button>

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import densityClipArt from '../../images/density_clipart.png'
 import React from "react"
 
-export function Density(props) {
+export function RoomDensityInput(props) {
     const [roomType, setRoomType] = useState(props.roomInfo.roomType === "" ? "" : props.roomInfo.roomType);
     const [usableSpace, setUsableSpace] = useState(props.roomInfo.usableSpace === 0 ? "" : props.roomInfo.usableSpace);
     const [maxOccupancy, setMaxOccupancy] = useState(props.roomInfo.maxOccupancy === 0 ? "" : props.roomInfo.maxOccupancy);

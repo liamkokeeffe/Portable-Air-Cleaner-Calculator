@@ -1,10 +1,10 @@
 import './Calculator.css';
 import VentilationImg from "../../images/ventilation_clipart.png";
 
-export function Ventilation(props) {
+export function RoomVentilationInput(props) {
     return (
         <div className="step-wrapper">
-            <div id="ventilation-left-box">
+            <div id="ventilation-options">
                 <div className="input-wrapper">
                     <label htmlFor="ventilation-selection" className="input-title" id="ventilation-input-title">Ventilation</label>
                     <div>
