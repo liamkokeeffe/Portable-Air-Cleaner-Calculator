@@ -1,8 +1,21 @@
-import { LandingPage } from "./LandingPage/LandingPage";
+import {useState} from 'react';
+import { LandingPage } from './LandingPage/LandingPage';
+import {Disclaimer} from './Disclaimer.js';
 
 export function Home() {
+    // this is only used to make the component rerender in the closeDisclaimer() function
+    const [disclaimerClicked, setDisclaimerClicked] = useState(false);
+
+    function closeDisclaimer() {
+        console.log(sessionStorage.getItem('disclaimerClosed'));
+        sessionStorage.setItem('disclaimerClosed', 'true');
+        console.log(sessionStorage.getItem('disclaimerClosed'));
+        setDisclaimerClicked(true);
+    }
 
     return (
-        <LandingPage />
-    )
+        (sessionStorage.getItem('disclaimerClosed') === null ? 
+            <Disclaimer closeDisclaimer={closeDisclaimer}/> :
+            <LandingPage />)
+    );
 }
