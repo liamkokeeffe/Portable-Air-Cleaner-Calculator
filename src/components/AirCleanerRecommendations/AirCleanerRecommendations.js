@@ -57,9 +57,12 @@ export function AirCleanerRecommendations(props) {
                             </div>
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                             <SortKeyChoice updateSortKey={setSortKey} />
+                            {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
                             <div id='disclaimer-message'>
-                                <p>Note: Your space's average density is higher than the recommended maximum amount of x. You may want to prioritize choosing an air cleaner with a high ACH (air changes per hour) level or purchase more air cleaners than are recommended.</p>
+                                <p><span>Note: </span>Your current average occupancy appears to be greater than the recommended occupancy based on <span>{props.roomInfo.currPhase !== '' ? " Phase " + props.roomInfo.currPhase + " ": " " + props.roomInfo.currOccupancy + "% occcupancy "}</span> 
+                                guidelines for your particular room. You may want to prioritize choosing an air cleaner with a high ACH (air changes per hour) level or purchase more air cleaners than are recommended.</p>
                             </div>
+                            }
                             <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} detailsClick={detailsClick} airCleaners={props.airCleaners} />
                         </div>
                     </div>
