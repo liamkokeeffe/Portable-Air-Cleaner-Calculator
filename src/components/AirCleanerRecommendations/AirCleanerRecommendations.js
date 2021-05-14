@@ -47,7 +47,10 @@ export function AirCleanerRecommendations(props) {
         <div id='air-cleaner-recommendations-container'>
             {selectedAirCleaner === null &&
             <div>
-                <button id='back-button' onClick={() => {props.backToCalculator()}}>{'< Go Back'}</button>
+                <button id='back-button' onClick={() => {
+                    props.setCalculatorType("find");
+                    props.backToCalculator();
+                }}>{'< Go Back'}</button>
                 <div id='air-cleaner-recommendations'>
                     <FilterOptions defaultFilterOptions={filterOptionsInit} setFilterOptions={setFilterOptions} />
                     <div id='air-cleaner-recommendations-page-center-container'>

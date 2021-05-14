@@ -84,6 +84,7 @@ export function RoomDimensionsInput(props) {
                         }} value={floorArea} type="number" />
                         <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
+                    <p className="error-message" id="error-floor-area">Please enter a floor area.</p>
                     <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height <span class="required">*</span></label>
                     <div className="input-line-wrapper">
                         <input id="ceiling-height-input" className="user-input" onChange={(e) => { 
@@ -93,6 +94,7 @@ export function RoomDimensionsInput(props) {
                             }} value={ceilingHeight} type="number" />
                         <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}</p>
                     </div>
+                    <p className="error-message" id="error-ceiling-height">Please enter a ceiling height.</p>
                 </div>
                 <img src={roomDimPic} alt="Room Dimension ClipArt" id="img-roomdim"/>
             </div>

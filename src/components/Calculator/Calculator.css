@@ -195,6 +195,12 @@ span {
   color: rgb(234, 95, 20, 1);
 }
 
+.error-message {
+  color: #cc0033;
+  margin-top: -3%;
+  display: none;
+}
+
 @media (max-width: 920px) {
   #img-density,
   #img-roomdim,

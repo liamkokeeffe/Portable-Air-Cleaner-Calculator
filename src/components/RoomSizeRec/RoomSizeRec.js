@@ -128,8 +128,8 @@ export function RoomSizeRec(props) {
                         <p className="details-title">Recommended <br />Room Area:</p>
                         <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
-                    {calculateRoomSize() > props.roomInfo.floorArea &&
-                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner and ventilation level is smaller than your current space. We recommend you purchase a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
+                    {calculateRoomSize() < props.roomInfo.floorArea &&
+                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner and ventilation level is smaller than your current space. You may want to consider purchasing a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
                     <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Ventilation Rating:</p>
@@ -138,7 +138,7 @@ export function RoomSizeRec(props) {
                     <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Model Name:</p>
-                        <p className="details-value">{getModelName()}</p>
+                        <p className="details-value">{getModelName() === "" ? "N/A" : getModelName()}</p>
                     </div>
                     <hr className="roomsizerec-hr" />
                     <div className="details-module">

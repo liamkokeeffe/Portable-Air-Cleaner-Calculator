@@ -8,6 +8,7 @@ export function RoomVentilationInput(props) {
             <div className="step-wrapper">
                 <div id="ventilation-options">
                     <div className="input-wrapper">
+                        <p className="error-message" id="error-ventilation">Please select a Ventilation value.</p>
                         <fieldset>
                             <legend htmlFor="ventilation-selection" className="input-title" id="ventilation-input-title">Ventilation</legend>
                             <div>
