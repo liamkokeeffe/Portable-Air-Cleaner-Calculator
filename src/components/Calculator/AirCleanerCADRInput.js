@@ -51,6 +51,7 @@ export function AirCleanerCADRInput(props) {
                             props.updateCADR(parseInt(value));
                         }
                     }} value={cadr} />
+                    <p className="error-message" id="error-cadr">Please enter a CADR value.</p>
                 </div>
                 <img src={CadrImg} alt="Clean Air Delivery Rate Clipart" id="img-cadr" />
             </div>

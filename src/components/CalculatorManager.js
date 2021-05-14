@@ -15,7 +15,7 @@ export function CalculatorManager(props) {
         floorArea: 0,
         ceilingHeight : 0,
         units : 'feet',
-        outdoorVentilation : 'Poor',
+        outdoorVentilation : '',
         roomType : '',
         maxOccupancy : 0,
         aveOccupancy : 0,
@@ -198,7 +198,11 @@ export function CalculatorManager(props) {
     function backToCalculator() {
         setResultType(null);
         console.log(calculatorType.substring(7))
-        setCalculatorType(calculatorType.substring(7));
+        if (calculatorType.substring(7) === "hidden_test") {
+            setCalculatorType("find");
+        } else {
+            setCalculatorType(calculatorType.substring(7));
+        }
     }
 
     return (
@@ -209,7 +213,7 @@ export function CalculatorManager(props) {
                  updateCADR={updateCADR} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} updateRoomType={updateRoomType} 
                  updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} updateCurrPhase={updateCurrPhase} updateCurrOccupancy={updateCurrOccupancy}
                  updateModelName={updateModelName} airCleaners={airCleaners}/>}
-            {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
+            {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} setCalculatorType={setCalculatorType} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
             {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} showResults={showResults} backToCalculator={backToCalculator} />}
         </div>
     );

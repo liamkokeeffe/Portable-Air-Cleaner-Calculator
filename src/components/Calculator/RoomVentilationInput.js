@@ -8,6 +8,7 @@ export function RoomVentilationInput(props) {
             <div className="step-wrapper">
                 <div id="ventilation-options">
                     <div className="input-wrapper">
+                        <p className="error-message" id="error-ventilation">Please select a Ventilation value.</p>
                         <label htmlFor="ventilation-selection" className="input-title" id="ventilation-input-title">Ventilation <span class="required">*</span></label>
                         <div>
                             <input name="ventilation" type="radio" value="Poor" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}/>

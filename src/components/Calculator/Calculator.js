@@ -17,17 +17,43 @@ export function Calculator(props) {
         window.scrollTo(0, 0);
     }
 
+    // Not the best way to do this ... should clean this up
     function inputIsValid() {
-        if (props.calculatorType === "find" && (props.roomInfo.floorArea === 0 || props.roomInfo.ceilingHeight === 0)) {
-            console.log("Please fill out all fields to continue");
-            return false;
-        } else if (props.calculatorType === "test" && (props.roomInfo.floorArea === 0 || props.roomInfo.ceilingHeight === 0 || props.roomInfo.cadr === 0)) {
-            console.log("Please fill out all fields to continue");
-            console.log(props.roomInfo)
-            return false;
+        console.log(props.roomInfo)
+        let foundError = false;
+        if (props.roomInfo.floorArea === 0) {
+            document.getElementById("error-floor-area").style.display = "block";
+            foundError = true;
         } else {
-            return true;
+            document.getElementById("error-floor-area").style.display = "none";
         }
+
+        if (props.roomInfo.ceilingHeight === 0) {
+            document.getElementById("error-ceiling-height").style.display = "block";
+            foundError = true;
+        } else {
+            document.getElementById("error-ceiling-height").style.display = "none";
+        }
+
+        if (props.roomInfo.outdoorVentilation === '') {
+            document.getElementById("error-ventilation").style.display = "block";
+            foundError = true;
+        } else {
+            document.getElementById("error-ventilation").style.display = "none";
+        }
+
+        if (props.calculatorType === "test") {
+            if (props.airCleanerInfo.cadr === 0) {
+                document.getElementById("error-cadr").style.display = "block";
+                foundError = true;
+            } else {
+                document.getElementById("error-cadr").style.display = "none";
+            }
+        }
+        if (foundError) {
+            return false;
+        }
+        return true;
     }
 
     return (
