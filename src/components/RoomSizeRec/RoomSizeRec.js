@@ -76,7 +76,7 @@ export function RoomSizeRec(props) {
 
     function getACHText(ach) {
         if (ach > 6) {
-            return "Your room is meeting an Ideal level of Air Changes per hour! If you'd still like to see a list of portable air cleaners fit for your room please click the button below."
+            return "Your room is meeting an Ideal level of Air Changes per hour! If you'd still like to see a list of portable air cleaners fit for your room, please click the button below."
         }
         return "Your room is currently not meeting an Ideal level of Air Changes per hour. If you'd like to see a list of our recommended air cleaners for your room, please click the button below."
     }

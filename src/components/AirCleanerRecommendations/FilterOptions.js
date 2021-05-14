@@ -44,37 +44,37 @@ export function FilterOptions(props) {
             </div>
 
             <div className='filter-option-container'>
-                <p className='filter-option-title'>Max Price (U.S dollars)</p>                
+                <p className='filter-option-title'><label htmlFor='price-input'>Max Price (U.S dollars)</label></p>            
                 <div className='filter-option'>
                     <div id='price-input-and-units-label'>
-                        <label htmlFor='price-input' className='filter-option-unit-dollar'>$</label>
+                        <span className='filter-option-unit-dollar'>$</span>
                         <input id='price-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxPriceInput} />
                     </div>
                     <button data-testid='max-price-filter-submit-button' className='submit-filter-options-button' onClick={() => {props.setFilterOptions(filterOptions)}}>Submit</button>
                 </div>
             </div>
             <div className='filter-option-container'>
-                <p className='filter-option-title'>Max Noise (decibels)</p>
+                <p className='filter-option-title'><label htmlFor='noise-input'>Max Noise (decibels)</label></p>
                 <div className='filter-option'>
                     <div id='noise-input-and-units-label'>
                         <input id='noise-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxNoiseInput} />
-                        <label htmlFor='noise-input' className='filter-option-unit-other'>dB</label>
+                        <span className='filter-option-unit-other'>dB</span>
                     </div>
                     <button data-testid='max-noise-filter-submit-button' className='submit-filter-options-button' onClick={() => {props.setFilterOptions(filterOptions)}}>Submit</button>
                 </div>
             </div>
             <div className='filter-option-container'>
-                <p className='filter-option-title'>Max Power Usage (Watts)</p>
+                <p className='filter-option-title'><label htmlFor='power-input'>Max Power Usage (Watts)</label></p>
                 <div className='filter-option'>
                     <div id='power-input-and-units-label'>
                         <input id='power-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxPowerInput} />
-                        <label htmlFor='power-input' className='filter-option-unit-other'>W</label>
+                        <span className='filter-option-unit-other'>W</span>
                     </div>
                     <button data-testid='max-power-filter-submit-button' className='submit-filter-options-button' onClick={() => {props.setFilterOptions(filterOptions)}}>Submit</button>
                 </div>
             </div>
             <div id='last-filter-option-container' className='filter-option-container'>
-                <p className='filter-option-title'>Max Number of Air Cleaners to Buy</p>
+                <p className='filter-option-title'><label htmlFor='max-num-air-cleaners-input'>Max Number of Air Cleaners to Buy</label></p>
                 <input id='max-num-air-cleaners-input' className='filter-option-input' onChange={() => updateFilterOptions()} ref={maxNumAirCleanersInput} defaultValue={defaultMaxNumAirCleaners} type='number' />
                 <button data-testid='max-num-air-cleaners-filter-submit-button' className='submit-filter-options-button' onClick={() => {
                         props.setFilterOptions(filterOptions);

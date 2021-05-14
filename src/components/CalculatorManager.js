@@ -23,16 +23,16 @@ export function CalculatorManager(props) {
         currOccupancy : 0,
         recOccupancy : 0
     };
-
     let airCleanerInfoInit = {
         modelName : '',
         cadr : 0
     };
+    const hideComponentPrefix = 'hidden_';
 
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
     const [airCleanerInfo, setAirCleanerInfo] = useState(airCleanerInfoInit);
     const [resultType, setResultType] = useState(null);
-    const [calculatorType, setCalculatorType] = useState(props.location.state === undefined ? null : props.location.state.type);
+    const [calculatorType, setCalculatorType] = useState(props.location.state === undefined ? null : props.location.state.calculatorType);
     // props.airCleaners will always be undefined in production, but this allows us to pass in specific air cleaners for testing.
     const [airCleaners, setAirCleaners] = useState(props.airCleaners === undefined ? null : props.airCleaners);
 
@@ -57,7 +57,6 @@ export function CalculatorManager(props) {
             getAirCleaners();
         }
     });
-
 
     function findRoomTypeData(roomType, phase) {
         let occupancyCol = "phase" + phase + "Occupancy";
@@ -105,7 +104,7 @@ export function CalculatorManager(props) {
     function showResults(type) {
         updateRecOccupancy(getOccupancyNumber());
         setResultType(type);
-        setCalculatorType('hidden_' + calculatorType);
+        setCalculatorType(hideComponentPrefix + calculatorType);
     }
     
     function unitSelectionMade(unitType) {
@@ -197,11 +196,10 @@ export function CalculatorManager(props) {
 
     function backToCalculator() {
         setResultType(null);
-        console.log(calculatorType.substring(7))
         if (calculatorType.substring(7) === "hidden_test") {
             setCalculatorType("find");
         } else {
-            setCalculatorType(calculatorType.substring(7));
+            setCalculatorType(calculatorType.substring(hideComponentPrefix.length));
         }
     }
 

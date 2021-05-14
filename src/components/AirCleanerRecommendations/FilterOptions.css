@@ -5,6 +5,10 @@
     margin-top: 100px;
 }
 
+#filter-options span {
+    font-weight: normal;
+}
+
 #filter-options p {
     margin-block-start: 0px;
     margin-block-end: 0px;
@@ -83,21 +87,22 @@
 }
 
 #price-input-and-units-label {
-    margin-right: 23px;
+    margin-right: 28px;
 }
 
 #noise-input-and-units-label {
     margin-left: 13px;
+    margin-right: 5px;
 }
 
 #power-input-and-units-label {
     margin-left: 13px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 #max-num-air-cleaners-input {
     margin-left: 13px;
-    margin-right: 23px;
+    margin-right: 28px;
 }
 
 @media (max-width: 768px) {

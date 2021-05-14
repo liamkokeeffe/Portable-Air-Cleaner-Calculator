@@ -1,36 +1,38 @@
 import {fireEvent, render, screen} from '@testing-library/react';
-import {AirCleanerRecommendations} from './AirCleanerRecommendations.js';
-
-import {airCleaners} from '../Home.test.js';
+import {AirCleanerRecommendations} from '../AirCleanerRecommendations/AirCleanerRecommendations.js';
+import {airCleanersForTesting} from './FindAirCleaner.test.js';
 
 const defaultRoomInfo = { 
-    roomWidth : 20,
+    roomWidth : 10,
     roomLength: 10,
-    floorArea: 200,
+    floorArea: 100,
     ceilingHeight : 8,
     units : 'feet',
-    outdoorVentilation : 'Low',
-    cadr : 0
+    outdoorVentilation : 'Low'
 };
 
 const defaultFilterOptions = {
     maxPrice: -1,
     maxNoise: -1,
     maxPower: -1,
+    maxNumAirCleaners: 5
 };
 
+// prevents irrelevant console error message when running tests
+global.window.scrollTo = () => {};
+
 it('renders basic parts successfully', () => {
-    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleaners} />);
+    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleanersForTesting} />);
     expect(screen.getByText('Recommended Portable Air Cleaners')).toBeTruthy();
-    expect(screen.getByText('Sort By')).toBeTruthy();
+    expect(screen.getByText('Sort By:')).toBeTruthy();
     expect(screen.getByText('Filter by:')).toBeTruthy();
 });
 
-it('filters air cleaners correctly', () => {
-    const recommendationsScreen = render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleaners}/>);
+it('filters air cleaners by price, noise, and power usage correctly', () => {
+    const recommendationsScreen = render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleanersForTesting}/>);
 
     // filter by price
-    const maxPriceInput = screen.getByLabelText('$');
+    const maxPriceInput = screen.getByLabelText('Max Price (U.S dollars)');
     fireEvent.change(maxPriceInput, {target : {value: 300}});
     const maxPriceFilterSubmitButton = screen.getByTestId('max-price-filter-submit-button');
     fireEvent.click(maxPriceFilterSubmitButton);
@@ -42,16 +44,16 @@ it('filters air cleaners correctly', () => {
     expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(5);
 
     // filter by noise
-    const maxNoiseInput = screen.getByLabelText('dB');
+    const maxNoiseInput = screen.getByLabelText('Max Noise (decibels)');
     fireEvent.change(maxNoiseInput, {target : {value: 48.5}});
     const maxNoiseFilterSubmitButton = screen.getByTestId('max-noise-filter-submit-button');
     fireEvent.click(maxNoiseFilterSubmitButton);
-    expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(3);
+    expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(1);
 
     fireEvent.click(clearAllButton);
 
     // filter by power
-    const maxPowerInput = screen.getByLabelText('W');
+    const maxPowerInput = screen.getByLabelText('Max Power Usage (Watts)');
     fireEvent.change(maxPowerInput, {target : {value: 55}});
     const maxPowerFilterSubmitButton = screen.getByTestId('max-power-filter-submit-button');
     fireEvent.click(maxPowerFilterSubmitButton);
@@ -63,9 +65,38 @@ it('filters air cleaners correctly', () => {
     expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(2);
 });
 
+it('filters max number of air cleaners correctly', () => {
+    let roomInfo = { 
+        roomWidth : 20,
+        roomLength: 30,
+        floorArea: 600,
+        ceilingHeight : 8,
+        units : 'feet',
+        outdoorVentilation : 'Low'
+    };
+    
+    const recommendationsScreen = render(<AirCleanerRecommendations roomInfo={roomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleanersForTesting} />);
+
+    expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(5);
+
+    const maxNumAirCleanersInput = screen.getByLabelText('Max Number of Air Cleaners to Buy');
+    fireEvent.change(maxNumAirCleanersInput, {target : {value: 3}});
+    const maxNumAirCleanersSubmitButton = screen.getByTestId('max-num-air-cleaners-filter-submit-button');
+    fireEvent.click(maxNumAirCleanersSubmitButton);
+    expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(4);
+
+    fireEvent.change(maxNumAirCleanersInput, {target : {value: 1}});
+    fireEvent.click(maxNumAirCleanersSubmitButton);
+    expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(2);
+
+    const clearAllButton = screen.getByRole('button', {name: 'clear all'});
+    fireEvent.click(clearAllButton);
+    expect(recommendationsScreen.container.querySelectorAll('.air-cleaner-list-item').length).toBe(5);
+});
+
 it('sorts air cleaners correctly', () => {
-    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleaners} />);
-    const sortAirCleanerDropdown = screen.getByLabelText('Sort By');
+    render(<AirCleanerRecommendations roomInfo={defaultRoomInfo} filterOptions={defaultFilterOptions} airCleaners={airCleanersForTesting} />);
+    const sortAirCleanerDropdown = screen.getByLabelText('Sort By:');
 
     // make sure list of air cleaners is sorted by price by default
     let prices = screen.getAllByTestId('air-cleaner-price');

@@ -1,5 +1,5 @@
 import React from 'react';
-import {LandingPage} from './LandingPage/LandingPage.js';
+import {Home} from './Home.js';
 import {About} from './About.js';
 import {Resources} from './Resources.js';
 import {FAQ} from './FAQ.js';
@@ -10,7 +10,7 @@ export function Routes() {
     return (
         <div>
             <Switch>
-                <Route exact path='/' component={LandingPage} />
+                <Route exact path='/' component={Home} />
                 <Route path='/calculator' component={CalculatorManager} />
                 <Route path='/about' component={About} />
                 <Route path='/resources' component={Resources} />

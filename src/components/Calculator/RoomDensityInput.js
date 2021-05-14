@@ -24,8 +24,8 @@ export function RoomDensityInput(props) {
             <p className="helptext">This is an optional step that will help determine the optimal amount of people that should be in your room for clean air.</p>
             <div className="step-wrapper">
                 <div className="input-wrapper">
-                    <label htmlFor="roomtype-selection" className="input-title">Room Type</label>
-                    <select className="user-input" value={roomType} onChange={(e) => { 
+                    <label htmlFor="room-type-selection" className="input-title">Room Type</label>
+                    <select id="room-type-selection"  className="user-input" value={roomType} onChange={(e) => { 
                         setRoomType(e.target.value)
                         props.updateRoomType(e.target.value);
                     }}>
@@ -58,8 +58,8 @@ export function RoomDensityInput(props) {
                         <option value="other_small">{'Other Small Spaces'}</option>
                     </select>
                     <ReactToolTip id="density-average-tooltip" place="right" effect="solid" multiline={true}>Please enter the average number of people in your room at peak hours.</ReactToolTip>
-                    <label htmlFor="average-occupancy" className="input-title">Average Number of <br />People in Room</label>
-                    <input data-tip data-for="density-average-tooltip" className="user-input" onChange={(e) => {
+                    <label htmlFor="average-occupancy-input" className="input-title">Average Number of <br />People in Room</label>
+                    <input data-tip data-for="density-average-tooltip" id="average-occupancy-input" className="user-input" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setAveOccupancy(parseFloat(value));
@@ -67,8 +67,8 @@ export function RoomDensityInput(props) {
                         }
                     }} value={isNaN(aveOccupancy) ? '' : aveOccupancy} />
                     <ReactToolTip id="density-maximum-tooltip" place="right" effect="solid" multiline={true}>Please enter the maximum occupancy of your space according to your building code.</ReactToolTip>
-                    <label htmlFor="maximum-occupancy" className="input-title">Maximum Occupancy</label>
-                    <input className="user-input" data-tip data-for="density-maximum-tooltip" onChange={(e) => {
+                    <label htmlFor="maximum-occupancy-input" className="input-title">Maximum Occupancy</label>
+                    <input id="maximum-occupancy-input" className="user-input" data-tip data-for="density-maximum-tooltip" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setMaxOccupancy(parseFloat(value));
