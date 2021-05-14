@@ -3,7 +3,7 @@ import GaugeChart from 'react-gauge-chart';
 
 export function RoomSizeRec(props) {
 
-    document.body.style.background = "rgba(234, 95, 20, 0.25)";
+    document.body.style.background = "white";
 
     const ventilationToACH = {
         'Poor' : 1,
@@ -113,6 +113,7 @@ export function RoomSizeRec(props) {
                     percent={getPercent()}
                     style={chartStyle}
                     formatTextValue={value => getACH()}
+                    textColor={"#00A2C7"}
                     />
                     <p id="gauge-footer">Air Changes Per Hour</p>
                     <div id="gauge-result-message" style={{background: getACHColor(getACH())}}>
