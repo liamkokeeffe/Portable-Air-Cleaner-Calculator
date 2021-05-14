@@ -1,182 +1,182 @@
 #air-cleaner-recommendations-container {
-    position: relative;
-    padding: 20px;
-    background: white;
+  position: relative;
+  padding: 20px;
+  background: white;
 }
 
 #air-cleaner-recommendations-header {
-    display: flex;   
+  display: flex;
 }
 
 #back-button {
-    padding: 20px;
-    font-size: 20px;
-    position: absolute;
-    background-color: rgb(234, 95, 20, 0.75);
-    color: white;
-    border-radius: 5px;
-    border: 0px;
-    left: 20px;
-    top: 35px;
+  padding: 20px;
+  font-size: 20px;
+  position: absolute;
+  background-color: rgb(234, 95, 20, 0.75);
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  left: 20px;
+  top: 35px;
 }
 
 #air-cleaner-recommendations-title {
-    color: #00A2C7;
-    position: absolute;
-    left: 0px;
-    top: 235px;
-    font-size: 27px;
+  color: #00a2c7;
+  position: absolute;
+  left: 0px;
+  top: 235px;
+  font-size: 27px;
 }
 
 #air-cleaner-recommendations {
-    display: flex;
+  display: flex;
 }
 
-#air-cleaner-list-and-sort-key-container { 
-    width: 100%;
+#air-cleaner-list-and-sort-key-container {
+  width: 100%;
 }
 
 #air-cleaner-recommendations-page-center-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 #air-cleaner-recommendations-page-center {
-    position: relative;
-    width: 815px;
+  position: relative;
+  width: 815px;
 }
 
 #various-air-cleaners-image {
-    margin-top: 5px;
-    width: 100%; 
-    height: 200px;
+  margin-top: 5px;
+  width: 100%;
+  height: 200px;
 }
 
 #sort-key-choice-container {
-    position: absolute;
-    right: -5px;
-    top: 235px;
+  position: absolute;
+  right: -5px;
+  top: 235px;
 }
 
 #air-cleaner-list {
-    margin-top: 180px;
+  margin-top: 180px;
 }
 
 #disclaimer-message {
-    background-color: rgba(234, 95, 20, 0.75);
-    position: absolute;
-    top: 305px;
-    padding: 10px;
+  background-color: rgba(234, 95, 20, 0.75);
+  position: absolute;
+  top: 305px;
+  padding: 10px;
 }
 
 #disclaimer-message p {
-    margin-block-start: 0px;
-    margin-block-end: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
 }
 
 @media (max-width: 1150px) {
-    #air-cleaner-recommendations-page-center {
-        width: 700px;
-    }
+  #air-cleaner-recommendations-page-center {
+    width: 700px;
+  }
 
-    #air-cleaner-recommendations-title {
-        width: 450px;
-        top: 160px;
-    }
+  #air-cleaner-recommendations-title {
+    width: 450px;
+    top: 160px;
+  }
 
-    #various-air-cleaners-image {
-        height: 150px;
-    }
+  #various-air-cleaners-image {
+    height: 150px;
+  }
 
-    #sort-key-choice-container {
-        top: 195px;
-    }
+  #sort-key-choice-container {
+    top: 195px;
+  }
 }
 
 @media (max-width: 960px) {
-    #air-cleaner-recommendations-page-center {
-        width: 520px;
-    }
+  #air-cleaner-recommendations-page-center {
+    width: 520px;
+  }
 
-    #air-cleaner-recommendations-title {
-        width: 250px;
-        top: 100px;
-    }
+  #air-cleaner-recommendations-title {
+    width: 250px;
+    top: 100px;
+  }
 
-    #various-air-cleaners-image {
-        height: 100px;
-    }
-    
-    #air-cleaner-list {
-        margin-top: 120px;
-    }
+  #various-air-cleaners-image {
+    height: 100px;
+  }
 
-    #sort-key-choice-container {
-        top: 165px;
-    }
+  #air-cleaner-list {
+    margin-top: 120px;
+  }
+
+  #sort-key-choice-container {
+    top: 165px;
+  }
 }
 
 @media (max-width: 768px) {
-    #air-cleaner-recommendations-container {
-        padding: 10px;
-        padding-right: 0px;
-    }
+  #air-cleaner-recommendations-container {
+    padding: 10px;
+    padding-right: 0px;
+  }
 
-    #various-air-cleaners-image {
-        display: none;
-    }
+  #various-air-cleaners-image {
+    display: none;
+  }
 
-    #sort-key-choice-container {
-        top: 100px;
-        right: auto;
-    }
+  #sort-key-choice-container {
+    top: 100px;
+    right: auto;
+  }
 
-    #air-cleaner-list {
-        margin-top: 160px;
-    }
+  #air-cleaner-list {
+    margin-top: 160px;
+  }
 
-    #air-cleaner-recommendations-page-center {
-        width: 80%;
-    }
+  #air-cleaner-recommendations-page-center {
+    width: 80%;
+  }
 
-    #air-cleaner-recommendations-title {
-        width: auto;
-        top: 0px;
-        text-align: center;
-        font-size: 23px;
-    }
+  #air-cleaner-recommendations-title {
+    width: auto;
+    top: 0px;
+    text-align: center;
+    font-size: 23px;
+  }
 
-    #back-button {
-        font-size: 15px;
-        padding: 15px;
-        left: 10px;
-    }
+  #back-button {
+    font-size: 15px;
+    padding: 15px;
+    left: 10px;
+  }
 }
 
 @media (max-width: 478px) {
-    #sort-key-choice-container {
-        top: 90px;
-    }
+  #sort-key-choice-container {
+    top: 90px;
+  }
 }
 
 @media (max-width: 405px) {
-    #sort-key-choice-container {
-        top: 105px;
-    }
+  #sort-key-choice-container {
+    top: 105px;
+  }
 
-    #air-cleaner-list {
-        margin-top: 180px;
-    }
+  #air-cleaner-list {
+    margin-top: 180px;
+  }
 }
 
 @media (max-width: 350px) {
-    #air-cleaner-recommendations-page-center-container {
-        justify-content: unset;
-    }
+  #air-cleaner-recommendations-page-center-container {
+    justify-content: unset;
+  }
 
-    #air-cleaner-recommendations-page-center {
-        margin-left: 10px;
-        width: 200px;
-    }
+  #air-cleaner-recommendations-page-center {
+    margin-left: 10px;
+    width: 200px;
+  }
 }

@@ -3,7 +3,7 @@ import commerceLogo from '../images/commerce_about_logo.png'
 import airCleaner from '../images/aircleaner_animated.png'
 import featureEfficiency from '../images/about_efficiency.png'
 import featureFinding from '../images/about_finding.png'
-import demoVideo from '../videos/MVP_demo.mp4'
+import demoVideo from '../videos/Presentation.mp4'
 import './About.css'
 
 export function About() {
@@ -18,11 +18,11 @@ export function About() {
             <div className="about-submodule-container" id="about-product-container">
                 <div className="about-text-container" id="product-text-container">
                     <h2>Why our product and why you should care</h2>
-                    <p>Air quality is absolutely paramount in keeping yourself and your employees safe, especially for small businesses who function 
-                        mostly indoor. Because it’s hard to practice social distancing in a closed and pack environment, air cleaner is one of the best 
-                        ways of keeping everyone in your business safe. <br /><br />PACC is a web application based on an existing excel tool to help users get 
-                        the affordable air cleaner they need to sustain their businesses. Through PACC, we wish to lessen the burden of small businesses 
-                        purchasing an air cleaner by providing them with an intuitive, clean, and multilingual website with beautiful and simplistic design. </p>
+                    <p>Air quality is absolutely paramount in keeping yourself and your employees safe, especially for small businesses that function mostly indoors. 
+                        As it’s hard to practice social distancing in a closed and packed environment, air cleaner is one of the best ways of keeping everyone in your 
+                        business safe. <br /><br />PACC is a web application based on an existing excel tool to help users get the affordable air cleaner they need to sustain their 
+                        businesses. Through PACC, we wish to lessen the burden of small businesses purchasing an air cleaner by providing them with an intuitive, clean, 
+                        and multilingual website with beautiful and simplistic design.</p>
                 </div>
                 <img src={airCleaner} alt="Portable Air Cleaner Animated" id="img-cleaner" />
             </div>
@@ -39,11 +39,11 @@ export function About() {
                 </div>
                 <div className="features-module-container">
                     <div className="features-text-container">
-                        <h3>Finding Air Cleaner</h3>
+                        <h3>Air cleaner recommendations</h3>
                         <p>Air cleaner calculator lets you find a perfect air cleaner for your establishment. Just put in your establishment’s room dimension, 
                             ventilation rating, and occupant density and it will give you a catalog with plenty of air cleaners to choose from.</p>
                     </div>
-                    <img className="features-img" src={featureFinding} alt="Image of Finding Air Cleaner List" />
+                    <img className="features-img" src={featureFinding} alt="Finding Air Cleaner List" />
                 </div>
             </div>
             <div id="about-features-anglerect"></div>
@@ -76,7 +76,7 @@ export function About() {
                          If you have any questions, feel free to contact Restart partner at info@restart.us.</p>
                 </div>
                 {/* kinda hacky but makes it work with flexbox */}
-                <img src={commerceLogo} id="img-blank" />
+                <img src={commerceLogo} id="img-blank" alt="Commerce Logo"/>
             </div>
         </div>
     )
