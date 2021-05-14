@@ -10,6 +10,8 @@ export function AirCleanerList(props) {
     <AirCleanerListItem key={item.name} id={index} airCleaner={item} detailsClick={props.detailsClick} />
     );
     const minACHLevelToRecommend = 5;
+    const maxFloorAreaSquareFeet = 4000;
+    const maxFloorAreaSquareMeters = 370;
 
     useEffect(() => {
         function getOutdoorVentilation() {
@@ -23,32 +25,39 @@ export function AirCleanerList(props) {
             }
             return outdoorVentilation;
         }
-        
-        function addAdditionalAttributesToAirCleaner(airCleaner) {
-            let outdoorVentilation = getOutdoorVentilation();
-            let ach;
-            if (props.roomInfo.units === 'feet') {
-                ach = (airCleaner.cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) + outdoorVentilation;
-            } else {
-                ach = (airCleaner.cadr / 0.58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight) + outdoorVentilation;
-            }
 
-            airCleaner.achFromOneAirCleaner = Math.round(ach * 100) / 100.0;
+        function getAchFromAirCleaner(cadr) {
+            if (props.roomInfo.units === 'feet') {
+                return ((cadr * 60) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight));
+            } else {
+                return ((cadr / 0.58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight));
+            }
+        }
+        
+        // Adds (as properties/attributes) the outdoor ventilation level of the room the air cleaner is in, how many
+        // air cleaners of this type are needed to properly ventilate the room, and the price of the number of air
+        // cleaners needed to the air cleaner passed as a parameter.
+        function addAdditionalPropertiesToAirCleaner(airCleaner) {
+            let achFromAirCleaners = getAchFromAirCleaner(airCleaner.cadr);
+            let outdoorVentilation = getOutdoorVentilation();
+
+            airCleaner.achFromOneAirCleaner = achFromAirCleaners;
             let numAirCleaners = 1;
-            if (ach < minACHLevelToRecommend) {
+            if (achFromAirCleaners + outdoorVentilation < minACHLevelToRecommend) {
                 for (let i = 1; i < props.filterOptions.maxNumAirCleaners; i++) {
-                        ach += airCleaner.achFromOneAirCleaner;
+                        achFromAirCleaners += airCleaner.achFromOneAirCleaner;
                         numAirCleaners++;
                 
-                        if (ach >= minACHLevelToRecommend) {
+                        if (achFromAirCleaners + outdoorVentilation >= minACHLevelToRecommend) {
                             break;
                         }
                 }
             }
 
-            airCleaner.ach = Math.round(ach * 100) / 100.0;
+            airCleaner.ach = Math.round((achFromAirCleaners + outdoorVentilation) * 100) / 100.0 ;
             airCleaner.numAirCleaners = numAirCleaners;
             airCleaner.price = Math.round(airCleaner.priceOfOneAirCleaner * numAirCleaners * 100) / 100.0;
+            airCleaner.outdoorVentilation = outdoorVentilation;
         }
 
         function filterAirCleaners(airCleaners) {
@@ -86,9 +95,15 @@ export function AirCleanerList(props) {
             });
         }
 
+        if ((props.roomInfo.units === 'feet' && props.roomInfo.floorArea > maxFloorAreaSquareFeet) || 
+            (props.roomInfo.units === 'meters' && props.roomInfo.floorArea > maxFloorAreaSquareMeters)) {
+            setRecommendedAirCleaners([]);
+            return;
+        }
+
         let airCleaners = props.airCleaners;
         airCleaners.forEach((airCleaner) => {
-            addAdditionalAttributesToAirCleaner(airCleaner)
+            addAdditionalPropertiesToAirCleaner(airCleaner)
         });
 
         let filteredUnsortedAirCleaners = filterAirCleaners(airCleaners);
@@ -101,7 +116,7 @@ export function AirCleanerList(props) {
         <div id='air-cleaner-list'>
             {airCleanerComponents.length > 0 ? airCleanerComponents :
                 <div id='no-air-cleaners-found-message-container'>
-                    <p>Sorry, but there were no portable air cleaners found. You may be using filtering options that are too specific, or your space may be too large to be properly ventilated with the portable air cleaners we are recommending.</p>
+                    <p>Sorry, but there were no portable air cleaners found. You may be using filtering options that are too specific, or your space may be too large to be properly ventilated with the portable air cleaners we are recommending (the maximum floor area for which we recommend air cleaners is 4000 square feet).</p>
                 </div>
             }
         </div>

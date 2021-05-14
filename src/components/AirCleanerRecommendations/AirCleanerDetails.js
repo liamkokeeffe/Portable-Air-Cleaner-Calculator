@@ -19,7 +19,7 @@ export function AirCleanerDetails(props) {
 
     function updateACHValueColor(ach) {
         const idealACH = 6;
-        if (ach < 4) {
+        if (ach < 5) {
             document.querySelector('.color-coded-ach-level').style.color = d3.interpolate('red', 'greenyellow')(ach / idealACH);
         } else if (ach < 8) {
             document.querySelector('.color-coded-ach-level').style.color = d3.interpolate('greenyellow', 'green')(ach / idealACH);
@@ -70,7 +70,8 @@ export function AirCleanerDetails(props) {
                                 return;
                             }
                             setChangeableNumAirCleaners(e.target.value);
-                            setAchBasedOnSelectedNumAirCleaners(props.airCleaner.achFromOneAirCleaner * e.target.value);
+                            setAchBasedOnSelectedNumAirCleaners(props.airCleaner.achFromOneAirCleaner * e.target.value
+                                + props.airCleaner.outdoorVentilation);
                             setPriceBasedOnSelectedNumAirCleaners(props.airCleaner.priceOfOneAirCleaner * e.target.value);
                             updateACHValueColor(props.airCleaner.achFromOneAirCleaner * e.target.value);
                         }} defaultValue={props.airCleaner.numAirCleaners} type='number'/>
@@ -83,7 +84,7 @@ export function AirCleanerDetails(props) {
                     <p><strong>{priceLabel}</strong>${priceBasedOnSelectedNumAirCleaners}</p>
                     <p><strong>{noiseLabel}</strong> {props.airCleaner.noise === -1 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
                     <p><strong>{powerLabel}</strong> {props.airCleaner.power === -1 ? 'Not available' : props.airCleaner.power + ' W'}</p>
-                    <p><strong>{cadrLabel}</strong> {props.airCleaner.cadr} meters<sup>3</sup>/minute</p>
+                    <p><strong>{cadrLabel}</strong> {props.airCleaner.cadr} feet<sup>3</sup>/minute</p>
                     <p><strong>{sizeLabel}</strong> {props.airCleaner.size === '' ? 'Not available' : sizeWithInchMarks(props.airCleaner.size)}</p>
                     <p><strong>{maxRoomSizeLabel}</strong> {props.airCleaner.maxRoomSize === -1 ? 'Not available' : props.airCleaner.maxRoomSize + ' square feet'}</p>
                     </div>

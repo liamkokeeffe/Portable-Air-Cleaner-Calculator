@@ -22,8 +22,8 @@ export function RoomDensityInput(props) {
             <p className="helptext">Occupant density determines the optimal amount of people that should be in your room for clean air</p>
             <div className="step-wrapper">
                 <div className="input-wrapper">
-                    <label htmlFor="roomtype-selection" className="input-title">Room Type</label>
-                    <select id="density-input" className="user-input" value={roomType} onChange={(e) => { 
+                    <label htmlFor="room-type-selection" className="input-title">Room Type</label>
+                    <select id="room-type-selection" className="user-input" value={roomType} onChange={(e) => { 
                         setRoomType(e.target.value)
                         props.updateRoomType(e.target.value);
                     }}>
@@ -33,8 +33,8 @@ export function RoomDensityInput(props) {
                         <option value="common-area">{'Lobby, Hallway, Common Area'}</option>
                         <option value="library">{'Library'}</option>
                     </select>
-                    <label htmlFor="space-selection" className="input-title">Usable Space</label>
-                    <select id="density-input" className="user-input" value={usableSpace} onChange={(e) => {
+                    <label htmlFor="usable-space-selection" className="input-title">Usable Space</label>
+                    <select id="usable-space-selection" className="user-input" value={usableSpace} onChange={(e) => {
                         setUsableSpace(parseFloat(e.target.value));
                         props.updateUsableSpace(parseFloat(e.target.value));
                     }}>
@@ -51,7 +51,7 @@ export function RoomDensityInput(props) {
                         <option value="100">100%</option>
                     </select>
                     <label htmlFor="average-occupancy" className="input-title">Average Number of <br />People in Room</label>
-                    <input id="density-input" className="user-input" onChange={(e) => {
+                    <input id="average-occupancy" className="user-input" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setAveOccupancy(parseFloat(value));
@@ -59,7 +59,7 @@ export function RoomDensityInput(props) {
                         }
                     }} value={isNaN(aveOccupancy) ? '' : aveOccupancy} />
                     <label htmlFor="maximum-occupancy" className="input-title">Maximum Occupancy</label>
-                    <input className="user-input" onChange={(e) => {
+                    <input id="maximum-occupancy" className="user-input" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setMaxOccupancy(parseFloat(value));

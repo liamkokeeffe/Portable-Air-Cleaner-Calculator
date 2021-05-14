@@ -74,7 +74,6 @@ export function RoomSizeRec(props) {
         let totalCFM = 0;
         if (props.roomInfo.units === "feet") {
             totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.airCleanerInfo.cadr);
-            console.log(totalCFM)
             return Math.round((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
         } else {
             totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * props.roomInfo.floorArea * props.roomInfo.ceilingHeight * 35.3147) / 60) + parseFloat(props.airCleanerInfo.cadr);
@@ -102,7 +101,7 @@ export function RoomSizeRec(props) {
 
     function getACHText(ach) {
         if (ach > 6) {
-            return "Your room is meeting an Ideal level of Air Changes per hour! If you'd still like to see a list of portable air cleaners fit for your room please click the button below."
+            return "Your room is meeting an Ideal level of Air Changes per hour! If you'd still like to see a list of portable air cleaners fit for your room, please click the button below."
         }
         return "Your room is currently not meeting an Ideal level of Air Changes per hour. If you'd like to see a list of our recommended air cleaners for your room, please click the button below."
     }

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Calculator } from './Calculator/Calculator.js';
 import {RoomSizeRec} from './RoomSizeRec/RoomSizeRec.js';
 import {AirCleanerRecommendations} from './AirCleanerRecommendations/AirCleanerRecommendations.js';
-import { LandingPage } from './LandingPage/LandingPage.js';
 import './CalculatorManager.css';
 
 import data from '../air_cleaner_list.csv';
@@ -21,16 +20,16 @@ export function CalculatorManager(props) {
         maxOccupancy : 0,
         aveOccupancy : 0
     };
-
     let airCleanerInfoInit = {
         modelName : '',
         cadr : 0
     };
+    const hideComponentPrefix = 'hidden_';
 
     const [roomInfo, setRoomInfo] = useState(roomInfoInit);
     const [airCleanerInfo, setAirCleanerInfo] = useState(airCleanerInfoInit);
     const [resultType, setResultType] = useState(null);
-    const [calculatorType, setCalculatorType] = useState(props.location.state === undefined ? null : props.location.state.type);
+    const [calculatorType, setCalculatorType] = useState(props.location.state === undefined ? null : props.location.state.calculatorType);
     // props.airCleaners will always be undefined in production, but this allows us to pass in specific air cleaners for testing.
     const [airCleaners, setAirCleaners] = useState(props.airCleaners === undefined ? null : props.airCleaners);
 
@@ -58,7 +57,7 @@ export function CalculatorManager(props) {
 
     function showResults(type) {
         setResultType(type);
-        setCalculatorType('hidden_' + calculatorType);
+        setCalculatorType(hideComponentPrefix + calculatorType);
     }
     
     function unitSelectionMade(unitType) {
@@ -138,13 +137,11 @@ export function CalculatorManager(props) {
 
     function backToCalculator() {
         setResultType(null);
-        console.log(calculatorType.substring(7))
-        setCalculatorType(calculatorType.substring(7));
+        setCalculatorType(calculatorType.substring(hideComponentPrefix.length));
     }
 
     return (
         <div>
-            {/* {calculatorType === null && resultType === null && <LandingPage setCalculatorType={setCalculatorType}/>} */}
             {(calculatorType === 'find' || (airCleaners !== null && calculatorType === 'test')) && 
                 <Calculator calculatorType={calculatorType} roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} unitSelectionMade={unitSelectionMade}
                 roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered}

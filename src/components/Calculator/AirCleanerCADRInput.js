@@ -33,14 +33,14 @@ export function AirCleanerCADRInput(props) {
             <p className="helptext">If you are unsure of your cleaner’s model name, then input the CADR value of your air cleaner. It is commonly listed at the bottom of the air cleaner on the specifications sticker.</p>
             <div className="step-wrapper">
                 <div className="input-wrapper">
-                    <label htmlFor="cleaner-selection" className="input-title">Air Cleaner Model Name</label>
-                    <select className="user-input" id="cadr-input" onChange={(e) => {
+                    <label htmlFor="air-cleaner-selection" className="input-title">Air Cleaner Model Name</label>
+                    <select className="user-input" id="air-cleaner-selection" onChange={(e) => {
                             setCadr(e.target.value);
                             props.updateModelName(e.target.selectedOptions[0].label, e.target.value);
                     }}>
                         {createSelectItems(props.airCleaners)}
                     </select>
-                    <label htmlFor="cadr-selection" className="input-title">CADR of Air Cleaner</label>
+                    <label htmlFor="cadr-input" className="input-title">CADR of Air Cleaner</label>
                     <input className="user-input" id="cadr-input" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {

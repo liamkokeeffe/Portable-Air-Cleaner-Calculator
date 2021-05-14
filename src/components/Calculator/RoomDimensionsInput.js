@@ -1,7 +1,7 @@
 import './Calculator.css';
 import { useState } from "react";
-import roomDimPic from '../../images/roomdim-img.png'
-import React from "react"
+import roomDimPic from '../../images/roomdim-img.png';
+import React from "react";
 
 export function RoomDimensionsInput(props) {
     const [roomWidth, _setRoomWidth] = useState(props.roomInfo.roomWidth === 0 ? "" : props.roomInfo.roomWidth);
@@ -31,14 +31,6 @@ export function RoomDimensionsInput(props) {
         _setUnits(data);
     }
 
-    function checkIfNumber(value) {
-        const re = /^[0-9\b]+$/
-        if (value === '' || re.test(value)) { 
-            return true;
-        }
-        return false;
-    }
-
     function calculateFloorArea() {
         if (roomWidthRef.current !== 0 && roomLengthRef.current !== 0) {    
             setFloorArea(roomWidthRef.current * roomLengthRef.current);
@@ -51,7 +43,7 @@ export function RoomDimensionsInput(props) {
     return (
         <div className="step-wrapper">
             <div className="input-wrapper">
-                <label htmlFor="unit-selection-dropdown" className="input-title">Units</label>
+                <label htmlFor="unit-input" className="input-title">Units</label>
                 <select id="unit-input" className="user-input" onChange={(e) => {
                     setUnits(e.target.value);
                     props.unitSelectionMade(e.target.value)
@@ -61,50 +53,46 @@ export function RoomDimensionsInput(props) {
                 </select>
                 <label htmlFor="room-width-input" className="input-title">Room Width</label>
                 <div className="input-line-wrapper">
-                    <input className="user-input" onChange={(e) => {
+                    <input id="room-width-input" className="user-input" onChange={(e) => {
                         let value = e.target.value;
-                        if (checkIfNumber(value)) {
-                            setRoomWidth(value);
-                            if (!calculateFloorArea()) {
-                                props.roomWidthEntered(parseFloat(value))
-                            }
+                        setRoomWidth(value);
+                        if (!calculateFloorArea()) {
+                            props.roomWidthEntered(parseFloat(value))
                         }
-                    }} value={roomWidth} />
+                        
+                    }} value={roomWidth} type="number" />
                     <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}</p>
                 </div>
                 <label htmlFor="room-length-input" className="input-title">Room Length</label>
                 <div className="input-line-wrapper">
-                    <input className="user-input" onChange={(e) => {
+                    <input id="room-length-input" className="user-input" onChange={(e) => {
                         let value = e.target.value;
-                        if (checkIfNumber(value)) {
-                            setRoomLength(value);
-                            if (!calculateFloorArea()) {
-                                props.roomLengthEntered(parseFloat(value));
-                            }
+                        setRoomLength(value);
+                        if (!calculateFloorArea()) {
+                            props.roomLengthEntered(parseFloat(value));
                         }
-                    }} value={roomLength} />
+                        
+                    }} value={roomLength} type="number" />
                     <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}</p>
                 </div>
                 <label htmlFor="floor-area-input" className="input-title">Floor Area</label>
                 <div className="input-line-wrapper">
-                    <input className="user-input" onChange={(e) => {
+                    <input id="floor-area-input" className="user-input" onChange={(e) => {
                         let value = e.target.value;
-                        if (checkIfNumber(value)) {
-                            setFloorArea(value);
-                            props.floorAreaEntered(parseFloat(value));
-                        }
-                    }} value={floorArea} />
+                        setFloorArea(value);
+                        props.floorAreaEntered(parseFloat(value));
+                        
+                    }} value={floorArea} type="number" />
                     <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}<sup>2</sup></p>
                 </div>
                 <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height</label>
                 <div className="input-line-wrapper">
-                    <input className="user-input" onChange={(e) => { 
+                    <input id="ceiling-height-input" className="user-input" onChange={(e) => { 
                         let value = e.target.value;
-                        if (checkIfNumber(value)) {
-                            setCeilingHeight(value);
-                            props.ceilingHeightEntered(parseFloat(value));
-                        }
-                        }} value={ceilingHeight} />
+                        setCeilingHeight(value);
+                        props.ceilingHeightEntered(parseFloat(value));
+                        
+                        }} value={ceilingHeight} type="number" />
                     <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}</p>
                 </div>
             </div>
