@@ -51,7 +51,8 @@ export function Calculator(props) {
             </div>}
             <h3 className="step-title"> {props.calculatorType === "find" ? "Step 3: Occupant Density" : "Step 4: Occupant Density"}</h3>
             <div>
-                <RoomDensityInput updateRoomType={props.updateRoomType} updateUsableSpace={props.updateUsableSpace} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} roomInfo={props.roomInfo}/>
+                <RoomDensityInput updateRoomType={props.updateRoomType} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} 
+                updateCurrOccupancy={props.updateCurrOccupancy} updateCurrPhase={props.updateCurrPhase} roomInfo={props.roomInfo}/>
             </div>
             <div id="button-wrapper">
                 <button id="results-btn" onClick={() => showResults()}>VIEW RESULTS</button>

@@ -26,13 +26,6 @@ export function RoomSizeRec(props) {
         }
     }
 
-    const roomTypeToPersonUsableSpace = {
-        "eating-drinking" : 40,
-        "gym" : 50,
-        "library" : 50,
-        "common-area" : 40
-    }
-
     function getACH() {
         if (props.roomInfo.units === "feet") {
             return (Math.round((props.airCleanerInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
@@ -74,30 +67,11 @@ export function RoomSizeRec(props) {
         let totalCFM = 0;
         if (props.roomInfo.units === "feet") {
             totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.airCleanerInfo.cadr);
-            console.log(totalCFM)
             return Math.round((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
         } else {
             totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * props.roomInfo.floorArea * props.roomInfo.ceilingHeight * 35.3147) / 60) + parseFloat(props.airCleanerInfo.cadr);
             return Math.round(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
         }
-    }
-
-    function getOccupancyNumber(occupancy) {
-        let recOccupancy = 0;
-        if (props.roomInfo.roomType === "" || props.roomInfo.usableSpace === 0 || props.roomInfo.aveOccupancy === 0) {
-            return "N/A"
-        }
-
-        let roomUsableSpace = props.roomInfo.floorArea * (props.roomInfo.usableSpace / 100);
-        let method1Calc = roomUsableSpace / roomTypeToPersonUsableSpace[props.roomInfo.roomType];
-        let method2Calc = 0.0;
-        if (isNaN(props.roomInfo.maxOccupancy) || props.roomInfo.maxOccupancy === 0) {
-            recOccupancy = method1Calc;
-        } else {
-            method2Calc = props.roomInfo.maxOccupancy * occupancy; 
-            recOccupancy = method1Calc < method2Calc ? method1Calc : method2Calc;
-        }
-        return Math.floor(recOccupancy) + " Persons"
     }
 
     function getACHText(ach) {
@@ -154,28 +128,37 @@ export function RoomSizeRec(props) {
                         <p className="details-title">Recommended <br />Room Area:</p>
                         <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
-                    <hr />
+                    {calculateRoomSize() > props.roomInfo.floorArea &&
+                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner and ventilation level is smaller than your current space. We recommend you purchase a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
+                    <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Ventilation Rating:</p>
                         <p className="details-value">{props.roomInfo.outdoorVentilation}</p>
                     </div>
-                    <hr />
+                    <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Model Name:</p>
                         <p className="details-value">{getModelName()}</p>
                     </div>
-                    <hr />
+                    <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Clean Air Delivery Rate:</p>
                         <p className="details-value">{props.airCleanerInfo.cadr}</p>
                     </div>
-                    <hr />
+                    <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Average Number of <br />People in Your Room:</p>
                         <p className="details-value">{props.roomInfo.aveOccupancy === 0 ? "N/A" : props.roomInfo.aveOccupancy + " Persons"}</p>
                     </div>
-                    <hr />
-                    <div id="occupancy-module">
+                    <hr className="roomsizerec-hr" />
+                    {console.log(props.roomInfo)}
+                    {props.roomInfo.recOccupancy === -1 && props.roomInfo.maxOccupancy === 0 && 
+                    <div className="details-module">
+                        <p className="details-title">Occupancy <br /> Recommendation:</p>    
+                        <p className="details-value">{"N/A"}</p>
+                    </div>}
+                    {props.roomInfo.recOccupancy === -1 && props.roomInfo.maxOccupancy !== 0 && 
+                    <div>    
                         <p className="details-title">Occupancy Recommendation:</p>
                         <table>
                             <tr>
@@ -185,14 +168,22 @@ export function RoomSizeRec(props) {
                                 <th>100% Occupancy</th>
                             </tr>
                             <tr>
-                                <td>{getOccupancyNumber(.25)}</td>
-                                <td>{getOccupancyNumber(.5)}</td>
-                                <td>{getOccupancyNumber(.75)}</td>
-                                <td>{getOccupancyNumber(1)}</td>
+                                <td>{Math.floor(props.roomInfo.maxOccupancy * .25)}</td>
+                                <td>{Math.floor(props.roomInfo.maxOccupancy * .50)}</td>
+                                <td>{Math.floor(props.roomInfo.maxOccupancy * .75)}</td>
+                                <td>{Math.floor(props.roomInfo.maxOccupancy * 1)}</td>
                             </tr>
                         </table>
-                    </div>
-                    <p id="recommendation-text"><span>Note: </span>Please refer to your current county/state phase's occupancy guidelines for the above table. Washington State's current phase can be found <a href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process" target="_blank" rel="noreferrer">here.</a> If your average number of people is greater than the value above we recommend purchasing an air cleaner with at least 6 air changes per hour for your room.</p>
+                        <p className="recommendation-text"><span>Note: </span>Please refer to your current county/state phase's occupancy guidelines for the above table. Washington State's current phase can be found <a href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process" target="_blank" rel="noreferrer">here.</a> If your average number of people is greater than the value above we recommend purchasing an air cleaner with at least 6 air changes per hour for your room.</p>
+                    </div>}
+                    {props.roomInfo.recOccupancy !== -1 &&
+                    <div className="details-module">
+                        <p className="details-title">Occupancy <br /> Recommendation:</p>    
+                        <p className="details-value">{isNaN(props.roomInfo.recOccupancy) ? "N/A" : props.roomInfo.recOccupancy + " Persons"}</p>
+                    </div>}
+                    {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
+                        <p className="recommendation-text"><span>Note: </span> Your current average occupancy appears to be greater than the recommended occupancy based on <span>{props.roomInfo.currPhase !== '' ? "Phase " + props.roomInfo.currPhase : props.roomInfo.currOccupancy + "% occcupancy"}</span> guidelines for your particular room. Please consider purchasing a stronger air cleaner using the button to the left.</p>
+                    }
                 </div>
             </div>
         </div>

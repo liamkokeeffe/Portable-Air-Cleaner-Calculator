@@ -2,6 +2,7 @@ import "./Calculator.css";
 import { useState } from "react";
 import CadrImg from '../../images/cadr_clipart.png'
 import React from "react"
+import ReactToolTip from "react-tooltip";
 
 export function AirCleanerCADRInput(props) {
 
@@ -33,15 +34,17 @@ export function AirCleanerCADRInput(props) {
             <p className="helptext">If you are unsure of your cleaner’s model name, then input the CADR value of your air cleaner. It is commonly listed at the bottom of the air cleaner on the specifications sticker.</p>
             <div className="step-wrapper">
                 <div className="input-wrapper">
-                    <label htmlFor="cleaner-selection" className="input-title">Air Cleaner Model Name</label>
-                    <select className="user-input" id="cadr-input" onChange={(e) => {
+                        <label htmlFor="cleaner-selection" className="input-title">Air Cleaner Model Name</label>
+                    <ReactToolTip id="cadr-model-tooltip" place="right" effect="solid" multiline={true}>If you are unsure of your cleaner’s model name, then input the CADR value of your air cleaner. It is commonly listed at the bottom of the air cleaner on the specifications sticker.</ReactToolTip>
+                    <select className="user-input" id="cadr-input" data-tip data-for="cadr-model-tooltip" onChange={(e) => {
                             setCadr(e.target.value);
                             props.updateModelName(e.target.selectedOptions[0].label, e.target.value);
                     }}>
                         {createSelectItems(props.airCleaners)}
                     </select>
-                    <label htmlFor="cadr-selection" className="input-title">CADR of Air Cleaner</label>
-                    <input className="user-input" id="cadr-input" onChange={(e) => {
+                    <ReactToolTip id="cadr-value-tooltip" place="right" effect="solid" multiline={true}>The clean air delivery rate (CADR) of your air cleaner can often be found on the bottom of the air cleaner. If not, an online search of the model name should return the CADR value.</ReactToolTip>
+                    <label htmlFor="cadr-selection" className="input-title">CADR of Air Cleaner <span class="required">*</span></label>
+                    <input className="user-input" id="cadr-input" data-tip data-for="cadr-value-tooltip" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setCadr(value);

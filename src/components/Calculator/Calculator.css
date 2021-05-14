@@ -49,6 +49,7 @@
   width: 250px;
   height: 50px;
   font-size: 18pt;
+  margin-bottom: 5%;
 }
 
 #img-roomdim {
@@ -113,6 +114,12 @@
   width: 300px;
 }
 
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .helptext {
   font-weight: bold;
   font-size: 19pt;
@@ -154,9 +161,38 @@ span {
   margin-bottom: 10px;
 }
 
-#density-input,
-#cadr-input {
-  margin-bottom: 18px;
+.required {
+  color: red;
+}
+
+/* Tool tip was not working with classes for some reason */
+#cadr-model-tooltip,
+#cadr-value-tooltip,
+#density-space-tooltip,
+#density-average-tooltip,
+#density-maximum-tooltip,
+#density-phase-tooltip,
+#density-occupancy-tooltip {
+  font-size: 15pt;
+  width: 20%;
+}
+
+#density-or-text {
+  text-align: center;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+#divider {
+  display: block;
+  width: 96%;
+  background-color: black;
+  height: 1px;
+  margin: 2em auto;
+}
+
+.tooltip-link {
+  color: rgb(234, 95, 20, 1);
 }
 
 @media (max-width: 920px) {
@@ -192,7 +228,7 @@ span {
   .step-wrapper {
     justify-content: center;
   }
-  
+
   #ventilation-options {
     width: 75%;
   }

@@ -3,6 +3,7 @@ import { Calculator } from './Calculator/Calculator.js';
 import { RoomSizeRec } from './RoomSizeRec/RoomSizeRec.js';
 import { AirCleanerRecommendations } from './AirCleanerRecommendations/AirCleanerRecommendations.js';
 import './CalculatorManager.css';
+import phase_data from '../phase_data.json'
 
 import data from '../air_cleaner_list.csv';
 import * as d3 from 'd3';
@@ -16,9 +17,11 @@ export function CalculatorManager(props) {
         units : 'feet',
         outdoorVentilation : 'Poor',
         roomType : '',
-        usableSpace : 0,
         maxOccupancy : 0,
-        aveOccupancy : 0
+        aveOccupancy : 0,
+        currPhase : '',
+        currOccupancy : 0,
+        recOccupancy : 0
     };
 
     let airCleanerInfoInit = {
@@ -55,7 +58,52 @@ export function CalculatorManager(props) {
         }
     });
 
+
+    function findRoomTypeData(roomType, phase) {
+        let occupancyCol = "phase" + phase + "Occupancy";
+        let maxCol = "phase" + phase + "Max";
+        let phaseData = phase_data["phase_data"];
+        for (let i = 0; i < phaseData.length; i++) {
+            console.log(phaseData[i].name)
+            if (phaseData[i].name === roomType) {
+                return [phaseData[i][occupancyCol], phaseData[i][maxCol]];
+            }
+        }
+    }
+
+    function getOccupancyNumber() {
+        let recOccupancy = 0;
+        if (roomInfo.roomType === "" || roomInfo.aveOccupancy === 0 || roomInfo.maxOccupancy === 0 || (roomInfo.currPhase === "" && roomInfo.currOccupancy === 0)) {
+            return -1;
+        }
+        if (roomInfo.currPhase !== "") {
+            let roomData;
+            if (roomInfo.currPhase === "1") {
+                roomData = findRoomTypeData(roomInfo.roomType, "1");
+            } else if (roomInfo.currPhase === "2") {
+                roomData = findRoomTypeData(roomInfo.roomType, "2");
+            } else if (roomInfo.currPhase === "3") {
+                roomData = findRoomTypeData(roomInfo.roomType, "3");
+            } else {
+                return roomInfo.maxOccupancy;
+            }
+            console.log(roomData)
+            if (roomData[1] !== undefined) {
+                let occupancyPercentCalc = (roomData[0] / 100) * roomInfo.maxOccupancy;
+                if (occupancyPercentCalc < roomData[1] ? recOccupancy = occupancyPercentCalc : recOccupancy = roomData[1]);
+            } else {
+                recOccupancy = (roomData[0] / 100) * roomInfo.maxOccupancy;
+            }
+        } else {
+            recOccupancy = (roomInfo.currOccupancy / 100) * roomInfo.maxOccupancy;
+        }
+        console.log(recOccupancy)
+        return Math.floor(recOccupancy);
+    }
+
+
     function showResults(type) {
+        updateRecOccupancy(getOccupancyNumber());
         setResultType(type);
         setCalculatorType('hidden_' + calculatorType);
     }
@@ -104,12 +152,6 @@ export function CalculatorManager(props) {
         setRoomInfo(newRoomInfo);
     }
 
-    function updateUsableSpace(usableSpace) {
-        let newRoomInfo = roomInfo;
-        newRoomInfo.usableSpace = usableSpace;
-        setRoomInfo(newRoomInfo);
-    }
-
     function updateMaxOccupancy(maxOccupancy) {
         let newRoomInfo = roomInfo;
         newRoomInfo.maxOccupancy = maxOccupancy;
@@ -119,6 +161,24 @@ export function CalculatorManager(props) {
     function updateAveOccupancy(aveOccupancy) {
         let newRoomInfo = roomInfo;
         newRoomInfo.aveOccupancy = aveOccupancy;
+        setRoomInfo(newRoomInfo);
+    }
+
+    function updateCurrPhase(currPhase) {
+        let newRoomInfo = roomInfo;
+        newRoomInfo.currPhase = currPhase;
+        setRoomInfo(newRoomInfo);
+    }
+
+    function updateCurrOccupancy(currOccupancy) {
+        let newRoomInfo = roomInfo;
+        newRoomInfo.currOccupancy = currOccupancy;
+        setRoomInfo(newRoomInfo);
+    }
+
+    function updateRecOccupancy(recOccupancy) {
+        let newRoomInfo = roomInfo;
+        newRoomInfo.recOccupancy = recOccupancy;
         setRoomInfo(newRoomInfo);
     }
 
@@ -147,7 +207,7 @@ export function CalculatorManager(props) {
                 <Calculator calculatorType={calculatorType} roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} unitSelectionMade={unitSelectionMade}
                 roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered}
                  updateCADR={updateCADR} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} updateRoomType={updateRoomType} 
-                 updateUsableSpace={updateUsableSpace} updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} 
+                 updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} updateCurrPhase={updateCurrPhase} updateCurrOccupancy={updateCurrOccupancy}
                  updateModelName={updateModelName} airCleaners={airCleaners}/>}
             {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
             {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} showResults={showResults} backToCalculator={backToCalculator} />}
