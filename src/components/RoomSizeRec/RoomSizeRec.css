@@ -47,7 +47,7 @@
 }
 
 #gauge-chart {
-  height: 200;
+  /* height: 200; */
 }
 
 #gauge-chart-description,
@@ -115,7 +115,7 @@
 
 .recommendation-text {
   font-size: 13pt;
-  margin-top: -2%;
+  margin-top: 1%;
 }
 
 #list-btn-text {
@@ -134,12 +134,22 @@ td {
 th,
 td {
   padding: 10px;
-  font-size: 14pt;
+  font-size: 10pt;
 }
 
 @media (max-width: 1180px) {
-  #roomsizerec-content {
+  #roomsizerec-content,
+  #roomsizerec-header {
     flex-direction: column;
+  }
+
+  #roomsizerec-details,
+  #roomsizerec-gauge {
+    width: 80%;
+  }
+
+  #roomsizerec-title {
+    margin-left: 0;
   }
 
   .details-title,
@@ -150,15 +160,31 @@ td {
   .details-value {
     margin-left: 2%;
   }
+
+  th,
+  td {
+    padding: 10px;
+    font-size: 12pt;
+  }
 }
 
 @media (max-width: 430px) {
+  #calculator-wrapper {
+    width: 90%;
+    margin: auto;
+  }
+
   #roomsizerec-header {
     flex-direction: column;
   }
 
   #roomsizerec-title {
     margin: 50px 10px auto;
+    font-size: 22pt;
+  }
+
+  #btn-back {
+    margin-right: 75%;
   }
 
   #btn-back {
@@ -180,15 +206,45 @@ td {
   }
 
   #gauge-result-message {
-    font-size: 20pt;
+    font-size: 18pt;
   }
 
   #roomsizerec-container h2 {
     font-size: 20pt;
   }
 
-  #roomsizerec-details {
-    width: fit-content;
+  #roomsizerec-details,
+  #roomsizerec-guage {
+    width: 100%;
     margin-bottom: 20px;
+  }
+
+  #gauge-chart-description {
+    font-size: 18pt;
+    line-height: 30px;
+  }
+
+  #gauge-footer {
+    font-size: 16pt;
+  }
+
+  #list-btn-text {
+    font-size: 13pt;
+  }
+
+  #roomsizerec-content {
+    width: 90%;
+    margin: auto;
+  }
+
+  .recommendation-text {
+    font-size: 12pt;
+    width: 100%;
+  }
+
+  th,
+  td {
+    /* padding: 10px; */
+    font-size: 7pt;
   }
 }

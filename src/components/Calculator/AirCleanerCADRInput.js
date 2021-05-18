@@ -6,7 +6,9 @@ import ReactToolTip from "react-tooltip";
 
 export function AirCleanerCADRInput(props) {
 
-    const [cadr, setCadr] = useState(props.cadr === 0 ? "" : props.cadr);
+    const [cadr, setCadr] = useState(props.airCleanerInfo.cadr === 0 ? "" : props.airCleanerInfo.cadr);
+    const [modelName, setModelName] = useState(props.airCleanerInfo.modelName === "" ? "" : props.airCleanerInfo.modelName);
+    const [numOwned, setNumOwned] = useState(props.airCleanerInfo.numOwned === 0 ? "" : props.airCleanerInfo.numOwned)
 
     function createSelectItems(airCleaners) {
         let items = [];  
@@ -37,6 +39,7 @@ export function AirCleanerCADRInput(props) {
                         <label htmlFor="air-cleaner-selection" className="input-title">Air Cleaner Model Name</label>
                     <ReactToolTip id="cadr-model-tooltip" place="right" effect="solid" multiline={true}>If you are unsure of your cleaner’s model name, then input the CADR value of your air cleaner. It is commonly listed at the bottom of the air cleaner on the specifications sticker.</ReactToolTip>
                     <select className="user-input" id="air-cleaner-selection" data-tip data-for="cadr-model-tooltip" onChange={(e) => {
+                            setModelName(e.target.selectedOptions[0].label);
                             setCadr(e.target.value);
                             props.updateModelName(e.target.selectedOptions[0].label, e.target.value);
                     }}>
@@ -52,6 +55,14 @@ export function AirCleanerCADRInput(props) {
                         }
                     }} value={cadr} />
                     <p className="error-message" id="error-cadr">Please enter a CADR value.</p>
+                    <label htmlFor="num-aircleaners" className="input-title">Number of these Air Cleaners</label>
+                    <input className="user-input" id="num-aircleaners" onChange={(e) => {
+                        let value = e.target.value;
+                        if (checkIfNumber(value)) {
+                            setNumOwned(value)
+                            props.updateNumOwned(value);
+                        }
+                    }} value={numOwned} type="number" />
                 </div>
                 <img src={CadrImg} alt="Clean Air Delivery Rate Clipart" id="img-cadr" />
             </div>

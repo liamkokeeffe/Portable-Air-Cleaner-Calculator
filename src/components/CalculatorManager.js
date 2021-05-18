@@ -25,7 +25,8 @@ export function CalculatorManager(props) {
     };
     let airCleanerInfoInit = {
         modelName : '',
-        cadr : 0
+        cadr : 0,
+        numOwned : 1
     };
     const hideComponentPrefix = 'hidden_';
 
@@ -194,6 +195,12 @@ export function CalculatorManager(props) {
         setAirCleanerInfo(newAirCleanerInfo);
     }
 
+    function updateNumOwned(num) {
+        let newAirCleanerInfo = airCleanerInfo;
+        newAirCleanerInfo.numOwned = num;
+        setAirCleanerInfo(newAirCleanerInfo);
+    }
+
     function backToCalculator() {
         setResultType(null);
         if (calculatorType.substring(7) === "hidden_test") {
@@ -210,7 +217,7 @@ export function CalculatorManager(props) {
                 roomWidthEntered={roomWidthEntered} roomLengthEntered={roomLengthEntered} floorAreaEntered={floorAreaEntered} ceilingHeightEntered={ceilingHeightEntered}
                  updateCADR={updateCADR} onShowResult={showResults} updateOutdoorVentilation={updateOutdoorVentilation} updateRoomType={updateRoomType} 
                  updateMaxOccupancy={updateMaxOccupancy} updateAveOccupancy={updateAveOccupancy} updateCurrPhase={updateCurrPhase} updateCurrOccupancy={updateCurrOccupancy}
-                 updateModelName={updateModelName} airCleaners={airCleaners}/>}
+                 updateModelName={updateModelName} updateNumOwned={updateNumOwned} airCleaners={airCleaners}/>}
             {resultType === 'find' && airCleaners !== null && <AirCleanerRecommendations roomInfo={roomInfo} setCalculatorType={setCalculatorType} backToCalculator={backToCalculator} airCleaners={airCleaners}/>}
             {resultType === 'test' && <RoomSizeRec roomInfo={roomInfo} airCleanerInfo={airCleanerInfo} showResults={showResults} backToCalculator={backToCalculator} />}
         </div>
