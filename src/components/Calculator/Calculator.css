@@ -7,7 +7,7 @@
   font-size: 45pt;
   font-style: normal;
   font-weight: bold;
-  color: #555555;
+  color: #00a2c7;
   text-align: center;
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -72,7 +72,9 @@
   width: 50%;
 }
 
-#cadr-input {
+#cadr-input,
+#air-cleaner-selection,
+#num-aircleaners {
   width: 325px;
 }
 
@@ -238,6 +240,21 @@ span {
   #ventilation-options {
     width: 75%;
   }
+
+  .helptext {
+    width: 75%;
+  }
+
+  #results-btn {
+    right: unset;
+  }
+
+  #button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 20px 0;
+  }
 }
 
 @media (max-width: 420px) {
@@ -251,19 +268,22 @@ span {
     padding-right: 10px;
   }
 
+  .input-title {
+    font-size: 14pt;
+  }
+
   .user-input {
-    width: 200px;
+    width: 90%;
     height: 40px;
     font-size: 15pt;
   }
 
   .step-wrapper {
     flex-direction: column;
-    align-items: center;
   }
 
   .input-wrapper {
-    width: 75%;
+    width: 60%;
   }
 
   .help-text {
@@ -287,5 +307,21 @@ span {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  .helptext {
+    font-size: 12pt;
+    margin: 10px auto;
+    width: 75%;
+  }
+
+  #cadr-input,
+  #air-cleaner-selection,
+  #num-aircleaners {
+    width: 90%;
+  }
+
+  .radio-help-text {
+    font-size: 12pt;
   }
 }

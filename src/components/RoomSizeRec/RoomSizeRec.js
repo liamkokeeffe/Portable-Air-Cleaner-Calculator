@@ -3,7 +3,7 @@ import GaugeChart from 'react-gauge-chart';
 
 export function RoomSizeRec(props) {
 
-    document.body.style.background = "rgba(234, 95, 20, 0.25)";
+    document.body.style.background = "white";
 
     const ventilationToACH = {
         'Poor' : 1,
@@ -28,9 +28,9 @@ export function RoomSizeRec(props) {
 
     function getACH() {
         if (props.roomInfo.units === "feet") {
-            return (Math.round((props.airCleanerInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
+            return (((Math.round((props.airCleanerInfo.cadr * 60 / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10)) * props.airCleanerInfo.numOwned) + ventilationToACH[props.roomInfo.outdoorVentilation]
         } else {
-            return (Math.round(((props.airCleanerInfo.cadr / .58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10) + ventilationToACH[props.roomInfo.outdoorVentilation]
+            return (((Math.round(((props.airCleanerInfo.cadr / .58) / (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) * 10) / 10)) * props.airCleanerInfo.numOwned) + ventilationToACH[props.roomInfo.outdoorVentilation]
         }
     }
 
@@ -88,10 +88,19 @@ export function RoomSizeRec(props) {
         return props.airCleanerInfo.modelName;
     }
 
+    function getChartWidth() {
+        console.log(window.innerWidth)
+        if (window.innerWidth < 700) {
+            return 90;
+        } else {
+            return 150;
+        }
+    }
+
     const chartStyle = {
-        height: 375,
-        width: 800
-      }
+        height : getChartWidth()
+        // height : 90
+    }
 
     return (
         <div id="roomsizerec-container">
@@ -104,15 +113,17 @@ export function RoomSizeRec(props) {
             <div id="roomsizerec-content">
                 <div id="roomsizerec-gauge">
                     <h3 id="gauge-chart-description">Is your room meeting the recommended guidelines?</h3>
-                    <GaugeChart id="gauge-chart" 
+                    <GaugeChart id="gauge-chart" s
+                    tyle={chartStyle}
                     nrOfLevels={5}
                     colors={["#FF0D0D", "#FF8E15", "#FAB733", "#ACB334", "#69B34C"]}
                     arcPadding={0.05}
                     arcsLength={[0.20, 0.19, .19, .19, 0.20]}
                     animate={true}
                     percent={getPercent()}
-                    style={chartStyle}
                     formatTextValue={value => getACH()}
+                    textColor={"#00A2C7"}
+                    options={{ maintainAspectRatio: false }}
                     />
                     <p id="gauge-footer">Air Changes Per Hour</p>
                     <div id="gauge-result-message" style={{background: getACHColor(getACH())}}>
@@ -125,7 +136,7 @@ export function RoomSizeRec(props) {
                 </div>
                 <div id="roomsizerec-details">
                     <div className="details-module">
-                        <p className="details-title">Recommended <br />Room Area:</p>
+                        <p className="details-title">Recommended Room <br />Area (1 Air Cleaner):</p>
                         <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
                     {calculateRoomSize() < props.roomInfo.floorArea &&

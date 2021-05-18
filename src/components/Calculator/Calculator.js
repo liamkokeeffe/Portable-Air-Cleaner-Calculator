@@ -71,9 +71,7 @@ export function Calculator(props) {
             {props.calculatorType === "test" &&
             <div>
                 <h3 className="step-title">Step 3: Clean Air Delivery Rate (CADR)</h3>
-                <div>
-                    <AirCleanerCADRInput updateCADR={props.updateCADR} updateModelName={props.updateModelName} cadr={props.airCleanerInfo.cadr} airCleaners={props.airCleaners}/>
-                </div>
+                <AirCleanerCADRInput updateCADR={props.updateCADR} updateModelName={props.updateModelName} updateNumOwned={props.updateNumOwned} airCleanerInfo={props.airCleanerInfo} airCleaners={props.airCleaners}/>
             </div>}
             <h3 className="step-title"> {props.calculatorType === "find" ? "Step 3: Occupant Density" : "Step 4: Occupant Density"}</h3>
             <div>

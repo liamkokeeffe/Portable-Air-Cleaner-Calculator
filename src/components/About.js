@@ -1,5 +1,6 @@
 import teamLogo from '../images/coral_logo.png'
 import commerceLogo from '../images/commerce_about_logo.png'
+import restartLogo from '../images/restart_logo.png'
 import airCleaner from '../images/aircleaner_animated.png'
 import featureEfficiency from '../images/about_efficiency.png'
 import featureFinding from '../images/about_finding.png'
@@ -17,12 +18,12 @@ export function About() {
             </div>
             <div className="about-submodule-container" id="about-product-container">
                 <div className="about-text-container" id="product-text-container">
-                    <h2>Why our product and why you should care</h2>
+                    <h2 id="first-header">PACC helps small businesses thrive by protecting their employees and customers</h2>
                     <p>Air quality is absolutely paramount in keeping yourself and your employees safe, especially for small businesses that function mostly indoors. 
-                        As it’s hard to practice social distancing in a closed and packed environment, air cleaner is one of the best ways of keeping everyone in your 
-                        business safe. <br /><br />PACC is a web application based on an existing excel tool to help users get the affordable air cleaner they need to sustain their 
-                        businesses. Through PACC, we wish to lessen the burden of small businesses purchasing an air cleaner by providing them with an intuitive, clean, 
-                        and multilingual website with beautiful and simplistic design.</p>
+                        As it’s hard to practice social distancing in a closed and packed environment, air cleaners are one of the best ways of keeping everyone in your 
+                        business safe. <br /><br />PACC is a web application based on an existing excel tool to help users get an affordable air cleaner they need to sustain their 
+                        businesses. Through PACC, we wish to lessen the burden for small businesses of purchasing an air cleaner by providing them with an intuitive, clean, 
+                        and multilingual website with a eautiful and simplistic design.</p>
                 </div>
                 <img src={airCleaner} alt="Portable Air Cleaner Animated" id="img-cleaner" />
             </div>
@@ -31,16 +32,16 @@ export function About() {
                 <div className="features-module-container">
                     <img className="features-img" src={featureEfficiency} alt="Efficiency Results Dashboard" />
                     <div className="features-text-container">
-                        <h3>Efficiency Calculator</h3>
-                        <p>Efficiency calculator enables you to find how effective your air cleaner is at cleaning out the room. Once you put in all the necessary 
-                            information, it will show the efficiency dashboard with air changes per hour, effectiveness of the air cleaner, occupancy recommendation,
-                            and more. </p>
+                        <h3 className="features-subtitle">Efficiency Calculator</h3>
+                        <p>The Efficiency Calculator enables you to find how effective your air cleaner is at cleaning your particular room. After putting in all the necessary 
+                            information, it will show an efficiency dashboard with the air changes per hour, effectiveness of the air cleaner, occupancy recommendation,
+                            and more.</p>
                     </div>
                 </div>
                 <div className="features-module-container">
                     <div className="features-text-container">
-                        <h3>Air cleaner recommendations</h3>
-                        <p>Air cleaner calculator lets you find a perfect air cleaner for your establishment. Just put in your establishment’s room dimension, 
+                        <h3 className="features-subtitle">Air cleaner recommendations</h3>
+                        <p>Our Air Cleaner Recommendation Calculator lets you find the perfect air cleaner for your establishment. Just enter in your establishment’s room dimensions, 
                             ventilation rating, and occupant density and it will give you a catalog with plenty of air cleaners to choose from.</p>
                     </div>
                     <img className="features-img" src={featureFinding} alt="Finding Air Cleaner List" />
@@ -73,10 +74,10 @@ export function About() {
                 <div className="about-text-container" id="about-sponsor-container">
                     <h2>Project Status and Handoff</h2>
                     <p>What we have so far is nearly complete product that is missing some minor finesse such as multilingual support. We will hand off our product to Restart partner.
-                         If you have any questions, feel free to contact Restart partner at info@restart.us.</p>
+                         If you have any questions, feel free to contact Restart Partners at info@restart.us.</p>
                 </div>
                 {/* kinda hacky but makes it work with flexbox */}
-                <img src={commerceLogo} id="img-blank" alt="Commerce Logo"/>
+                <img src={restartLogo} id="img-restart-logo" alt="Restart Logo"/>
             </div>
         </div>
     )
