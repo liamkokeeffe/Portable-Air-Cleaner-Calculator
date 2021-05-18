@@ -171,6 +171,11 @@ body {
     height: 130px;
     top: -80px;
   }
+
+  #first-header {
+    margin-top: 18%;
+    font-size: 26pt;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -178,9 +183,18 @@ body {
     height: 800px;
     margin-top: -140px;
   }
+
+  #first-header {
+    margin-top: 15%;
+    font-size: 24pt;
+  }
 }
 
-@media (max-width: 965px) {
+@media (max-width: 1000px) {
+  #first-header {
+    margin-top: 10%;
+  }
+
   #img-cleaner {
     display: none;
   }
