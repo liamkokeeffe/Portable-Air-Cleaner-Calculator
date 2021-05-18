@@ -112,9 +112,28 @@ export function AirCleanerList(props) {
         setRecommendedAirCleaners(sortedAirCleaners);
     }, [props]);
 
+    // Returns true so that the boolean expression that contains the function call will continue to be evaluated after
+    // the function is called
+    function setAirCleanerListPositionWhenOccupancyDisclaimerNotShown() {
+        document.querySelector('#air-cleaner-list').className = 'air-cleaner-list-without-disclaimer';
+        return true;
+    }
+    
+    // Returns true so that the boolean expression that contains the function call will continue to be evaluated after
+    // the function is called
+    function setAirCleanerListPositionWhenOccupancyDisclaimerShown() {
+        document.querySelector('#air-cleaner-list').className = 'air-cleaner-list-with-disclaimer';
+        return true;
+    }
+
     return (
         <div id='air-cleaner-list'>
-            {airCleanerComponents.length > 0 ? airCleanerComponents :
+            {airCleanerComponents.length > 0 ? 
+                (props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy ?
+                    setAirCleanerListPositionWhenOccupancyDisclaimerShown() :
+                    setAirCleanerListPositionWhenOccupancyDisclaimerNotShown()) &&
+                    airCleanerComponents
+                :
                 <div id='no-air-cleaners-found-message-container'>
                     <p>Sorry, but there were no portable air cleaners found. You may be using filtering options that are too specific, or your space may be too large to be properly ventilated with the portable air cleaners we are recommending (the maximum floor area for which we recommend air cleaners is 4000 square feet).</p>
                 </div>

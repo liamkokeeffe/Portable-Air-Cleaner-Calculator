@@ -43,6 +43,15 @@ export function AirCleanerRecommendations(props) {
         setShouldScroll(0);
     }, [shouldScroll, windowYPosition]);
     
+    // Returns either what phase the user is in or the maximum percent occupancy for their space depending on their
+    // input in Step 3 of the calculator form.
+    function getDynamicOccupancyDisclaimerInfo() {
+        if (props.roomInfo.currPhase !== '') {
+            return "Phase " + props.roomInfo.currPhase + " ";
+        }
+        return props.roomInfo.currOccupancy + "% occupancy ";
+    }
+
     return (
         <div id='air-cleaner-recommendations-container'>
             {selectedAirCleaner === null &&
@@ -61,9 +70,14 @@ export function AirCleanerRecommendations(props) {
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                             <SortKeyChoice updateSortKey={setSortKey} />
                             {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
-                            <div id='disclaimer-message'>
-                                <p><span>Note: </span>Your current average occupancy appears to be greater than the recommended occupancy based on <span>{props.roomInfo.currPhase !== '' ? " Phase " + props.roomInfo.currPhase + " ": " " + props.roomInfo.currOccupancy + "% occcupancy "}</span> 
-                                guidelines for your particular room. You may want to prioritize choosing an air cleaner with a high ACH (air changes per hour) level or purchase more air cleaners than are recommended.</p>
+                            <div id='occupancy-disclaimer'>
+                                <p><span>Note: </span>Your space's average occupancy is greater than
+                                the recommended occupancy based on <span>{getDynamicOccupancyDisclaimerInfo()}</span> 
+                                guidelines for your space. The recommended air cleaners below are being
+                                recommended with the assumption that your room's occupancy meets current occupancy
+                                guidelines. For more information about occupancy guidelines for your type of space,
+                                click <a href='https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance'>here</a>.
+                                </p>
                             </div>
                             }
                             <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} detailsClick={detailsClick} airCleaners={props.airCleaners} />

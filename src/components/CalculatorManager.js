@@ -59,51 +59,59 @@ export function CalculatorManager(props) {
         }
     });
 
-    function findRoomTypeData(roomType, phase) {
-        let occupancyCol = "phase" + phase + "Occupancy";
-        let maxCol = "phase" + phase + "Max";
+    function requiredInputsEnteredForOccupancyRecommendation() {
+        return (roomInfo.roomType !== "" && roomInfo.aveOccupancy !== 0 && roomInfo.maxOccupancy !== 0 &&
+               (roomInfo.currPhase !== "" || roomInfo.currOccupancy !== 0));
+    }
+
+    function getMaxPercentOccupancy(roomType, phase) {
         let phaseData = phase_data["phase_data"];
         for (let i = 0; i < phaseData.length; i++) {
-            console.log(phaseData[i].name)
             if (phaseData[i].name === roomType) {
-                return [phaseData[i][occupancyCol], phaseData[i][maxCol]];
+                return phaseData[i]["phase" + phase + "Occupancy"];
             }
         }
     }
 
-    function getOccupancyNumber() {
-        let recOccupancy = 0;
-        if (roomInfo.roomType === "" || roomInfo.aveOccupancy === 0 || roomInfo.maxOccupancy === 0 || (roomInfo.currPhase === "" && roomInfo.currOccupancy === 0)) {
+    function getMaxOccupancy(roomType, phase) {
+        let phaseData = phase_data["phase_data"];
+        for (let i = 0; i < phaseData.length; i++) {
+            if (phaseData[i].name === roomType) {
+                return phaseData[i]["phase" + phase + "Max"];
+            }
+        }
+    }
+
+    function getRecommendedOccupancy() {
+        if (!requiredInputsEnteredForOccupancyRecommendation) {
             return -1;
         }
+        let recOccupancy = 0;
         if (roomInfo.currPhase !== "") {
-            let roomData;
-            if (roomInfo.currPhase === "1") {
-                roomData = findRoomTypeData(roomInfo.roomType, "1");
-            } else if (roomInfo.currPhase === "2") {
-                roomData = findRoomTypeData(roomInfo.roomType, "2");
-            } else if (roomInfo.currPhase === "3") {
-                roomData = findRoomTypeData(roomInfo.roomType, "3");
+            let maxPercentOccupancy;
+            let maxOccupancy;
+            if (roomInfo.currPhase === "1" || roomInfo.currPhase === "2" || roomInfo.currPhase === "3") {
+                maxPercentOccupancy = getMaxPercentOccupancy(roomInfo.roomType, roomInfo.currPhase);
+                maxOccupancy = getMaxOccupancy(roomInfo.roomType, roomInfo.currPhase);
             } else {
                 return roomInfo.maxOccupancy;
             }
-            console.log(roomData)
-            if (roomData[1] !== undefined) {
-                let occupancyPercentCalc = (roomData[0] / 100) * roomInfo.maxOccupancy;
-                if (occupancyPercentCalc < roomData[1] ? recOccupancy = occupancyPercentCalc : recOccupancy = roomData[1]);
+            
+            if (maxOccupancy !== undefined) { // max occupancy doesn't exist for every space type, max percent occupany does
+                let occupancyPercentCalc = (maxPercentOccupancy / 100) * roomInfo.maxOccupancy;
+                if (occupancyPercentCalc < maxOccupancy ? recOccupancy = occupancyPercentCalc : recOccupancy = maxOccupancy);
             } else {
-                recOccupancy = (roomData[0] / 100) * roomInfo.maxOccupancy;
+                recOccupancy = (maxPercentOccupancy / 100) * roomInfo.maxOccupancy;
             }
         } else {
             recOccupancy = (roomInfo.currOccupancy / 100) * roomInfo.maxOccupancy;
         }
-        console.log(recOccupancy)
         return Math.floor(recOccupancy);
     }
 
 
     function showResults(type) {
-        updateRecOccupancy(getOccupancyNumber());
+        updateRecOccupancy(getRecommendedOccupancy());
         setResultType(type);
         setCalculatorType(hideComponentPrefix + calculatorType);
     }

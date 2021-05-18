@@ -59,21 +59,26 @@
   top: 235px;
 }
 
-#air-cleaner-list {
-  margin-top: 180px;
-}
-
-#disclaimer-message {
+#occupancy-disclaimer {
   background-color: rgba(234, 95, 20, 0.75);
   position: absolute;
   top: 305px;
   padding: 10px;
 }
 
-#disclaimer-message p {
+#occupancy-disclaimer p {
   margin-block-start: 0px;
   margin-block-end: 0px;
 }
+
+.air-cleaner-list-with-disclaimer {
+  margin-top: 245px;
+}
+
+.air-cleaner-list-without-disclaimer {
+  margin-top: 100px;
+}
+
 
 @media (max-width: 1150px) {
   #air-cleaner-recommendations-page-center {
@@ -92,6 +97,18 @@
   #sort-key-choice-container {
     top: 195px;
   }
+
+  #occupancy-disclaimer {
+    top: 265px;
+  }
+  
+  .air-cleaner-list-with-disclaimer {
+    margin-top: 255px;
+  }
+  
+  .air-cleaner-list-without-disclaimer {
+    margin-top: 100px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -108,12 +125,20 @@
     height: 100px;
   }
 
-  #air-cleaner-list {
-    margin-top: 120px;
-  }
-
   #sort-key-choice-container {
     top: 165px;
+  }
+
+  #occupancy-disclaimer {
+    top: 235px;
+  }
+
+  .air-cleaner-list-with-disclaimer {
+    margin-top: 320px;
+  }
+  
+  .air-cleaner-list-without-disclaimer {
+    margin-top: 100px;
   }
 }
 
@@ -132,10 +157,6 @@
     right: auto;
   }
 
-  #air-cleaner-list {
-    margin-top: 160px;
-  }
-
   #air-cleaner-recommendations-page-center {
     width: 80%;
   }
@@ -152,6 +173,28 @@
     padding: 15px;
     left: 10px;
   }
+
+  #occupancy-disclaimer {
+    top: 160px;
+  }
+
+  #occupancy-disclaimer p {
+    font-size: 16px;
+  }
+
+  .air-cleaner-list-with-disclaimer {
+    margin-top: 365px;
+  }
+  
+  .air-cleaner-list-without-disclaimer {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 641px) {
+  .air-cleaner-list-with-disclaimer {
+    margin-top: 380px;
+  }
 }
 
 @media (max-width: 478px) {
@@ -167,6 +210,14 @@
 
   #air-cleaner-list {
     margin-top: 180px;
+  }
+
+  #occupancy-disclaimer {
+    top: 175px;
+  }
+
+  #occupancy-disclaimer p {
+    font-size: 15px;
   }
 }
 
