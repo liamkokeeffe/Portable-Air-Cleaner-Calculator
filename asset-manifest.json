@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.35217d23.chunk.css",
-    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.d2ddee04.chunk.js",
-    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.d2ddee04.chunk.js.map",
+    "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.41bd5b39.chunk.css",
+    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.98038449.chunk.js",
+    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.98038449.chunk.js.map",
     "runtime-main.js": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.af2f8985.js",
     "runtime-main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.af2f8985.js.map",
     "static/js/2.c1679f0f.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.c1679f0f.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.9a8f3406.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/3.9a8f3406.chunk.js",
     "static/js/3.9a8f3406.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/3.9a8f3406.chunk.js.map",
     "index.html": "/Portable-Air-Cleaner-Calculator/index.html",
-    "static/css/main.35217d23.chunk.css.map": "/Portable-Air-Cleaner-Calculator/static/css/main.35217d23.chunk.css.map",
+    "static/css/main.41bd5b39.chunk.css.map": "/Portable-Air-Cleaner-Calculator/static/css/main.41bd5b39.chunk.css.map",
     "static/js/2.c1679f0f.chunk.js.LICENSE.txt": "/Portable-Air-Cleaner-Calculator/static/js/2.c1679f0f.chunk.js.LICENSE.txt",
     "static/media/MVP_demo.40a3c658.mp4": "/Portable-Air-Cleaner-Calculator/static/media/MVP_demo.40a3c658.mp4",
     "static/media/Presentation.de243440.mp4": "/Portable-Air-Cleaner-Calculator/static/media/Presentation.de243440.mp4",
@@ -24,13 +24,14 @@
     "static/media/coral_logo.52aed696.png": "/Portable-Air-Cleaner-Calculator/static/media/coral_logo.52aed696.png",
     "static/media/density_clipart.28196e09.png": "/Portable-Air-Cleaner-Calculator/static/media/density_clipart.28196e09.png",
     "static/media/departmentOfCommerceLogo.c7979d81.png": "/Portable-Air-Cleaner-Calculator/static/media/departmentOfCommerceLogo.c7979d81.png",
+    "static/media/restart_logo.21df69f3.png": "/Portable-Air-Cleaner-Calculator/static/media/restart_logo.21df69f3.png",
     "static/media/various_portable_air_cleaners.d351f1a5.png": "/Portable-Air-Cleaner-Calculator/static/media/various_portable_air_cleaners.d351f1a5.png",
     "static/media/ventilation_clipart.f1764192.png": "/Portable-Air-Cleaner-Calculator/static/media/ventilation_clipart.f1764192.png"
   },
   "entrypoints": [
     "static/js/runtime-main.af2f8985.js",
     "static/js/2.c1679f0f.chunk.js",
-    "static/css/main.35217d23.chunk.css",
-    "static/js/main.d2ddee04.chunk.js"
+    "static/css/main.41bd5b39.chunk.css",
+    "static/js/main.98038449.chunk.js"
   ]
 }
