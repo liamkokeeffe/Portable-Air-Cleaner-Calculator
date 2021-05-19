@@ -4,7 +4,7 @@ import {About} from './About.js';
 import {Resources} from './Resources.js';
 import {FAQ} from './FAQ.js';
 import {Switch, Route} from 'react-router-dom';
-import { CalculatorManager } from './CalculatorManager.js';
+import { CalculatorManager } from './Calculator/CalculatorManager.js';
 
 export function Routes() {
     return (

@@ -6,11 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { HashRouter } from 'react-router-dom';
 import './i18n';
 
-window.$disclaimerClicked = false;
-
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback="Loading">
+    <Suspense fallback="Loading...">
       <HashRouter>
         <App />
       </HashRouter>

@@ -66,7 +66,7 @@ export function Calculator(props) {
             </div>
             <h3 className="step-title">Step 2: Ventilation Rating</h3>
             <div>
-                <RoomVentilationInput updateOutdoorVentilation={props.updateOutdoorVentilation} type={props.roomInfo.outdoorVentilation}/>
+                <RoomVentilationInput updateOutdoorVentilation={props.updateOutdoorVentilation} outdoorVentilation={props.roomInfo.outdoorVentilation}/>
             </div>
             {props.calculatorType === "test" &&
             <div>

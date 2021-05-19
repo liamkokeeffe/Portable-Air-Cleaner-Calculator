@@ -1,18 +1,18 @@
-import teamLogo from '../images/coral_logo.png'
-import commerceLogo from '../images/commerce_about_logo.png'
-import restartLogo from '../images/restart_logo.png'
-import airCleaner from '../images/aircleaner_animated.png'
-import featureEfficiency from '../images/about_efficiency.png'
-import featureFinding from '../images/about_finding.png'
-import demoVideo from '../videos/Presentation.mp4'
-import './About.css'
+import teamLogo from '../images/coral_logo.png';
+import commerceLogo from '../images/commerce_about_logo.png';
+import restartLogo from '../images/restart_logo.png';
+import airCleaner from '../images/aircleaner_animated.png';
+import featureEfficiency from '../images/about_efficiency.png';
+import featureFinding from '../images/about_finding.png';
+import demoVideo from '../videos/Presentation.mp4';
+import './About.css';
 
 export function About() {
     return (
         <div>
             <div id="header-wrapper">
                 <div id="header-first-rectangle">
-                    <h2 id="header-title">About Us</h2>
+                    <h2 id="header-title">About</h2>
                 </div>
                 <div id="header-second-rectangle"></div>
             </div>
@@ -73,8 +73,8 @@ export function About() {
             <div className="about-submodule-container">
                 <div className="about-text-container" id="about-sponsor-container">
                     <h2>Project Status and Handoff</h2>
-                    <p>What we have so far is nearly complete product that is missing some minor finesse such as multilingual support. We will hand off our product to Restart partner.
-                         If you have any questions, feel free to contact Restart Partners at info@restart.us.</p>
+                    <p>As of May 21, 2021, we are no longer working on this product and have handed it off to Restart Partners.
+                        If you have any questions about this product, you can contact Restart Partners at info@restart.us.</p>
                 </div>
                 {/* kinda hacky but makes it work with flexbox */}
                 <img src={restartLogo} id="img-restart-logo" alt="Restart Logo"/>

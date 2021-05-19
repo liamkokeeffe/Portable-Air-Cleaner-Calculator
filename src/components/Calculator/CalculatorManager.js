@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Calculator } from './Calculator/Calculator.js';
-import { RoomSizeRec } from './RoomSizeRec/RoomSizeRec.js';
-import { AirCleanerRecommendations } from './AirCleanerRecommendations/AirCleanerRecommendations.js';
+import { Calculator } from './Calculator.js';
+import { RoomSizeRec } from '../RoomSizeRec/RoomSizeRec.js';
+import { AirCleanerRecommendations } from '../AirCleanerRecommendations/AirCleanerRecommendations.js';
 import './CalculatorManager.css';
-import phase_data from '../phase_data.json'
+import phase_data from '../../phase_data.json'
 
-import data from '../air_cleaner_list.csv';
+import data from '../../air_cleaner_list.csv';
 import * as d3 from 'd3';
 
 export function CalculatorManager(props) {
