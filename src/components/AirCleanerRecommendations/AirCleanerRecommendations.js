@@ -3,6 +3,7 @@ import {SortKeyChoice} from './SortKeyChoice.js';
 import {FilterOptions} from './FilterOptions.js';
 import {AirCleanerList} from './AirCleanerList.js';
 import {AirCleanerDetails} from './AirCleanerDetails.js';
+import {OccupancyDisclaimer} from './OccupancyDisclaimer.js';
 import './AirCleanerRecommendations.css';
 import VariousPortableAirCleaners from '../../images/various_portable_air_cleaners.png';
 
@@ -13,8 +14,9 @@ export function AirCleanerRecommendations(props) {
         maxNoise: -1,
         maxPower: -1,
         maxNumAirCleaners: defaultMaxNumAirCleaners
-    }
+    };
 
+    const [occupancyDisclaimerClosed, setOccupancyDisclaimerClosed] = useState(false);
     const [sortKey, setSortKey] = useState('price');
     const [filterOptions, setFilterOptions] = useState(filterOptionsInit);
     const [selectedAirCleaner, setSelectedAirCleaner] = useState(null);
@@ -42,15 +44,6 @@ export function AirCleanerRecommendations(props) {
         window.scrollTo(0, windowYPosition);
         setShouldScroll(0);
     }, [shouldScroll, windowYPosition]);
-    
-    // Returns either what phase the user is in or the maximum percent occupancy for their space depending on their
-    // input in Step 3 of the calculator form.
-    function getDynamicOccupancyDisclaimerInfo() {
-        if (props.roomInfo.currPhase !== '') {
-            return "Phase " + props.roomInfo.currPhase + " ";
-        }
-        return props.roomInfo.currOccupancy + "% occupancy ";
-    }
 
     return (
         <div id='air-cleaner-recommendations-container'>
@@ -69,18 +62,16 @@ export function AirCleanerRecommendations(props) {
                             </div>
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                             <SortKeyChoice updateSortKey={setSortKey} />
-                            {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
-                            <div id='occupancy-disclaimer'>
-                                <p><span>Note: </span>Your space's average occupancy is greater than
-                                the recommended occupancy based on <span>{getDynamicOccupancyDisclaimerInfo()}</span> 
-                                guidelines for your space. The recommended air cleaners below are being
-                                recommended with the assumption that your room's occupancy meets current occupancy
-                                guidelines. For more information about occupancy guidelines for your type of space,
-                                click <a href='https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance'>here</a>.
-                                </p>
+                            <div id='occupancy-disclaimer-and-air-cleaner-list-container'>
+                                {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
+                                !occupancyDisclaimerClosed &&
+                                <OccupancyDisclaimer roomInfo={props.roomInfo}
+                                    setOccupancyDisclaimerClosed={setOccupancyDisclaimerClosed} />
+                                }
+                                <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} 
+                                detailsClick={detailsClick} airCleaners={props.airCleaners} 
+                                occupancyDisclaimerClosed={occupancyDisclaimerClosed} />
                             </div>
-                            }
-                            <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} detailsClick={detailsClick} airCleaners={props.airCleaners} />
                         </div>
                     </div>
                 </div>
