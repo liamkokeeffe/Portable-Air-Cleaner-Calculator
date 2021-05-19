@@ -21,6 +21,7 @@ export function Calculator(props) {
     function inputIsValid() {
         console.log(props.roomInfo)
         let foundError = false;
+
         if (props.roomInfo.floorArea === 0) {
             document.getElementById("error-floor-area").style.display = "block";
             foundError = true;
@@ -62,7 +63,7 @@ export function Calculator(props) {
             <h3 className="step-title">Step 1: Room Dimension</h3>
             <div> 
                 <RoomDimensionsInput unitSelectionMade={props.unitSelectionMade} roomWidthEntered={props.roomWidthEntered} roomLengthEntered={props.roomLengthEntered} 
-                ceilingHeightEntered={props.ceilingHeightEntered} floorAreaEntered={props.floorAreaEntered} roomInfo={props.roomInfo} />
+                ceilingHeightEntered={props.ceilingHeightEntered} floorAreaEntered={props.floorAreaEntered} roomInfo={props.roomInfo} calculatorType={props.calculatorType} />
             </div>
             <h3 className="step-title">Step 2: Ventilation Rating</h3>
             <div>
