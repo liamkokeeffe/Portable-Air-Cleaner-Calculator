@@ -1,5 +1,5 @@
 import {fireEvent, render, screen} from '@testing-library/react';
-import {CalculatorManager} from '../CalculatorManager';
+import {CalculatorManager} from '../Calculator/CalculatorManager.js';
 
 export const airCleanersForTesting = [
     {name:'Air cleaner 1', priceOfOneAirCleaner: 167.99, noise: -1, cadr: 68, power: 43, dimensions: '8.46" x 6.93" x 23"'},
@@ -46,7 +46,7 @@ it('shows basic parts of calculator page for finding an air cleaner successfully
     expect(unitInput.value).toBe('feet'); // feet should be selected by default
 
     expect(screen.queryByText('Air Cleaner Model Name')).toBeNull();
-    expect(screen.queryByText('CADR of Air Cleaner')).toBeNull();
+    expect(screen.queryByText('CADR of Air Cleaner', {exact: false})).toBeNull();
 
     expect(screen.getByRole('group', {name: 'Ventilation'})).toBeTruthy();
     expect(screen.getByLabelText('Room Type')).toBeTruthy();
@@ -57,13 +57,13 @@ it('displays air cleaners with correct ach for a basic calculation', () => {
     const ceilingHeight = 8;
     const outdoorVentilation = 1;
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
 
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
 
-    let poorVentilationRadioButton = screen.getByLabelText('Poor');
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
     expect(poorVentilationRadioButton.checked).toBe(false);
     fireEvent.click(poorVentilationRadioButton);
     expect(poorVentilationRadioButton.checked).toBe(true);
@@ -85,12 +85,12 @@ it('should allow users to go back to the calculator and edit their inputs when o
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     fireEvent.change(roomWidthInput, {target: {value: initialRoomWidth}});
     fireEvent.change(roomLengthInput, {target: {value: roomLength}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
 
-    let poorVentilationRadioButton = screen.getByLabelText('Poor');
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
     fireEvent.click(poorVentilationRadioButton);
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
 
@@ -98,7 +98,7 @@ it('should allow users to go back to the calculator and edit their inputs when o
 
     roomWidthInput = screen.getByLabelText('Room Width');
     roomLengthInput = screen.getByLabelText('Room Length');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
 
     expect(roomWidthInput.value).toBe(initialRoomWidth + '');
     expect(roomLengthInput.value).toBe(roomLength + '');
@@ -108,7 +108,7 @@ it('should allow users to go back to the calculator and edit their inputs when o
     fireEvent.change(roomWidthInput, {target: {value: newRoomWidth}});
     let goodVentilationRadioButton = screen.getByLabelText('Good');
     fireEvent.click(goodVentilationRadioButton);
-    poorVentilationRadioButton = screen.getByLabelText('Poor');
+    poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
     expect(poorVentilationRadioButton.checked).toBe(false);
     expect(goodVentilationRadioButton.checked).toBe(true);
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
@@ -128,7 +128,7 @@ it('gives users who only use the room width and length inputs the same result as
 
     let roomWidthInput = screen.getByLabelText('Room Width');
     let roomLengthInput = screen.getByLabelText('Room Length');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     fireEvent.change(roomWidthInput, {target: {value: roomWidth}});
     fireEvent.change(roomLengthInput, {target: {value: roomLength}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
@@ -145,7 +145,7 @@ it('gives users who only use the room width and length inputs the same result as
     
     fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
 
@@ -155,94 +155,18 @@ it('gives users who only use the room width and length inputs the same result as
     });
 });
 
-it('should not display results for spaces with more than 4000 square feet', () => {
-    const tooLargeFloorArea = 4001;
-    const newFloorArea = 4000;
-    const ceilingHeight = 8;
-    const outdoorVentilation = 1;
-    
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
-    let poorVentilationRadioButton = screen.getByLabelText('Poor');
-    fireEvent.change(floorAreaInput, {target: {value: tooLargeFloorArea}});
-    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
-    fireEvent.click(poorVentilationRadioButton);
-
-    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    expect(screen.getByText('Sorry, but there were no portable air cleaners found.', {exact: false})).toBeTruthy();
-
-    airCleanersForTesting.forEach((airCleaner) => {
-        let ach = getACH(tooLargeFloorArea, ceilingHeight, 'feet', airCleaner.cadr, outdoorVentilation);
-        expect(screen.queryByText(ach)).toBeNull();
-    });
-
-    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    fireEvent.change(floorAreaInput, {target: {value: newFloorArea}});
-    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    expect(screen.queryByText('Sorry, but there were no portable air cleaners found.', {exact: false})).toBeNull();
-
-    const largestCADR = 500;
-    let mostPowerfulAirCleanerACH = getACH(newFloorArea, ceilingHeight, 'feet', largestCADR, outdoorVentilation);
-    expect(screen.getByText(mostPowerfulAirCleanerACH)).toBeTruthy();
-    const smallerCADRs = [68, 150, 211, 328];
-    smallerCADRs.forEach((cadr) => {
-        let ach = getACH(newFloorArea, ceilingHeight, 'feet', cadr, outdoorVentilation);
-        expect(screen.queryByText(ach)).toBeNull();
-    });
-});
-
-it('should not display results for spaces with more than 371 square meters', () => {
-    const tooLargeFloorArea = 371;
-    const newFloorArea = 370;
-    const ceilingHeight = 2.4;
-    const outdoorVentilation = 1;
-    
-    let unitsInput = screen.getByLabelText('Units');
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
-    let poorVentilationRadioButton = screen.getByLabelText('Poor');
-    fireEvent.change(unitsInput, {target: {value: 'meters'}});
-    fireEvent.change(floorAreaInput, {target: {value: tooLargeFloorArea}});
-    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
-    fireEvent.click(poorVentilationRadioButton);
-
-    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    expect(screen.getByText('Sorry, but there were no portable air cleaners found.', {exact: false})).toBeTruthy();
-
-    airCleanersForTesting.forEach((airCleaner) => {
-        let ach = getACH(tooLargeFloorArea, ceilingHeight, 'meters', airCleaner.cadr, outdoorVentilation);
-        expect(screen.queryByText(ach)).toBeNull();
-    });
-
-    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    fireEvent.change(floorAreaInput, {target: {value: newFloorArea}});
-    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
-    expect(screen.queryByText('Sorry, but there were no portable air cleaners found.', {exact: false})).toBeNull();
-
-    const largestCADR = 500;
-    let mostPowerfulAirCleanerACH = getACH(newFloorArea, ceilingHeight, 'meters', largestCADR, outdoorVentilation);
-    expect(screen.getByText(mostPowerfulAirCleanerACH)).toBeTruthy();
-    const smallerCADRs = [68, 150, 211, 328];
-    smallerCADRs.forEach((cadr) => {
-        let ach = getACH(newFloorArea, ceilingHeight, 'meters', cadr, outdoorVentilation);
-        expect(screen.queryByText(ach)).toBeNull();
-    });
-});
-
 it('converts outdoor ventilation levels to the correct ACH', () => {
     const floorArea = 100;
     const ceilingHeight = 9;
     let outdoorVentilation = 1;
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
 
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
 
-    let poorVentilationRadioButton = screen.getByLabelText('Poor');
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
     fireEvent.click(poorVentilationRadioButton);
     fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
 
@@ -290,8 +214,8 @@ it('should work if the selected units are meters', () => {
     const outdoorVentilation = 3;
     let ceilingHeight = 7;
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     let goodVentilationRadioButton = screen.getByLabelText('Good');
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
@@ -306,7 +230,7 @@ it('should work if the selected units are meters', () => {
     fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
     ceilingHeight = 2;
     let unitSelection = screen.getByLabelText('Units');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     fireEvent.change(unitSelection, {target: {value: 'meters'}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
 
@@ -324,9 +248,9 @@ it('should recommend multiple air cleaners if the space cannot reach an ideal le
     const ceilingHeight = 10;
     const outdoorVentilation = 1;
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
-    let poorVentilationRadioButton = screen.getByLabelText('Poor');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(poorVentilationRadioButton);
@@ -335,11 +259,156 @@ it('should recommend multiple air cleaners if the space cannot reach an ideal le
 
 
     const smallestCADR = 68;
-    let mostPowerfulAirCleanerACH = getACH(floorArea, ceilingHeight, 'feet', smallestCADR, outdoorVentilation);
-    expect(screen.queryByText(mostPowerfulAirCleanerACH)).toBeFalsy();
+    let weakestAirCleanerACH = getACH(floorArea, ceilingHeight, 'feet', smallestCADR, outdoorVentilation);
+    // when using up to 5 air cleaners (the default max), this air cleaner is too weak to provide an estimated 5 air
+    // changes per hour at the "poor" outdoor ventilation level
+    expect(screen.queryByText(weakestAirCleanerACH)).toBeFalsy();
     const largerCADRs = [150, 211, 328, 500];
     largerCADRs.forEach((cadr) => {
         let ach = getACH(floorArea, ceilingHeight, 'feet', cadr, outdoorVentilation);
         expect(screen.getByText(ach)).toBeTruthy();
     });
+});
+
+it('should show occupancy disclaimer if user\'s space is too densely populated (with phase selection)', () => {
+    const floorArea = 200;
+    const ceilingHeight = 8;
+    // retail store max occupancy is 25% at phases 1 and 2 and 50% at phase 3 at the time of writing this test
+    const roomType = 'retail';
+    const averageOccupancy = 30;
+    const maxOccupancy = 70;
+    let currentPhase = '1';
+
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    fireEvent.change(floorAreaInput, {target: {value: floorArea}});
+    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
+
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
+    fireEvent.click(poorVentilationRadioButton);
+
+    let roomTypeInput = screen.getByLabelText('Room Type');
+    let averageOccupancyInput = screen.getByLabelText('Average Number of People in Room');
+    let maxOccupancyInput = screen.getByLabelText('Maximum Occupancy');
+    let currentPhaseInput = screen.getByLabelText('Current Phase');
+    fireEvent.change(roomTypeInput, {target: {value: roomType}});
+    fireEvent.change(averageOccupancyInput, {target: {value: averageOccupancy}});
+    fireEvent.change(maxOccupancyInput, {target: {value: maxOccupancy}});
+    fireEvent.change(currentPhaseInput, {target: {value: currentPhase}});
+
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.getByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeTruthy();
+    // make sure the phase that the user entered is displayed in the disclaimer
+    expect(screen.getByText('Phase ' + currentPhase, {exact: false})).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
+    currentPhase = '2';
+    currentPhaseInput = screen.getByLabelText('Current Phase');
+    fireEvent.change(currentPhaseInput, {target: {value: currentPhase}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.getByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeTruthy();
+    expect(screen.getByText('Phase ' + currentPhase, {exact: false})).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
+    currentPhase = '3';
+    currentPhaseInput = screen.getByLabelText('Current Phase');
+    fireEvent.change(currentPhaseInput, {target: {value: currentPhase}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.queryByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeNull();
+    expect(screen.queryByText('Phase ' + currentPhase, {exact: false})).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
+    currentPhase = '4';
+    currentPhaseInput = screen.getByLabelText('Current Phase');
+    fireEvent.change(currentPhaseInput, {target: {value: currentPhase}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.queryByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeNull();
+    expect(screen.queryByText('Phase ' + currentPhase, {exact: false})).toBeNull();
+});
+
+it('should show occupancy disclaimer if user\'s space is too densely populated (with max percent occupancy selection)', () => {
+    const floorArea = 200;
+    const ceilingHeight = 8;
+    // retail store max occupancy is 25% at phases 1 and 2 and 50% at phase 3 at the time of writing this test
+    const roomType = 'Retail';
+    const averageOccupancy = 30;
+    const maxOccupancy = 70;
+    let currentMaxPercentOccupancy = '25';
+
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    fireEvent.change(floorAreaInput, {target: {value: floorArea}});
+    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
+
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
+    fireEvent.click(poorVentilationRadioButton);
+
+    let roomTypeInput = screen.getByLabelText('Room Type');
+    let averageOccupancyInput = screen.getByLabelText('Average Number of People in Room');
+    let maxOccupancyInput = screen.getByLabelText('Maximum Occupancy');
+    let currentPhaseInput = screen.getByLabelText('Current Occupancy Limit Guideline');
+    fireEvent.change(roomTypeInput, {target: {value: roomType}});
+    fireEvent.change(averageOccupancyInput, {target: {value: averageOccupancy}});
+    fireEvent.change(maxOccupancyInput, {target: {value: maxOccupancy}});
+    fireEvent.change(currentPhaseInput, {target: {value: currentMaxPercentOccupancy}});
+
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.getByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeTruthy();
+    // make sure the maximum occupancy percentage that the user entered is displayed in the disclaimer
+    expect(screen.getByText(currentMaxPercentOccupancy + '%', {exact: false})).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
+    currentMaxPercentOccupancy = '50';
+    currentPhaseInput = screen.getByLabelText('Current Occupancy Limit Guideline');
+    fireEvent.change(currentPhaseInput, {target: {value: currentMaxPercentOccupancy}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.queryByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeNull();
+    expect(screen.queryByText(currentMaxPercentOccupancy + '%', {exact: false})).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
+    currentMaxPercentOccupancy = '75';
+    currentPhaseInput = screen.getByLabelText('Current Occupancy Limit Guideline');
+    fireEvent.change(currentPhaseInput, {target: {value: currentMaxPercentOccupancy}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.queryByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeNull();
+    expect(screen.queryByText(currentMaxPercentOccupancy + '%', {exact: false})).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', {name: /Go Back/}));
+    currentMaxPercentOccupancy = '100';
+    currentPhaseInput = screen.getByLabelText('Current Occupancy Limit Guideline');
+    fireEvent.change(currentPhaseInput, {target: {value: currentMaxPercentOccupancy}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.queryByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeNull();
+    expect(screen.queryByText(currentMaxPercentOccupancy + '%', {exact: false})).toBeNull();
+});
+
+it('should not show occupancy disclaimer if user\'s space is not too densely populated', () => {
+    const floorArea = 300;
+    const ceilingHeight = 10;
+    // retail store max occupancy is 25% at phases 1 and 2 and 50% at phase 3 at the time of writing this test
+    const roomType = 'Retail';
+    const averageOccupancy = 15;
+    const maxOccupancy = 70;
+    let currentPhase = '1';
+
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    fireEvent.change(floorAreaInput, {target: {value: floorArea}});
+    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
+
+    let poorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
+    fireEvent.click(poorVentilationRadioButton);
+
+    let roomTypeInput = screen.getByLabelText('Room Type');
+    let averageOccupancyInput = screen.getByLabelText('Average Number of People in Room');
+    let maxOccupancyInput = screen.getByLabelText('Maximum Occupancy');
+    let currentPhaseInput = screen.getByLabelText('Current Phase');
+    fireEvent.change(roomTypeInput, {target: {value: roomType}});
+    fireEvent.change(averageOccupancyInput, {target: {value: averageOccupancy}});
+    fireEvent.change(maxOccupancyInput, {target: {value: maxOccupancy}});
+    fireEvent.change(currentPhaseInput, {target: {value: currentPhase}});
+
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+    expect(screen.queryByText('Your space\'s average occupancy is greater than the recommended occupancy', {exact: false})).toBeNull();
+    expect(screen.queryByText('Phase ' + currentPhase, {exact: false})).toBeNull();
 });

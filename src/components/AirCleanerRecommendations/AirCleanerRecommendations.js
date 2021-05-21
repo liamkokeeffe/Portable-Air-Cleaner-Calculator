@@ -63,7 +63,7 @@ export function AirCleanerRecommendations(props) {
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                             <SortKeyChoice updateSortKey={setSortKey} />
                             <div id='occupancy-disclaimer-and-air-cleaner-list-container'>
-                                {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
+                                {props.roomInfo.recommendedOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recommendedOccupancy &&
                                 !occupancyDisclaimerClosed &&
                                 <OccupancyDisclaimer roomInfo={props.roomInfo}
                                     setOccupancyDisclaimerClosed={setOccupancyDisclaimerClosed} />

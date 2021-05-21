@@ -81,7 +81,7 @@ export function RoomDimensionsInput(props) {
                         }} value={roomLength} type="number" />
                         <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}</p>
                     </div>
-                    <label htmlFor="floor-area-input" className="input-title">Floor Area <span class="required">*</span></label>
+                    <label htmlFor="floor-area-input" className="input-title">Floor Area <span className="required">*</span></label>
                     <div className="input-line-wrapper">
                         <input id="floor-area-input" className="user-input" onChange={(e) => {
                             let value = e.target.value;
@@ -97,7 +97,7 @@ export function RoomDimensionsInput(props) {
                     </div>
                     <p className="error-message" id="error-floor-area">Please enter a floor area.</p>
                     <p className="error-message" id="error-max-area">The max floor area our <br /> calculator will handle is {unitsRef.current === "feet" ? "3000 ft" : "914 m"}<sup>2</sup></p>
-                    <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height <span class="required">*</span></label>
+                    <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height <span className="required">*</span></label>
                     <div className="input-line-wrapper">
                         <input id="ceiling-height-input" className="user-input" onChange={(e) => { 
                             let value = e.target.value;

@@ -1,15 +1,12 @@
 import './Resources.css';
-import demoVideo from '../videos/MVP_demo.mp4'
 
 export function Resources() {
     return (
         <div id='resources-container'>
             <h1 id="resources-title">Resources</h1>
             <div className="resources-submodule-container">
-                <h2 className="resources-subtitle">Demo Video</h2>
-                <video controls>
-                    <source src={demoVideo} type="video/mp4" />
-                </video>
+                <h2 className="resources-subtitle">Extended Disclaimer</h2>
+                <p></p>
             </div>
             <div className="resources-submodule-container">
                 <h2 className="resources-subtitle">Terminologies</h2>

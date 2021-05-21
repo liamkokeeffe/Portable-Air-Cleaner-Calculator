@@ -1,15 +1,16 @@
 import './Calculator.css';
 import { useState } from 'react';
-import densityClipArt from '../../images/density_clipart.png'
-import React from "react"
-import ReactToolTip from "react-tooltip"
+import densityClipArt from '../../images/density_clipart.png';
+import React from "react";
+import ReactToolTip from "react-tooltip";
 
 export function RoomDensityInput(props) {
     const [roomType, setRoomType] = useState(props.roomInfo.roomType === "" ? "" : props.roomInfo.roomType);
     const [maxOccupancy, setMaxOccupancy] = useState(props.roomInfo.maxOccupancy === 0 ? "" : props.roomInfo.maxOccupancy);
     const [aveOccupancy, setAveOccupancy] = useState(props.roomInfo.aveOccupancy === 0 ? "" : props.roomInfo.aveOccupancy); 
     const [currPhase, setCurPhase] = useState(props.roomInfo.currPhase === "" ? "" : props.roomInfo.currPhase);
-    const [currOccupancy, setCurOccupancy] = useState(props.roomInfo.currOccupancy === 0 ? "" : props.roomInfo.currOccupancy)
+    const [currPercentOccupancyGuideline, setCurrPercentOccupancyGuideline] = 
+        useState(props.roomInfo.currPercentOccupancyGuideline === 0 ? "" : props.roomInfo.currPercentOccupancyGuideline)
 
     function checkIfNumber(value) {
         const re = /^[0-9\b]+$/
@@ -59,7 +60,7 @@ export function RoomDensityInput(props) {
                     </select>
                     <ReactToolTip id="density-average-tooltip" place="right" effect="solid" multiline={true}>Please enter the average number of people in your room at peak hours.</ReactToolTip>
                     <label htmlFor="average-occupancy-input" className="input-title">Average Number of <br />People in Room</label>
-                    <input data-tip data-for="density-average-tooltip" id="average-occupancy-input" className="user-input" onChange={(e) => {
+                    <input id="average-occupancy-input" className="user-input" data-tip data-for="density-average-tooltip" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setAveOccupancy(parseFloat(value));
@@ -79,7 +80,7 @@ export function RoomDensityInput(props) {
                     <ReactToolTip id="density-phase-tooltip" place="right" effect="solid" clickable={true} multiline={true}>Please enter your current COVID-19 phase. The current phase for 
                         Washington State counties can be found by visiting this <a className="tooltip-link" target="_blank" rel="noreferrer" href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process">page</a>. </ReactToolTip>
                     <label htmlFor="phase-selection" className="input-title">Current Phase</label>
-                    <select className="user-input" data-tip data-for="density-phase-tooltip" value={isNaN(currPhase) ? '' : currPhase} onChange={(e) => {
+                    <select id="phase-selection" className="user-input" data-tip data-for="density-phase-tooltip" value={isNaN(currPhase) ? '' : currPhase} onChange={(e) => {
                         setCurPhase(e.target.value);
                         props.updateCurrPhase(e.target.value);
                     }}>
@@ -92,10 +93,11 @@ export function RoomDensityInput(props) {
                     <p id="density-or-text">OR</p>
                     <ReactToolTip id="density-occupancy-tooltip" place="right" effect="solid" clickable={true} multiline="true">Enter the current occupancy restriction according to your 
                     state or county COVID-19 regulations. Washington's occupancy guidelines can be found on the <a className="tooltip-link" target="_blank" rel="noreferrer" href="https://coronavirus.wa.gov/what-you-need-know/safe-start/whats-open">Roadmap to Recovery</a>.</ReactToolTip>
-                    <label htmlFor="occupancy-selection" className="input-title">Current Occupancy <br /> Limit Guideline</label>
-                    <select className="user-input" data-tip data-for="density-occupancy-tooltip" value={isNaN(currOccupancy) ? '' : currOccupancy} onChange={(e) => {
-                        setCurOccupancy(parseFloat(e.target.value));
-                        props.updateCurrOccupancy(parseFloat(e.target.value));
+                    <label htmlFor="max-occupancy-selection" className="input-title">Current Occupancy <br /> Limit Guideline</label>
+                    <select id="max-occupancy-selection" className="user-input" data-tip data-for="density-occupancy-tooltip" 
+                        value={isNaN(currPercentOccupancyGuideline) ? '' : currPercentOccupancyGuideline} onChange={(e) => {
+                            setCurrPercentOccupancyGuideline(parseFloat(e.target.value));
+                        props.updateCurrPercentOccupancyGuideline(parseFloat(e.target.value));
                     }}>
                         <option selected value=""></option>
                         <option value="25">25%</option>

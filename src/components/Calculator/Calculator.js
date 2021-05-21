@@ -1,12 +1,11 @@
-import "./Calculator.css"
-import {RoomDimensionsInput} from "./RoomDimensionsInput.js"
-import {RoomVentilationInput} from "./RoomVentilationInput.js"
-import {AirCleanerCADRInput} from "./AirCleanerCADRInput.js"
-import {RoomDensityInput} from "./RoomDensityInput.js"
+import "./Calculator.css";
+import {RoomDimensionsInput} from "./RoomDimensionsInput.js";
+import {RoomVentilationInput} from "./RoomVentilationInput.js";
+import {AirCleanerCADRInput} from "./AirCleanerCADRInput.js";
+import {RoomDensityInput} from "./RoomDensityInput.js";
 
 export function Calculator(props) {
     function getTitle() {
-        document.body.style.background = "linear-gradient(180deg,rgba(234, 95, 20, 0.25) 0%,rgba(226, 167, 0, 0.25) 25%, rgba(226, 165, 0, 0.25) 50%, rgba(155, 0, 89, 0.25) 75%)";
         return props.calculatorType === "find" ? "Find Air Cleaner" : "Test Air Cleaner Efficiency";
     }
 
@@ -19,7 +18,6 @@ export function Calculator(props) {
 
     // Not the best way to do this ... should clean this up
     function inputIsValid() {
-        console.log(props.roomInfo)
         let foundError = false;
 
         if (props.roomInfo.floorArea === 0) {
@@ -77,7 +75,7 @@ export function Calculator(props) {
             <h3 className="step-title"> {props.calculatorType === "find" ? "Step 3: Occupant Density" : "Step 4: Occupant Density"}</h3>
             <div>
                 <RoomDensityInput updateRoomType={props.updateRoomType} updateMaxOccupancy={props.updateMaxOccupancy} updateAveOccupancy={props.updateAveOccupancy} 
-                updateCurrOccupancy={props.updateCurrOccupancy} updateCurrPhase={props.updateCurrPhase} roomInfo={props.roomInfo}/>
+                updateCurrPercentOccupancyGuideline={props.updateCurrPercentOccupancyGuideline} updateCurrPhase={props.updateCurrPhase} roomInfo={props.roomInfo}/>
             </div>
             <div id="button-wrapper">
                 <button id="results-btn" onClick={() => showResults()}>VIEW RESULTS</button>

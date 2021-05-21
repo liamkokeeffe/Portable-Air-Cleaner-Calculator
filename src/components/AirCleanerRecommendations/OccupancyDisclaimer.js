@@ -6,7 +6,7 @@ export function OccupancyDisclaimer(props) {
         if (props.roomInfo.currPhase !== '') {
             return "Phase " + props.roomInfo.currPhase + " ";
         }
-        return props.roomInfo.currOccupancy + "% occupancy ";
+        return props.roomInfo.currPercentOccupancyGuideline + "% occupancy ";
     }
 
     return (

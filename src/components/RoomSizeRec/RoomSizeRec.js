@@ -3,8 +3,6 @@ import GaugeChart from 'react-gauge-chart';
 
 export function RoomSizeRec(props) {
 
-    document.body.style.background = "white";
-
     const achColors = {
         veryLow: "#FF0D0D",
         bareMinimum: "#FF8E15",
@@ -75,10 +73,10 @@ export function RoomSizeRec(props) {
         let totalCFM = 0;
         if (props.roomInfo.units === "feet") {
             totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * (props.roomInfo.floorArea * props.roomInfo.ceilingHeight)) / 60) + parseFloat(props.airCleanerInfo.cadr);
-            return Math.round((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
+            return Math.floor((totalCFM * 60) / (5 * props.roomInfo.ceilingHeight));
         } else {
             totalCFM = ((ventilationToACH[props.roomInfo.outdoorVentilation] * props.roomInfo.floorArea * props.roomInfo.ceilingHeight * 35.3147) / 60) + parseFloat(props.airCleanerInfo.cadr);
-            return Math.round(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
+            return Math.floor(((totalCFM*60) / 35.315) / (5 * props.roomInfo.ceilingHeight));
         }
     }
 
@@ -97,7 +95,6 @@ export function RoomSizeRec(props) {
     }
 
     function getChartWidth() {
-        console.log(window.innerWidth)
         if (window.innerWidth < 700) {
             return 90;
         } else {
@@ -143,12 +140,14 @@ export function RoomSizeRec(props) {
                     }}>Air Cleaner List</button>
                 </div>
                 <div id="roomsizerec-details">
-                    <div className="details-module">
-                        <p className="details-title">Recommended Room <br />Area (1 Air Cleaner):</p>
-                        <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
-                    </div>
-                    {calculateRoomSize() < props.roomInfo.floorArea &&
-                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner and ventilation level is smaller than your current space. You may want to consider purchasing a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
+                    {props.airCleanerInfo.numOwned === 1 &&
+                        <div className="details-module">
+                            <p className="details-title">Recommended Room <br />Area of this air cleaners at your room's existing ventilation level):</p>
+                            <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
+                        </div>
+                    }
+                    {calculateRoomSize() < props.roomInfo.floorArea && props.airCleanerInfo.numOwned === 1 &&
+                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner and ventilation level is smaller than your current room area. You may want to consider purchasing a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
                     <hr className="roomsizerec-hr" />
                     <div className="details-module">
                         <p className="details-title">Ventilation Rating:</p>
@@ -170,13 +169,12 @@ export function RoomSizeRec(props) {
                         <p className="details-value">{props.roomInfo.aveOccupancy === 0 ? "N/A" : props.roomInfo.aveOccupancy + " Persons"}</p>
                     </div>
                     <hr className="roomsizerec-hr" />
-                    {console.log(props.roomInfo)}
-                    {props.roomInfo.recOccupancy === -1 && props.roomInfo.maxOccupancy === 0 && 
+                    {props.roomInfo.recommendedOccupancy === -1 && props.roomInfo.maxOccupancy === 0 && 
                     <div className="details-module">
                         <p className="details-title">Occupancy <br /> Recommendation:</p>    
                         <p className="details-value">{"N/A"}</p>
                     </div>}
-                    {props.roomInfo.recOccupancy === -1 && props.roomInfo.maxOccupancy !== 0 && 
+                    {props.roomInfo.recommendedOccupancy === -1 && props.roomInfo.maxOccupancy !== 0 && 
                     <div>    
                         <p className="details-title">Occupancy Recommendation:</p>
                         <table>
@@ -195,13 +193,13 @@ export function RoomSizeRec(props) {
                         </table>
                         <p className="recommendation-text"><span>Note: </span>Please refer to your current county/state phase's occupancy guidelines for the above table. Washington State's current phase can be found <a href="https://coronavirus.wa.gov/what-you-need-know/county-status-and-safe-start-application-process" target="_blank" rel="noreferrer">here.</a> If your average number of people is greater than the value above we recommend purchasing an air cleaner with at least 6 air changes per hour for your room.</p>
                     </div>}
-                    {props.roomInfo.recOccupancy !== -1 &&
+                    {props.roomInfo.recommendedOccupancy !== -1 &&
                     <div className="details-module">
                         <p className="details-title">Occupancy <br /> Recommendation:</p>    
-                        <p className="details-value">{isNaN(props.roomInfo.recOccupancy) ? "N/A" : props.roomInfo.recOccupancy + " Persons"}</p>
+                        <p className="details-value">{isNaN(props.roomInfo.recommendedOccupancy) ? "N/A" : props.roomInfo.recommendedOccupancy + " Persons"}</p>
                     </div>}
-                    {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
-                        <p className="recommendation-text"><span>Note: </span> Your current average occupancy appears to be greater than the recommended occupancy based on <span>{props.roomInfo.currPhase !== '' ? "Phase " + props.roomInfo.currPhase : props.roomInfo.currOccupancy + "% occcupancy"}</span> guidelines for your particular room. Please consider purchasing a stronger air cleaner using the button to the left.</p>
+                    {props.roomInfo.recommendedOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recommendedOccupancy &&
+                        <p className="recommendation-text"><span>Note: </span> Your current average occupancy appears to be greater than the recommended occupancy based on <span>{props.roomInfo.currPhase !== '' ? "Phase " + props.roomInfo.currPhase : props.roomInfo.currPercentOccupancyGuideline + "% occcupancy"}</span> guidelines for your particular room. Please consider purchasing a stronger air cleaner using the button to the left.</p>
                     }
                 </div>
             </div>

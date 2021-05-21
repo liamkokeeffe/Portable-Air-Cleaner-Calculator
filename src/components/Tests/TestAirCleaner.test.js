@@ -1,12 +1,13 @@
 import {fireEvent, render, screen} from '@testing-library/react';
-import {CalculatorManager} from '../CalculatorManager';
+import {CalculatorManager} from '../Calculator/CalculatorManager.js';
 import {airCleanersForTesting} from './FindAirCleaner.test.js';
 
-/*
-// FindAirCleaner.test.js tests are conflicting with these tests and the two test files can't be run at the same time.
-// If you want to run TestAirCleaner.test.js tests, uncomment the block below and comment all code in
-// FindAirCleanerTest.js before running `npm test -- TestAirCleaner.test.js`.
+// The different test files are conflicting with each other and can't be run at the same time.
+// If you want to run other tests (any file ending in `.test.js`), uncomment the block below and comment all code
+// other than any `export` code in the uncommented test file. Then run `npm test -- FileName.test.js` to
+// run the tests that you want to run.
 
+/*
 // prevents irrelevant console error message when running tests
 global.window.scrollTo = () => {};
 
@@ -17,9 +18,18 @@ function getACHFromOneAirCleaner(floorArea, ceilingHeight, units, cadr) {
     return (cadr / 0.58) / (floorArea * ceilingHeight);
 }
 
-function getACH(floorArea, ceilingHeight, units, cadr, outdoorVentilation) {
+function getACH(floorArea, ceilingHeight, units, cadr, outdoorVentilation, numAirCleaners = 1) {
     let ach = getACHFromOneAirCleaner(floorArea, ceilingHeight, units, cadr);
-    return Math.round((ach + outdoorVentilation) * 10) / 10;
+    return Math.round(((ach * numAirCleaners) + outdoorVentilation) * 10) / 10;
+}
+
+function getMaxAirCleanerRoomSizeAtOutdoorVentilationLevel(floorArea, ceilingHeight, units, cadr, outdoorVentilation) {
+    if (units === 'feet') {
+        let totalCADR = cadr + ((outdoorVentilation * (floorArea * ceilingHeight)) / 60);
+        return Math.floor((totalCADR * 60) / (5 * ceilingHeight));
+    }
+    let totalCADR = cadr + ((outdoorVentilation * (floorArea * ceilingHeight) * 35.3147) / 60);
+    return Math.floor((totalCADR * 60 / 35.315) / (5 * ceilingHeight));
 }
 
 beforeEach(() => render(
@@ -31,7 +41,7 @@ it('shows basic parts of calculator page for finding an air cleaner successfully
     expect(unitInput.value).toBe('feet'); // feet should be selected by default
 
     expect(screen.getByLabelText('Air Cleaner Model Name')).toBeTruthy();
-    expect(screen.getByLabelText('CADR of Air Cleaner')).toBeTruthy();
+    expect(screen.getByLabelText('CADR of Air Cleaner', {exact: false})).toBeTruthy();
 
     expect(screen.getByRole('group', {name: 'Ventilation'})).toBeTruthy();
     expect(screen.getByLabelText('Room Type')).toBeTruthy();
@@ -43,10 +53,10 @@ it('allows users to go back and edit their inputs', () => {
     let cadr = 163;
     let outdoorVentilation = 3;
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     let outdoorVentilationRadioButton = screen.getByLabelText('Good');
-    let cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    let cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(outdoorVentilationRadioButton);
@@ -64,10 +74,10 @@ it('allows users to go back and edit their inputs', () => {
     ceilingHeight = 10;
     cadr = 250;
     outdoorVentilation = 1;
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
-    outdoorVentilationRadioButton = screen.getByLabelText('Poor');
-    cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    outdoorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
+    cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(outdoorVentilationRadioButton);
@@ -85,10 +95,10 @@ it('converts ACH to correct ventilation ranks', () => {
     let cadr = 250;
     let outdoorVentilation = 4;
 
-    let floorAreaInput = screen.getByLabelText('Floor Area');
-    let ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     let outdoorVentilationRadioButton = screen.getByLabelText('Enhanced');
-    let cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    let cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(outdoorVentilationRadioButton);
@@ -105,10 +115,10 @@ it('converts ACH to correct ventilation ranks', () => {
     ceilingHeight = 8;
     cadr = 130;
     outdoorVentilation = 3;
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     outdoorVentilationRadioButton = screen.getByLabelText('Good');
-    cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(outdoorVentilationRadioButton);
@@ -125,10 +135,10 @@ it('converts ACH to correct ventilation ranks', () => {
     ceilingHeight = 10;
     cadr = 225;
     outdoorVentilation = 1.5;
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
+    floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
     outdoorVentilationRadioButton = screen.getByLabelText('Typical');
-    cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(outdoorVentilationRadioButton);
@@ -144,9 +154,9 @@ it('converts ACH to correct ventilation ranks', () => {
     floorArea = 1000;
     ceilingHeight = 11;
     cadr = 121;
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
-    cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.change(cadrInput, {target: {value: cadr}});
@@ -162,10 +172,10 @@ it('converts ACH to correct ventilation ranks', () => {
     ceilingHeight = 9;
     cadr = 290;
     outdoorVentilation = 1;
-    floorAreaInput = screen.getByLabelText('Floor Area');
-    ceilingHeightInput = screen.getByLabelText('Ceiling Height');
-    outdoorVentilationRadioButton = screen.getByLabelText('Poor');
-    cadrInput = screen.getByLabelText('CADR of Air Cleaner');
+    floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    outdoorVentilationRadioButton = screen.getByLabelText('Poor/Unsure');
+    cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
     fireEvent.change(floorAreaInput, {target: {value: floorArea}});
     fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
     fireEvent.click(outdoorVentilationRadioButton);
@@ -175,4 +185,69 @@ it('converts ACH to correct ventilation ranks', () => {
     ach = getACH(floorArea, ceilingHeight, 'feet', cadr, outdoorVentilation);
     expect(screen.getByText(ach)).toBeTruthy();
     expect(screen.getByText('BARE MINIMUM')).toBeTruthy();
+});
+
+it('calculates the correct room size for a single air cleaner correctly (when units are feet)', () => {
+    let floorArea = 310;
+    let ceilingHeight = 7;
+    let cadr = 165;
+    let outdoorVentilation = 3;
+
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    let outdoorVentilationRadioButton = screen.getByLabelText('Good');
+    let cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
+    fireEvent.change(floorAreaInput, {target: {value: floorArea}});
+    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
+    fireEvent.click(outdoorVentilationRadioButton);
+    fireEvent.change(cadrInput, {target: {value: cadr}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+
+    let recommendedMaxRoomSize = getMaxAirCleanerRoomSizeAtOutdoorVentilationLevel(floorArea, ceilingHeight, 'feet', cadr, outdoorVentilation);
+    expect(screen.getByText(recommendedMaxRoomSize, {exact: false})).toBeTruthy();
+});
+
+it('calculates the correct room size for a single air cleaner correctly (when units are meters)', () => {
+    let floorArea = 100;
+    let ceilingHeight = 4;
+    let cadr = 165;
+    let outdoorVentilation = 3;
+
+    let unitSelection = screen.getByLabelText('Units');
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    let outdoorVentilationRadioButton = screen.getByLabelText('Good');
+    let cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
+    fireEvent.change(unitSelection, {target: {value: 'meters'}});
+    fireEvent.change(floorAreaInput, {target: {value: floorArea}});
+    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
+    fireEvent.click(outdoorVentilationRadioButton);
+    fireEvent.change(cadrInput, {target: {value: cadr}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+
+    let recommendedMaxRoomSize = getMaxAirCleanerRoomSizeAtOutdoorVentilationLevel(floorArea, ceilingHeight, 'meters', cadr, outdoorVentilation);
+    expect(screen.getByText(recommendedMaxRoomSize, {exact: false})).toBeTruthy();
+});
+
+it('calculates the correct result if multiple air cleaners are used', () => {
+    let floorArea = 300;
+    let ceilingHeight = 10;
+    let cadr = 100;
+    let outdoorVentilation = 1.5;
+    let numAirCleaners = 3;
+
+    let floorAreaInput = screen.getByLabelText('Floor Area', {exact: false});
+    let ceilingHeightInput = screen.getByLabelText('Ceiling Height', {exact: false});
+    let outdoorVentilationRadioButton = screen.getByLabelText('Typical');
+    let cadrInput = screen.getByLabelText('CADR of Air Cleaner', {exact: false});
+    let numAirCleanersInput = screen.getByLabelText('Number of these Air Cleaners');
+    fireEvent.change(floorAreaInput, {target: {value: floorArea}});
+    fireEvent.change(ceilingHeightInput, {target: {value: ceilingHeight}});
+    fireEvent.click(outdoorVentilationRadioButton);
+    fireEvent.change(cadrInput, {target: {value: cadr}});
+    fireEvent.change(numAirCleanersInput, {target: {value: numAirCleaners}});
+    fireEvent.click(screen.getByRole('button', {name: 'VIEW RESULTS'}));
+
+    let ach = getACH(floorArea, ceilingHeight, 'feet', cadr, outdoorVentilation, numAirCleaners);
+    expect(screen.getByText(ach)).toBeTruthy();
 });*/

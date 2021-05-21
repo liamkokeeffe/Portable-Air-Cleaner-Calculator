@@ -36,22 +36,21 @@ export function AirCleanerDetails(props) {
         }
     }
 
-    let estimatedACHLabel = `Estimated air changes per hour ${changeableNumAirCleaners} of these air cleaners would give your space: `;
+    let estimatedACHLabel = `Estimated air changes per hour ${changeableNumAirCleaners} of these air cleaners would
+        give your space (5 is the recommended minimum): `;
     let priceLabel = `Price for ${changeableNumAirCleaners} air cleaners of this type: `;
     let noiseLabel = 'Noise (of each air cleaner): ';
     let powerLabel = 'Power Requirement (of each air cleaner): ';
     let cadrLabel = 'Clean Air Delivery Rate (CADR) of each air cleaner: ';
     let sizeLabel = 'Size (of each air cleaner): ';
-    let maxRoomSizeLabel = 'Max Room Size (of each air cleaner): ';
 
     if (changeableNumAirCleaners === 1) {
-        estimatedACHLabel = 'Estimated air changes per hour this air cleaner would give your space: ';
+        estimatedACHLabel = 'Estimated air changes per hour this air cleaner would give your space (5 is the recommended minimum): ';
         priceLabel = 'Price: ';
         noiseLabel = 'Noise: ';
         powerLabel = 'Power Requirement: ';
         cadrLabel = 'Clean Air Delivery Rate (CADR): ';
         sizeLabel = 'Size: ';
-        maxRoomSizeLabel = 'Max Room Size: ';
     }
 
     useEffect(() => {
@@ -59,6 +58,18 @@ export function AirCleanerDetails(props) {
             updateACHValueColor(props.airCleaner.ach);
         }
     });
+
+    function handleNumAirCleanersChange(e) {
+        if (e.target.value < 1) {
+            return;
+        }
+        let newTotalACH = Math.round((props.airCleaner.achFromOneAirCleaner * e.target.value + props.airCleaner.outdoorVentilation) * 100) / 100.0;
+        let newPrice = Math.round(props.airCleaner.priceOfOneAirCleaner * e.target.value * 100) / 100.0;
+        setChangeableNumAirCleaners(e.target.value);
+        setAchBasedOnSelectedNumAirCleaners(newTotalACH);
+        setPriceBasedOnSelectedNumAirCleaners(newPrice);
+        updateACHValueColor(newTotalACH);
+    }
 
     return(
         <div id='air-cleaner-details-container'>
@@ -70,31 +81,23 @@ export function AirCleanerDetails(props) {
                 <div id='air-cleaner-details-body'>
                     <img className='air-cleaner-details-image' src={props.airCleaner.imageLink} alt={props.airCleaner.name} />
                     <div>
-                    <p><strong>Link to buy:</strong> <a href={props.airCleaner.link}>Here</a></p>
-                    <p><strong>{numAirCleanersNeededLabel}</strong>{props.airCleaner.numAirCleaners}</p>
-                    <p>If you used{' '}
-                         <input id='change-num-air-cleaners-input' onChange={(e) => {
-                            if (e.target.value < 1) {
-                                return;
-                            }
-                            setChangeableNumAirCleaners(e.target.value);
-                            setAchBasedOnSelectedNumAirCleaners(props.airCleaner.achFromOneAirCleaner * e.target.value
-                                + props.airCleaner.outdoorVentilation);
-                            setPriceBasedOnSelectedNumAirCleaners(props.airCleaner.priceOfOneAirCleaner * e.target.value);
-                            updateACHValueColor(props.airCleaner.achFromOneAirCleaner * e.target.value + props.airCleaner.outdoorVentilation);
-                        }} defaultValue={props.airCleaner.numAirCleaners} type='number'/>
-                        {' '}air cleaners:
-                    </p>
-                    
-                    <p><strong>{estimatedACHLabel}</strong>
-                        <span className='color-coded-ach-level'>{achBasedOnSelectedNumAirCleaners}</span>
-                    </p>
-                    <p><strong>{priceLabel}</strong>${priceBasedOnSelectedNumAirCleaners}</p>
-                    <p><strong>{noiseLabel}</strong> {props.airCleaner.noise === -1 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
-                    <p><strong>{powerLabel}</strong> {props.airCleaner.power === -1 ? 'Not available' : props.airCleaner.power + ' W'}</p>
-                    <p><strong>{cadrLabel}</strong> {props.airCleaner.cadr} feet<sup>3</sup>/minute</p>
-                    <p><strong>{sizeLabel}</strong> {props.airCleaner.size === '' ? 'Not available' : sizeWithInchMarks(props.airCleaner.size)}</p>
-                    <p><strong>{maxRoomSizeLabel}</strong> {props.airCleaner.maxRoomSize === -1 ? 'Not available' : props.airCleaner.maxRoomSize + ' square feet'}</p>
+                        <p><strong>Link to buy:</strong> <a href={props.airCleaner.link}>Here</a></p>
+                        <p><strong>{numAirCleanersNeededLabel}</strong>{props.airCleaner.numAirCleaners}</p>
+                        <p>If you used{' '}
+                            <input id='change-num-air-cleaners-input' data-testid='change-num-air-cleaners-input' 
+                            onChange={(e) => handleNumAirCleanersChange(e)} 
+                            defaultValue={props.airCleaner.numAirCleaners} type='number'/>
+                            {' '}air cleaners:
+                        </p>
+                        
+                        <p><strong>{estimatedACHLabel}</strong>
+                            <span className='color-coded-ach-level'>{achBasedOnSelectedNumAirCleaners}</span>
+                        </p>
+                        <p><strong>{priceLabel}</strong>${priceBasedOnSelectedNumAirCleaners}</p>
+                        <p><strong>{noiseLabel}</strong> {props.airCleaner.noise === -1 ? 'Not available' : props.airCleaner.noise + ' dB'}</p>
+                        <p><strong>{powerLabel}</strong> {props.airCleaner.power === -1 ? 'Not available' : props.airCleaner.power + ' W'}</p>
+                        <p><strong>{cadrLabel}</strong> {props.airCleaner.cadr} feet<sup>3</sup>/minute</p>
+                        <p><strong>{sizeLabel}</strong> {props.airCleaner.size === '' ? 'Not available' : sizeWithInchMarks(props.airCleaner.size)}</p>
                     </div>
                 </div>
             </div>
