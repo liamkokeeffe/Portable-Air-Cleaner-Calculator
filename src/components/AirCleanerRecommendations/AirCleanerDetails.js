@@ -1,8 +1,8 @@
 import './AirCleanerDetails.css';
 import {useEffect, useState} from 'react';
-import * as d3 from 'd3';
 
 import {numAirCleanersNeededLabel} from './AirCleanerListItem.js';
+import {achColors} from './AirCleanerListItem.js';
 
 export function AirCleanerDetails(props) {
     const [changeableNumAirCleaners, setChangeableNumAirCleaners] = useState(props.airCleaner.numAirCleaners);
@@ -14,17 +14,25 @@ export function AirCleanerDetails(props) {
         const secondInchMarkInsertionLocation = airCleanerSize.lastIndexOf('x') - 1;
         return airCleanerSize.slice(0, firstInchMarkInsertionLocation) + ' inches' + 
                airCleanerSize.slice(firstInchMarkInsertionLocation, secondInchMarkInsertionLocation) + ' inches' +
-               airCleanerSize.slice(secondInchMarkInsertionLocation) + ' inches';   
+               airCleanerSize.slice(secondInchMarkInsertionLocation) + ' inches';
     }
 
     function updateACHValueColor(ach) {
+        const bareMinimumACH = 3;
+        const okACH = 4;
+        const goodACH = 5;
         const idealACH = 6;
-        if (ach < 5) {
-            document.querySelector('.color-coded-ach-level').style.color = d3.interpolate('red', 'greenyellow')(ach / idealACH);
-        } else if (ach < 8) {
-            document.querySelector('.color-coded-ach-level').style.color = d3.interpolate('greenyellow', 'green')(ach / idealACH);
+
+        if (ach >= idealACH) {
+            document.querySelector('.color-coded-ach-level').style.color = achColors.ideal;
+        } else if (ach >= goodACH) {
+            document.querySelector('.color-coded-ach-level').style.color = achColors.good;
+        } else if (ach >= okACH) {
+            document.querySelector('.color-coded-ach-level').style.color = achColors.ok;
+        } else if (ach >= bareMinimumACH) {
+            document.querySelector('.color-coded-ach-level').style.color = achColors.bareMinimum;
         } else {
-            document.querySelector('.color-coded-ach-level').style.color = 'green';
+            document.querySelector('.color-coded-ach-level').style.color = achColors.veryLow;
         }
     }
 
@@ -73,7 +81,7 @@ export function AirCleanerDetails(props) {
                             setAchBasedOnSelectedNumAirCleaners(props.airCleaner.achFromOneAirCleaner * e.target.value
                                 + props.airCleaner.outdoorVentilation);
                             setPriceBasedOnSelectedNumAirCleaners(props.airCleaner.priceOfOneAirCleaner * e.target.value);
-                            updateACHValueColor(props.airCleaner.achFromOneAirCleaner * e.target.value);
+                            updateACHValueColor(props.airCleaner.achFromOneAirCleaner * e.target.value + props.airCleaner.outdoorVentilation);
                         }} defaultValue={props.airCleaner.numAirCleaners} type='number'/>
                         {' '}air cleaners:
                     </p>

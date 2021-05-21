@@ -3,6 +3,7 @@ import {SortKeyChoice} from './SortKeyChoice.js';
 import {FilterOptions} from './FilterOptions.js';
 import {AirCleanerList} from './AirCleanerList.js';
 import {AirCleanerDetails} from './AirCleanerDetails.js';
+import {OccupancyDisclaimer} from './OccupancyDisclaimer.js';
 import './AirCleanerRecommendations.css';
 import VariousPortableAirCleaners from '../../images/various_portable_air_cleaners.png';
 
@@ -13,8 +14,9 @@ export function AirCleanerRecommendations(props) {
         maxNoise: -1,
         maxPower: -1,
         maxNumAirCleaners: defaultMaxNumAirCleaners
-    }
+    };
 
+    const [occupancyDisclaimerClosed, setOccupancyDisclaimerClosed] = useState(false);
     const [sortKey, setSortKey] = useState('price');
     const [filterOptions, setFilterOptions] = useState(filterOptionsInit);
     const [selectedAirCleaner, setSelectedAirCleaner] = useState(null);
@@ -42,7 +44,7 @@ export function AirCleanerRecommendations(props) {
         window.scrollTo(0, windowYPosition);
         setShouldScroll(0);
     }, [shouldScroll, windowYPosition]);
-    
+
     return (
         <div id='air-cleaner-recommendations-container'>
             {selectedAirCleaner === null &&
@@ -60,13 +62,16 @@ export function AirCleanerRecommendations(props) {
                             </div>
                             <h2 id='air-cleaner-recommendations-title'>Recommended Portable Air Cleaners</h2>
                             <SortKeyChoice updateSortKey={setSortKey} />
-                            {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
-                            <div id='disclaimer-message'>
-                                <p><span>Note: </span>Your current average occupancy appears to be greater than the recommended occupancy based on <span>{props.roomInfo.currPhase !== '' ? " Phase " + props.roomInfo.currPhase + " ": " " + props.roomInfo.currOccupancy + "% occcupancy "}</span> 
-                                guidelines for your particular room. You may want to prioritize choosing an air cleaner with a high ACH (air changes per hour) level or purchase more air cleaners than are recommended.</p>
+                            <div id='occupancy-disclaimer-and-air-cleaner-list-container'>
+                                {props.roomInfo.recOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recOccupancy &&
+                                !occupancyDisclaimerClosed &&
+                                <OccupancyDisclaimer roomInfo={props.roomInfo}
+                                    setOccupancyDisclaimerClosed={setOccupancyDisclaimerClosed} />
+                                }
+                                <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} 
+                                detailsClick={detailsClick} airCleaners={props.airCleaners} 
+                                occupancyDisclaimerClosed={occupancyDisclaimerClosed} />
                             </div>
-                            }
-                            <AirCleanerList roomInfo={props.roomInfo} sortKey={sortKey} filterOptions={filterOptions} detailsClick={detailsClick} airCleaners={props.airCleaners} />
                         </div>
                     </div>
                 </div>

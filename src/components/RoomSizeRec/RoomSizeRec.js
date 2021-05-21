@@ -5,6 +5,14 @@ export function RoomSizeRec(props) {
 
     document.body.style.background = "white";
 
+    const achColors = {
+        veryLow: "#FF0D0D",
+        bareMinimum: "#FF8E15",
+        ok: "#FAB733",
+        good: "#ACB334",
+        ideal: "#69B34C"
+    }
+
     const ventilationToACH = {
         'Poor' : 1,
         'Typical' : 1.5,
@@ -51,15 +59,15 @@ export function RoomSizeRec(props) {
 
     function getACHColor(ach) {
         if (ach < 3) {
-            return "#FF0D0D";
+            return achColors.veryLow;
         } else if (ach < 4) {
-            return "#FF8E15";
+            return achColors.bareMinimum;
         } else if (ach < 5) {
-            return "#FAB733";
+            return achColors.ok;
         } else if (ach < 6) {
-            return "#ACB334";
+            return achColors.good;
         } else {
-            return "#69B34C";
+            return achColors.ideal;
         }
     }
 
@@ -116,7 +124,7 @@ export function RoomSizeRec(props) {
                     <GaugeChart id="gauge-chart" s
                     tyle={chartStyle}
                     nrOfLevels={5}
-                    colors={["#FF0D0D", "#FF8E15", "#FAB733", "#ACB334", "#69B34C"]}
+                    colors={[achColors.veryLow, achColors.bareMinimum, achColors.ok, achColors.good, achColors.ideal]}
                     arcPadding={0.05}
                     arcsLength={[0.20, 0.19, .19, .19, 0.20]}
                     animate={true}

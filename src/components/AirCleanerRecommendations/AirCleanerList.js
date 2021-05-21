@@ -116,7 +116,8 @@ export function AirCleanerList(props) {
         <div id='air-cleaner-list'>
             {airCleanerComponents.length > 0 ? airCleanerComponents :
                 <div id='no-air-cleaners-found-message-container'>
-                    <p>Sorry, but there were no portable air cleaners found. You may be using filtering options that are too specific, or your space may be too large to be properly ventilated with the portable air cleaners we are recommending (the maximum floor area for which we recommend air cleaners is 4000 square feet).</p>
+                    <p>Sorry, but there were no portable air cleaners found. You may be using filtering options that 
+                        are too specific.</p>
                 </div>
             }
         </div>

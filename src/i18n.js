@@ -3,14 +3,10 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 import translationEN from './translations/translationEN.json';
-import translationES from './translations/translationES.json';
 
 const resources = {
   en: {
     translation: translationEN
-  },
-  es: {
-    translation: translationES
   }
 };
 
@@ -31,7 +27,7 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: true,
-    supportedLngs: ['en', 'es'],
+    supportedLngs: ['en'],
     detection: detectOptions,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
