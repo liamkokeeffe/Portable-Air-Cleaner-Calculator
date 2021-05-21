@@ -12,7 +12,7 @@ export function RoomVentilationInput(props) {
                         <legend htmlFor="ventilation-selection" className="input-title" id="ventilation-input-title">Ventilation</legend>
                         <div>
                             <input id="poor-ventilation" name="ventilation" type="radio" value="Poor" onChange={(e) => props.updateOutdoorVentilation(e.target.value)}/>
-                            <label htmlFor="poor-ventilation" className="radio-btn-text">Poor</label>
+                            <label htmlFor="poor-ventilation" className="radio-btn-text">Poor/Unsure</label>
                             <p className="radio-help-text">Select this if your environment has poor ventilation or you're not sure.</p>
                         </div>
                         <div>
