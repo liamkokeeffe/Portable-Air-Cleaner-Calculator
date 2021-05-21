@@ -324,4 +324,14 @@ span {
   .radio-help-text {
     font-size: 12pt;
   }
+
+  #cadr-model-tooltip,
+  #cadr-value-tooltip,
+  #density-average-tooltip,
+  #density-maximum-tooltip,
+  #density-phase-tooltip,
+  #density-occupancy-tooltip {
+    font-size: 10pt;
+    width: 40%;
+  }
 }

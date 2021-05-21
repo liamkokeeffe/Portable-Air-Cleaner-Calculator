@@ -22,7 +22,7 @@ export function RoomVentilationInput(props) {
                             <input id="poor-ventilation" name="ventilation" type="radio" value="Poor" 
                             onChange={(e) => handleVentilationSelection(e)}
                             checked={checkedRadioButton === "Poor"}/>
-                            <label htmlFor="poor-ventilation" className="radio-btn-text">Poor</label>
+                            <label htmlFor="poor-ventilation" className="radio-btn-text">Poor/Unsure</label>
                             <p className="radio-help-text">Select this if your environment has poor ventilation or 
                             you're not sure.</p>
                         </div>

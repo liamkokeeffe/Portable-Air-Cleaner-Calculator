@@ -77,6 +77,11 @@
   margin-bottom: -50px;
 }
 
+#find-btn-tooltip,
+#test-btn-tooltip {
+  font-size: 15pt;
+}
+
 #subheader--btn-test {
   margin-left: 10%;
 }
