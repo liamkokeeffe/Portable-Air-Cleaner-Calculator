@@ -96,7 +96,7 @@ export function RoomDimensionsInput(props) {
                         <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
                     <p className="error-message" id="error-floor-area">Please enter a floor area.</p>
-                    <p className="error-message" id="error-max-area">The max floor area our <br /> calculator will handle is {unitsRef.current === "feet" ? "3000 ft" : "914 m"}<sup>2</sup></p>
+                    <p className="error-message" id="error-max-area">Note: We only recommend <br/> using our tool for spaces <br/> under {unitsRef.current === "feet" ? "3000 ft" : "277 m"}<sup>2</sup></p>
                     <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height <span className="required">*</span></label>
                     <div className="input-line-wrapper">
                         <input id="ceiling-height-input" className="user-input" onChange={(e) => { 

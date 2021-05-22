@@ -22,7 +22,7 @@ export function RoomDensityInput(props) {
 
     return (
         <div>
-            <p className="helptext">This is an optional step that will help determine the optimal amount of people that should be in your room for clean air.</p>
+            <p className="helptext">This is an optional step that will help determine if your space is too densely occupied according to <a href="https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance" target="_blank" rel="noreferrer">Washington state governor's current COVID-19 occupancy guidelines</a>.</p>
             <div className="step-wrapper">
                 <div className="input-wrapper">
                     <label htmlFor="room-type-selection" className="input-title">Room Type</label>

@@ -17,7 +17,7 @@ export function OccupancyDisclaimer(props) {
             guidelines for your space. The recommended air cleaners below are being
             recommended with the assumption that your room's occupancy meets current occupancy
             guidelines. For more information about occupancy guidelines for your type of space,
-            click <a href='https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance'>here</a>.
+            click <a href='https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance' target="_blank" rel="noreferrer">here</a>.
             </p>
         </div>
     );
