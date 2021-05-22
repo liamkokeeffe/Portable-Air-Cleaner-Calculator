@@ -3,7 +3,7 @@ import {AirCleanerRecommendations} from '../AirCleanerRecommendations/AirCleaner
 import {airCleanersForTesting} from './FindAirCleaner.test.js';
 
 // The different test files are conflicting with each other and can't be run at the same time.
-// Please see TestAirCleaner.test.js for instructions on how to run the tests in this file.
+// Please see the TestAirCleaner.test.js file in this directory for instructions on how to run the tests in this file.
 
 /*
 const defaultRoomInfo = { 

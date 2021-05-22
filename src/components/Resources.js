@@ -16,6 +16,7 @@ export function Resources() {
                     <p>This tool also assumes that when you use an air cleaner(s), it will be running at full capacity.
                     Some models may have options to turn down the power level to decrease noise but this reduces the
                     effectiveness of the air cleaner(s).</p>
+                    <p><strong>We don't recommend that you use our tool if your floor area is over 3000 square feet.</strong></p>
                     <p>Using a portable air cleaner will not necessarily prevent the spread of COVID-19.{' '}
                         <a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-Program-Portable-Air-Cleaners.pdf" target="_blank" rel="noreferrer">Here is a link</a>{' '}
                         with information about portable air cleaners and when they should be used.{' '}

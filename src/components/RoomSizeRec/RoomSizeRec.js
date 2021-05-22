@@ -149,7 +149,7 @@ export function RoomSizeRec(props) {
                 <div id="roomsizerec-details">
                     {props.airCleanerInfo.numOwned === 1 &&
                         <div className="details-module">
-                            <p className="details-title">Recommended Room <br />Area of this air cleaners at your room's existing ventilation level):</p>
+                            <p className="details-title">Recommended room <br />area of this air cleaner (at your room's ventilation rating):</p>
                             <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
                         </div>
                     }
@@ -208,8 +208,8 @@ export function RoomSizeRec(props) {
                     {props.roomInfo.recommendedOccupancy !== -1 && props.roomInfo.aveOccupancy > props.roomInfo.recommendedOccupancy &&
                         <p className="recommendation-text"><span>Note: </span>Your space's average occupancy is greater than
                         the recommended occupancy based on <span>{getDynamicOccupancyDisclaimerInfo()}</span> 
-                        guidelines for your space. The recommended air cleaners below are being
-                        recommended with the assumption that your room's occupancy meets current occupancy
+                        guidelines for your space. The air quality estimate on this page is being
+                        made with the assumption that your room's occupancy meets current occupancy
                         guidelines. For more information about occupancy guidelines for your type of space,
                         click <a href='https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance' target="_blank" rel="noreferrer">here</a>.</p>
                     }

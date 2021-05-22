@@ -2,7 +2,7 @@ import {fireEvent, render, screen} from '@testing-library/react';
 import {AirCleanerDetails} from '../AirCleanerRecommendations/AirCleanerDetails.js';
 
 // The different test files are conflicting with each other and can't be run at the same time.
-// Please see TestAirCleaner.test.js for instructions on how to run the test in this file.
+// Please see the TestAirCleaner.test.js file in this directory for instructions on how to run the test in this file.
 
 /*
 it('should calculate the correct ACH when the number of air cleaners being used is changed', () => {

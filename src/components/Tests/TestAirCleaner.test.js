@@ -4,7 +4,7 @@ import {airCleanersForTesting} from './FindAirCleaner.test.js';
 
 // The different test files are conflicting with each other and can't be run at the same time.
 // If you want to run other tests (any file ending in `.test.js`), uncomment the block below and comment all code
-// other than any `export` code in the uncommented test file. Then run `npm test -- FileName.test.js` to
+// (other than any code exporting constants) in the uncommented test file. Then run `npm test -- FileName.test.js` to
 // run the tests that you want to run.
 
 /*

@@ -38,7 +38,7 @@ export function FAQ() {
             </div>
             <div className="question-container">
                 <span className="question-title">How were the air cleaners being recommended chosen?</span>
-                <p className="question-answer">We sourced our list of recommended air cleaners from the spreadsheet tool we redesigned (linked in the above question) and from ConsumerLab.com report <a href="https://www.consumerlab.com/answers/portable-air-cleaner/air-purifier/" target="_blank" rel="noreferrer">Which air purifiers are best for reducing the spread of COVID-19?</a>. Only air cleaners with HEPA filters are being recommended.</p>
+                <p className="question-answer">We sourced our list of recommended air cleaners from the spreadsheet tool we redesigned (linked in the above question) and from the ConsumerLab.com article <a href="https://www.consumerlab.com/answers/portable-air-cleaner/air-purifier/" target="_blank" rel="noreferrer">Which air purifiers are best for reducing the spread of COVID-19?</a>. Only air cleaners with HEPA filters are being recommended.</p>
             </div>
             <div className="question-container">
                 <span className="question-title">Where do I find my device's CADR rating?</span>
