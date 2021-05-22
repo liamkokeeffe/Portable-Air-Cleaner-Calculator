@@ -91,7 +91,9 @@ We based our occupancy recommendations based off the State of Washington's Healt
 ```
 First, we take the phase (or max percent occupancy if the user entered that instead of their phase) and room type the user entered and find the corresponding recommended percent occupancy and max number of people allowed at that phase from the JSON file. Then, we take their building's **max occupancy** limit and multiply that by the recommended phase **percent occupancy** (Maximum Occupancy of Room * Current Phase Percent Occupancy). We then compare that value to the max number of people allowed at that phase and recommend whichever value is **smaller**.
 
-**The occupancy information does not affect the ACH/air quality calculations.** Users do not need to enter occupancy information to use the tool. Users are simply informed that their room is more densely populated than the current occupancy limits.
+**The occupancy information does not affect the ACH/air quality calculations.** Users do not need to enter their 
+occupancy information to use the tool. If a user does enter their occupancy information and their room is more 
+densely populated than the current occupancy limits, we just inform the user that this is the case.
 
 ### Running the application locally
 
