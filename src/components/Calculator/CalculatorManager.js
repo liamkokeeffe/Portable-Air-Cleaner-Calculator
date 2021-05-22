@@ -42,7 +42,7 @@ export function CalculatorManager(props) {
             const result = await d3.csv(data, (d) => {
                 return {
                     name: d['Name'],
-                    cadr: +d['CADR'],
+                    cadr: +d['CADR (smoke)'],
                     priceOfOneAirCleaner: d['Price (USD)'] === '' ? -1 : +d['Price (USD)'],
                     noise: d['Noise Rating (db)'] === '' ? -1 : +d['Noise Rating (db)'],
                     power: d['Power (W)'] === '' ? -1 : +d['Power (W)'],
