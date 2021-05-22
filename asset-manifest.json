@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.2ba76732.chunk.css",
-    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.f859fef8.chunk.js",
-    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.f859fef8.chunk.js.map",
+    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.8fdd568e.chunk.js",
+    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.8fdd568e.chunk.js.map",
     "runtime-main.js": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.27e74f59.js",
     "runtime-main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.27e74f59.js.map",
     "static/js/2.03e1a483.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.03e1a483.chunk.js",
@@ -15,7 +15,7 @@
     "static/media/about_efficiency.b60247d9.png": "/Portable-Air-Cleaner-Calculator/static/media/about_efficiency.b60247d9.png",
     "static/media/about_finding.e63bc244.png": "/Portable-Air-Cleaner-Calculator/static/media/about_finding.e63bc244.png",
     "static/media/About.css": "/Portable-Air-Cleaner-Calculator/static/media/about_product_background.b5294ca2.png",
-    "static/media/air_cleaner_list.aee33f23.csv": "/Portable-Air-Cleaner-Calculator/static/media/air_cleaner_list.aee33f23.csv",
+    "static/media/air_cleaner_list.4744a4ef.csv": "/Portable-Air-Cleaner-Calculator/static/media/air_cleaner_list.4744a4ef.csv",
     "static/media/aircleaner_animated.3e5eb9b7.png": "/Portable-Air-Cleaner-Calculator/static/media/aircleaner_animated.3e5eb9b7.png",
     "static/media/cadr_clipart.bd6a9c1e.png": "/Portable-Air-Cleaner-Calculator/static/media/cadr_clipart.bd6a9c1e.png",
     "static/media/commerce_about_logo.1496b165.png": "/Portable-Air-Cleaner-Calculator/static/media/commerce_about_logo.1496b165.png",
@@ -31,6 +31,6 @@
     "static/js/runtime-main.27e74f59.js",
     "static/js/2.03e1a483.chunk.js",
     "static/css/main.2ba76732.chunk.css",
-    "static/js/main.f859fef8.chunk.js"
+    "static/js/main.8fdd568e.chunk.js"
   ]
 }
