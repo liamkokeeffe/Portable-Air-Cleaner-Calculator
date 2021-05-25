@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.2ba76732.chunk.css",
-    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.7d13f293.chunk.js",
-    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.7d13f293.chunk.js.map",
+    "main.css": "/Portable-Air-Cleaner-Calculator/static/css/main.8870fd03.chunk.css",
+    "main.js": "/Portable-Air-Cleaner-Calculator/static/js/main.dfdd91ea.chunk.js",
+    "main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/main.dfdd91ea.chunk.js.map",
     "runtime-main.js": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.27e74f59.js",
     "runtime-main.js.map": "/Portable-Air-Cleaner-Calculator/static/js/runtime-main.27e74f59.js.map",
     "static/js/2.03e1a483.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/2.03e1a483.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.4f644e6c.chunk.js": "/Portable-Air-Cleaner-Calculator/static/js/3.4f644e6c.chunk.js",
     "static/js/3.4f644e6c.chunk.js.map": "/Portable-Air-Cleaner-Calculator/static/js/3.4f644e6c.chunk.js.map",
     "index.html": "/Portable-Air-Cleaner-Calculator/index.html",
-    "static/css/main.2ba76732.chunk.css.map": "/Portable-Air-Cleaner-Calculator/static/css/main.2ba76732.chunk.css.map",
+    "static/css/main.8870fd03.chunk.css.map": "/Portable-Air-Cleaner-Calculator/static/css/main.8870fd03.chunk.css.map",
     "static/js/2.03e1a483.chunk.js.LICENSE.txt": "/Portable-Air-Cleaner-Calculator/static/js/2.03e1a483.chunk.js.LICENSE.txt",
     "static/media/about_efficiency.b60247d9.png": "/Portable-Air-Cleaner-Calculator/static/media/about_efficiency.b60247d9.png",
     "static/media/about_finding.e63bc244.png": "/Portable-Air-Cleaner-Calculator/static/media/about_finding.e63bc244.png",
@@ -30,7 +30,7 @@
   "entrypoints": [
     "static/js/runtime-main.27e74f59.js",
     "static/js/2.03e1a483.chunk.js",
-    "static/css/main.2ba76732.chunk.css",
-    "static/js/main.7d13f293.chunk.js"
+    "static/css/main.8870fd03.chunk.css",
+    "static/js/main.dfdd91ea.chunk.js"
   ]
 }
