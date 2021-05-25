@@ -7,9 +7,7 @@ export function Home() {
     const [disclaimerClicked, setDisclaimerClicked] = useState(false);
 
     function closeDisclaimer() {
-        console.log(sessionStorage.getItem('disclaimerClosed'));
         sessionStorage.setItem('disclaimerClosed', 'true');
-        console.log(sessionStorage.getItem('disclaimerClosed'));
         setDisclaimerClicked(true);
     }
 

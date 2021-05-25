@@ -1,7 +1,7 @@
 import "./Calculator.css";
 import { useState } from "react";
-import CadrImg from '../../images/cadr_clipart.png'
-import React from "react"
+import CadrImg from '../../images/cadr_clipart.png';
+import React from "react";
 import ReactToolTip from "react-tooltip";
 
 export function AirCleanerCADRInput(props) {
@@ -46,7 +46,7 @@ export function AirCleanerCADRInput(props) {
                         {createSelectItems(props.airCleaners)}
                     </select>
                     <ReactToolTip id="cadr-value-tooltip" place="right" effect="solid" multiline={true}>The clean air delivery rate (CADR) of your air cleaner can often be found on the bottom of the air cleaner. If not, an online search of the model name should return the CADR value.</ReactToolTip>
-                    <label htmlFor="cadr-input" className="input-title">CADR of Air Cleaner <span class="required">*</span></label>
+                    <label htmlFor="cadr-input" className="input-title">CADR of Air Cleaner <span className="required">*</span></label>
                     <input className="user-input" id="cadr-input" data-tip data-for="cadr-value-tooltip" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
@@ -55,8 +55,8 @@ export function AirCleanerCADRInput(props) {
                         }
                     }} value={cadr} />
                     <p className="error-message" id="error-cadr">Please enter a CADR value.</p>
-                    <label htmlFor="num-aircleaners" className="input-title">Number of these Air Cleaners</label>
-                    <input className="user-input" id="num-aircleaners" onChange={(e) => {
+                    <label htmlFor="num-aircleaners-input" className="input-title">Number of these Air Cleaners</label>
+                    <input className="user-input" id="num-aircleaners-input" onChange={(e) => {
                         let value = e.target.value;
                         if (checkIfNumber(value)) {
                             setNumOwned(value)

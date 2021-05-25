@@ -12,7 +12,7 @@ export function RoomVentilationInput(props) {
 
     return (
         <div>
-            <p className="helptext">Please rate the outdoor air ventilation level in your room. Refer to the descriptions of each option to determine your ventilation rating. For more information on how to estimate your ventilation level please visit the resources tab at the top of the page.</p>
+            <p className="helptext">Please rate the outdoor air ventilation level in your room. Refer to the descriptions of each option to determine your ventilation rating.</p>
             <div className="step-wrapper">
                 <div className="input-wrapper">
                     <p className="error-message" id="error-ventilation">Please select a Ventilation value.</p>

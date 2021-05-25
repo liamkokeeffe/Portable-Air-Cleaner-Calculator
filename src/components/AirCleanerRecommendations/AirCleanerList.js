@@ -10,8 +10,6 @@ export function AirCleanerList(props) {
     <AirCleanerListItem key={item.name} id={index} airCleaner={item} detailsClick={props.detailsClick} />
     );
     const minACHLevelToRecommend = 5;
-    const maxFloorAreaSquareFeet = 4000;
-    const maxFloorAreaSquareMeters = 370;
 
     useEffect(() => {
         function getOutdoorVentilation() {
@@ -93,12 +91,6 @@ export function AirCleanerList(props) {
                 }
                 return a[props.sortKey] - b[props.sortKey];
             });
-        }
-
-        if ((props.roomInfo.units === 'feet' && props.roomInfo.floorArea > maxFloorAreaSquareFeet) || 
-            (props.roomInfo.units === 'meters' && props.roomInfo.floorArea > maxFloorAreaSquareMeters)) {
-            setRecommendedAirCleaners([]);
-            return;
         }
 
         let airCleaners = props.airCleaners;

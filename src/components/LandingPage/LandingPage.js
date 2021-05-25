@@ -7,8 +7,6 @@ import ReactToolTip from "react-tooltip"
 export function LandingPage() {
     const {t} = useTranslation();
 
-    document.body.style.background = "white";
-
     return (
         <div >
             <div id="body-container">
