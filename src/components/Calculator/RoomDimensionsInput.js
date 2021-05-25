@@ -34,7 +34,7 @@ export function RoomDimensionsInput(props) {
     function calculateFloorArea() {
         if (roomWidthRef.current !== 0 && roomLengthRef.current !== 0) {    
             let floorArea = roomWidthRef.current * roomLengthRef.current;
-            if (props.calculatorType === "find" && (((unitsRef.current === "feet" && floorArea > 3000)) || (unitsRef.current === "meters" && floorArea > 278))) {
+            if (props.calculatorType === "find" && (((unitsRef.current === "feet" && floorArea > 3000)) || (unitsRef.current === "meters" && floorArea > 277))) {
                 document.getElementById("error-max-area").style.display = "block";
             } else {
                 document.getElementById("error-max-area").style.display = "none";
@@ -54,7 +54,12 @@ export function RoomDimensionsInput(props) {
                     <label htmlFor="unit-selection" className="input-title">Units</label>
                     <select id="unit-selection" className="user-input" onChange={(e) => {
                         setUnits(e.target.value);
-                        props.unitSelectionMade(e.target.value)
+                        props.unitSelectionMade(e.target.value);
+                        if ((e.target.value === "feet" && floorAreaRef.current <= 3000) || (e.target.value === "meters" && floorAreaRef.current <= 277)) {
+                            document.getElementById("error-max-area").style.display = "none";
+                        } else {
+                            document.getElementById("error-max-area").style.display = "block";
+                        }
                     }} value={props.roomInfo.units}>
                         <option value="feet">Feet</option>
                         <option value="meters">Meters</option>
@@ -85,8 +90,8 @@ export function RoomDimensionsInput(props) {
                     <div className="input-line-wrapper">
                         <input id="floor-area-input" className="user-input" onChange={(e) => {
                             let value = e.target.value;
-                            if ((props.calculatorType === "find" && ((unitsRef.current === "feet" && value <= 3000)) || (unitsRef.current === "meters" && value <= 278)) || props.calculatorType === "test") {
-                                document.getElementById("error-max-area").style.display = "none"
+                            if ((props.calculatorType === "find" && ((unitsRef.current === "feet" && value <= 3000) || (unitsRef.current === "meters" && value <= 277))) || props.calculatorType === "test") {
+                                document.getElementById("error-max-area").style.display = "none";
                             } else {
                                 document.getElementById("error-max-area").style.display = "block";
                             }
@@ -96,7 +101,7 @@ export function RoomDimensionsInput(props) {
                         <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
                     <p className="error-message" id="error-floor-area">Please enter a floor area.</p>
-                    <p className="error-message" id="error-max-area">Note: We only recommend <br/> using our tool for spaces <br/> under {unitsRef.current === "feet" ? "3000 ft" : "277 m"}<sup>2</sup></p>
+                    <p className="error-message" id="error-max-area">Note: We don't recommend <br/>that you use our tool if your <br/>floor area is over {unitsRef.current === "feet" ? "3000 ft" : "277 m"}<sup>2</sup></p>
                     <label htmlFor="ceiling-height-input" className="input-title">Ceiling Height <span className="required">*</span></label>
                     <div className="input-line-wrapper">
                         <input id="ceiling-height-input" className="user-input" onChange={(e) => { 

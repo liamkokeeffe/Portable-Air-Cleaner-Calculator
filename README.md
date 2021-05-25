@@ -20,9 +20,9 @@ The application can be found [here](https://liamkokeeffe.github.io/Portable-Air-
 ### Architecture
 We built our project with JavaScript and React.js.
 All React components can be found in the `src/components` directory (except for the root `App.js` component which is in the `src` directory). We tried to name the components clearly and organize them into folders where it made sense.
-* `src/components/LandingPage/LandingPage.js`: what the user first sees when visiting the website (initially a disclaimer, then the resulting page seen when the disclaimer its closed).
-* `src/components/CalculatorManager.js`: component that is responsible for saving the state of the user inputs and passing this data between the calculator page and the results pages.
-* `src/components/Calculator`: folder that contains the components used in the calculator (input box where user enters their room dimensions is the `RoomDimensionsInput.js` component, etc.).
+* `src/components/LandingPage/LandingPage.js`: the page that a user first sees when visiting the website.
+* `src/components/Calculator/CalculatorManager.js`: component that is responsible for saving the state of user inputs and passing this data between the calculator page (the page where users enter information about their room like its dimensions) and the results pages.
+* `src/components/Calculator`: folder that contains other components used in the calculator page (input box where user enters their room dimensions is the `RoomDimensionsInput.js` component, etc.).
 * `src/components/AirCleanerRecommendations`: folder that contains the components used on the air cleaner recommendations page (what the user sees if they are using or application to find an air cleaner and click "View results" on the calculator page).
 * `src/components/RoomSizeRec`: folder that contains the component used on the "Test air cleaner" information page (what the user sees if they are using our application to test the quality of an air cleaner and click "View results" on the calculator page).
 * `src/components/Layout`: folder that contains the application's header and footer components, as well as a layout component which specifies how these components are organized with regard to the "body" components (whatever components are between the header and footer). (Note: The `LanguageSelection` component is visually located in the header on wide screen views but it is located in the footer component in code).
@@ -56,9 +56,9 @@ When **recommending air cleaners to users**, we take the user's entered room vol
 
 
 **If Units are Feet:**  
-Estimated ACH of user's space = ((Air Cleaner's CADR) * 60 / Room Volume) + Outdoor Ventilation  
+Estimated ACH of user's space = (((Air Cleaner's CADR) * 60 / Room Volume) * Number Of Air Cleaners Being Used) + Outdoor Ventilation  
 **If Units are Meters:**  
-Estimated ACH of user's space = ((Air Cleaner's CADR) / 0.58 / Room Volume) + Outdoor Ventilation
+Estimated ACH of user's space = (((Air Cleaner's CADR) / 0.58 / Room Volume) * Number Of Air Cleaners Being Used) + Outdoor Ventilation
 
 When a user is **testing the effectiveness of an air cleaner**, users enter their room volume, level of outdoor ventilation, and the CADR of their air cleaner. We then use the same calculation that we use when recommending air cleaners, but this time the CADR value is provided by the user and we therefore only need to perform the calculation once. The user is then shown the estimated ACH that their air cleaner is giving/would give their space based on their inputs.
 
@@ -66,11 +66,11 @@ When a user is testing the effectiveness of an air cleaner, we also show them th
 
 **If Units are Feet:** 
 
-Recommended room size of an air cleaner (square feet) = (Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (in cubic feet) / 60)) * 60 / (5 * ceiling height).
+Recommended room size of an air cleaner (square feet) = (Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (cubic feet) / 60)) * 60 / (5 * ceiling height (feet)).
 
 **If Units are Meters:** 
 
-Recommended room size of an air cleaner (square meters) = ((Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (in cubic meters) * 35.3147 / 60)) * 60 / 35.315) / (5 * ceiling height).</p>
+Recommended room size of an air cleaner (square meters) = ((Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (cubic meters) * 35.3147 / 60)) * 60 / 35.315) / (5 * ceiling height (meters)).</p>
 
 **Note:** We round down to the nearest integer room size (so if the calculation gives 200.9 we show the user 200).
 

@@ -9,14 +9,14 @@ export function RoomSizeRec(props) {
         ok: "#FAB733",
         good: "#ACB334",
         ideal: "#69B34C"
-    }
+    };
 
     const ventilationToACH = {
         'Poor' : 1,
         'Typical' : 1.5,
         'Good' : 3,
         'Enhanced' : 4
-    }
+    };
 
     function achToMessage(ach) {
         if (ach < 3) {
@@ -112,7 +112,7 @@ export function RoomSizeRec(props) {
     const chartStyle = {
         height : getChartWidth()
         // height : 90
-    }
+    };
 
     return (
         <div id="roomsizerec-container">
@@ -149,15 +149,15 @@ export function RoomSizeRec(props) {
                 <div id="roomsizerec-details">
                     {props.airCleanerInfo.numOwned === 1 &&
                         <div className="details-module">
-                            <p className="details-title">Recommended room <br />area of this air cleaner (at your room's ventilation rating):</p>
+                            <p className="details-title">Recommended room <br />area of this air cleaner (at your room's ventilation level and ceiling height):</p>
                             <p className="details-value" id="superscript-feet">{calculateRoomSize()} {props.roomInfo.units === "feet" ? "ft" : "m"}<sup>2</sup></p>
                         </div>
                     }
                     {calculateRoomSize() < props.roomInfo.floorArea && props.airCleanerInfo.numOwned === 1 &&
-                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner and ventilation level is smaller than your current room area. You may want to consider purchasing a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
+                        <p className="recommendation-text"><span>Note: </span>Our recommended room area for your air cleaner at your ventilation level and ceiling height is smaller than your current room area. You may want to consider purchasing a stronger air cleaner for your space using the 'Air Cleaner List' button below.</p>}
                     <hr className="roomsizerec-hr" />
                     <div className="details-module">
-                        <p className="details-title">Ventilation Rating:</p>
+                        <p className="details-title">Ventilation Level:</p>
                         <p className="details-value">{props.roomInfo.outdoorVentilation}</p>
                     </div>
                     <hr className="roomsizerec-hr" />

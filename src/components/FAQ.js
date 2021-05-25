@@ -26,10 +26,15 @@ export function FAQ() {
             </div>
             <div className="question-container">
                 <span className="question-title">What calculations are being used in this tool?</span>
-                <p className="question-answer">The primary calculation that is used is: ACH of a space = ((Air Cleaner's CADR) * 60 / Room Volume (in cubic feet)) + Outdoor Ventilation. In this calculation, "outdoor ventilation" refers to the ACH already existing in your space without air cleaners.</p>
-                <p className="question-answer">There is also a calculation for recommended room size for an air cleaner which is: Recommended room size of an air cleaner (square feet) = (Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (in cubic feet) / 60)) * 60 / (5 * ceiling height).</p>
-                <p className="question-answer">Note: Both of these calculations are for units of feet. The calculations for units of meters can be found in the
-                spreadsheet tool linked in the below question.</p>
+                <p className="question-answer">The primary calculation that is used is:</p>
+                <p className="question-answer">ACH of a space (for units of feet) = (((Air Cleaner's CADR) * 60 / Room Volume (cubic feet)) * Number Of Air Cleaners Being Used) + Outdoor Air Ventilation. In this calculation, "Outdoor Air Ventilation" refers to the ACH in the space before air cleaners are added.</p>
+                <p className="question-answer">ACH of a space (for units of meters) = (((Air Cleaner's CADR) / 0.58 / Room Volume (cubic meters)) * Number Of Air Cleaners Being Used) + Outdoor Air Ventilation. In this calculation, "Outdoor Air Ventilation" refers to the ACH in the space before air cleaners are added.</p>
+                <p className="question-answer">The outdoor air ventilation levels that users select on this tool are mapped like this: "Poor" outdoor 
+                air ventilation corresponds to 1 ACH. "Typical" outdoor air ventilation corresponds to 1.5 ACH. "Good" outdoor air
+                ventilation corresponds to 3 ACH. "Enhanced" outdoor air ventilation corresponds to 4 ACH.</p>
+                <p className="question-answer">There is also a calculation for recommended room size for an air cleaner which is:</p>
+                <p className="question-answer">Recommended room size of an air cleaner (square feet) = (Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (cubic feet) / 60)) * 60 / (5 * ceiling height (feet)).</p>
+                <p className="question-answer">Recommended room size of an air cleaner (square meters) = ((Air Cleaner's CADR + (Outdoor Ventilation * Room Volume (cubic meters) * 35.3147 / 60)) * 60 / 35.315) / (5 * ceiling height (meters)).</p>
                 <p className="question-answer">We also let users know if their room is overpopulated based on <a href="https://www.governor.wa.gov/issues/issues/covid-19-resources/covid-19-reopening-guidance" target="_blank" rel="noreferrer">Washington state governor's current COVID-19 occupancy guidelines</a>.</p>
             </div>
             <div className="question-container">
@@ -51,7 +56,7 @@ export function FAQ() {
             </div>
             <div className="question-container">
                 <span className="question-title">Why are multiple portable air cleaners being recommended to me instead of just one?</span>
-                <p className="question-answer">ACH is additive, so 2 ACH from an air cleaner means 2 air cleaners will give 4 ACH. Your space may not be able to achieve an estimated ACH of 5 with only one air cleaner. Also, using multiple smaller portable air cleaners is more effective than one large portable air cleaner, to address the nonuniformity of air and contaminant distribution across a room (source: <a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-Program-Portable-Air-Cleaners.pdf" target="_blank" rel="noreferrer">this link</a>) Buying multiple air cleaners instead of one may also be cheaper.
+                <p className="question-answer">Your space may not be able to achieve an estimated ACH of 5 (the recommended minimum) with only one air cleaner. Also, using multiple smaller portable air cleaners is more effective than one large portable air cleaner, to address the nonuniformity of air and contaminant distribution across a room (source: <a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-Program-Portable-Air-Cleaners.pdf" target="_blank" rel="noreferrer">this link</a>) Buying multiple air cleaners instead of one may also be cheaper.
                 </p>
             </div>
         </div>

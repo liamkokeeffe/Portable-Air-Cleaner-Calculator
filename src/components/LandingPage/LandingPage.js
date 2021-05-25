@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import "./LandingPage.css";
 import AirCleanerImg from "../../images/aircleaner_animated.png";
 import { Link } from "react-router-dom";
-import ReactToolTip from "react-tooltip"
+import ReactToolTip from "react-tooltip";
 
 export function LandingPage() {
     const {t} = useTranslation();

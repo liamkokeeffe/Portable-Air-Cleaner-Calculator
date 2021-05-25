@@ -81,7 +81,7 @@ export function AirCleanerDetails(props) {
                 <div id='air-cleaner-details-body'>
                     <img className='air-cleaner-details-image' src={props.airCleaner.imageLink} alt={props.airCleaner.name} />
                     <div>
-                        <p><strong>Link to buy:</strong> <a href={props.airCleaner.link}>Here</a></p>
+                        <p><strong>Link to buy:</strong> <a href={props.airCleaner.link} target="_blank" rel="noreferrer">Here</a></p>
                         <p><strong>{numAirCleanersNeededLabel}</strong>{props.airCleaner.numAirCleaners}</p>
                         <p>If you used{' '}
                             <input id='change-num-air-cleaners-input' data-testid='change-num-air-cleaners-input' 

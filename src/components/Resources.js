@@ -10,7 +10,7 @@ export function Resources() {
                 <p><strong>This tool assumes that the people present in your space are wearing masks and have low
                     activity levels (not exercising, singing, shouting, or any other activity that causes heavy
                     breathing). If your space contains individuals who are not wearing masks or have high activity
-                    levels (if your space is an eating/drinking area, gym, or area where people are singing/shouting
+                    levels (if your space is an eating/drinking area, gym, or area where people are singing/shouting, 
                     etc.) portable air cleaners may not be as effective at preventing the spread of COVID-19 compared
                     to other types of spaces.</strong></p>
                     <p>This tool also assumes that when you use an air cleaner(s), it will be running at full capacity.
