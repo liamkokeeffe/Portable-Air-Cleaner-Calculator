@@ -34,12 +34,12 @@ export function RoomDimensionsInput(props) {
     function calculateFloorArea() {
         if (roomWidthRef.current !== 0 && roomLengthRef.current !== 0) {    
             let floorArea = roomWidthRef.current * roomLengthRef.current;
-            if (props.calculatorType === "find" && floorArea > 3000) {
-                document.getElementById("error-max-area").style.display = "block"
-                return false;
+            if (props.calculatorType === "find" && (((unitsRef.current === "feet" && floorArea > 3000)) || (unitsRef.current === "meters" && floorArea > 278))) {
+                document.getElementById("error-max-area").style.display = "block";
+            } else {
+                document.getElementById("error-max-area").style.display = "none";
             }
-            document.getElementById("error-max-area").style.display = "none"
-            setFloorArea(roomWidthRef.current * roomLengthRef.current);
+            setFloorArea(floorArea);
             props.floorAreaEntered(floorAreaRef.current, roomLengthRef.current, roomWidthRef.current)
             return true;
         }
@@ -85,13 +85,13 @@ export function RoomDimensionsInput(props) {
                     <div className="input-line-wrapper">
                         <input id="floor-area-input" className="user-input" onChange={(e) => {
                             let value = e.target.value;
-                            if ((props.calculatorType === "find" && value <= 3000) || props.calculatorType === "test") {
+                            if ((props.calculatorType === "find" && ((unitsRef.current === "feet" && value <= 3000)) || (unitsRef.current === "meters" && value <= 278)) || props.calculatorType === "test") {
                                 document.getElementById("error-max-area").style.display = "none"
-                                setFloorArea(value);
-                                props.floorAreaEntered(parseFloat(value));
                             } else {
                                 document.getElementById("error-max-area").style.display = "block";
                             }
+                            setFloorArea(value);
+                            props.floorAreaEntered(parseFloat(value));
                         }} value={floorArea} type="number" />
                         <p className="unit-text">{unitsRef.current === "feet" ? "ft" : "m"}<sup>2</sup></p>
                     </div>
