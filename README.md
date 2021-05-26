@@ -36,7 +36,7 @@ Air cleaners being recommended are read from the csv file `src/air_cleaner_list.
 **Note:** It is important that the column names are not changed in the Google Sheet. It is also important that the 
 format of the data is kept consistent ($ symbols should not be added to the Price column as the other values in the 
 column contain only numbers, the Size column should always have values in the format 
-of 'number "x" number "x" number', etc.). 
+of 'number "x" number "x" number', etc.). The CADR column is in units of feet<sup>3</sup>/minute.
 
 ### Calculations Used
 **Terms Defined for the Calculations Below:**
